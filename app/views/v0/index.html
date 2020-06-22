@@ -13,9 +13,15 @@
         Baseline version
       </h1>
       <p>
-        This version represents an interactive version of wireframes that were tested with users.
+        This version represents an interactive version of wireframes that were initially tested with users.
       </p>
 
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+      text: "View linear journey",
+      href: "./ea/index.html"
+      }) }}
 
 
     </div>
