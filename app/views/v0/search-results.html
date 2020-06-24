@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Search
+        </h1>
+
+        {% include './includes/search.html' %}
+        <p>XXXX results</p>
+
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <hr />
+    <div class="govuk-grid-column-one-third">
+        {% include './includes/search-filter.html' %}
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+        <table>
+            <thead></thead>
+            <tbody>
+                {% include './includes/search-result-row.html' %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

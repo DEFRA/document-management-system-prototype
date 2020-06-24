@@ -1,0 +1,23 @@
+<div class="inline-search">
+
+    <form action="./search-results" method="post">
+
+        <div class="govuk-form-group">
+            <label class="govuk-label inline-search__label govuk-!-font-weight-bold" for="search">
+                Find a record
+            </label>
+
+            <span id="search-hint" class="govuk-hint inline-search__hint ">
+    You can search by X, Y or Z
+  </span>
+
+            <input class="govuk-input inline-search__input " id="search" name="search" type="search"
+                   aria-describedby="search-hint">
+        </div>
+
+        <button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
+            Search
+        </button>
+
+    </form>
+</div>
