@@ -44,6 +44,17 @@
     [aria-expanded="true"] ~ .app-c-expander__icon--up {
       display: block;
     }
+    .app-c-option-select__selected-counter {
+      display: none;
+      font-family: "nta", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.4285714286;
+      color: #0b0c0c;
+      margin-top: 3px;
+    }
   }
   .app-c-expander__content {
     display: none;

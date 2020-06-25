@@ -1,10 +1,64 @@
 {% from '../macros/searchFilter.njk' import searchFilter %}
 
+{% set filterOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'type',
+        name: 'type',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Pre-application',
+                checked: true
+            },
+            {
+                value: '2',
+                text: 'Application & Associated docs',
+                checked: true
+            },
+            {
+                value: '3',
+                text: 'Pre-operational criteria'
+            },
+            {
+                value: '4',
+                text: 'Compliance'
+            },
+            {
+                value: '5',
+                text: 'Monitoring'
+            },
+            {
+                value: '6',
+                text: 'Permit'
+            },
+            {
+                value: '7',
+                text: 'Enforcement'
+            },
+            {
+                value: '8',
+                text: 'Returns'
+            },
+            {
+                value: '9',
+                text: 'Charging'
+            },
+            {
+                value: '10',
+                text: 'General correspondence'
+            }
+        ]
+    }) }}
+
+{% endset  %}
+
 {{ searchFilter({
     rows: [
         {
-            title: 'Title',
-            body: 'Body'
+            title: 'Type',
+            body: filterOptionsHtml | safe
         },
         {
             title: 'Thing 2',
