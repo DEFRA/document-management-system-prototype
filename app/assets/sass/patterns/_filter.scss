@@ -1,0 +1,46 @@
+.filter-form {
+  .facets__header {
+    display: none;
+  }
+
+  .app-c-expander {
+    padding: 0 0 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #b1b4b6;
+
+    .app-c-expander__heading {
+      position: relative;
+      padding: 10px 8px 5px 43px;
+      margin: 0;
+      a {
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 1.3157894737;
+        border: 0;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        padding: 0;
+        color: #1d70b8;
+      }
+    }
+
+    .app-c-expander__icon {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 9px;
+      width: 30px;
+      height: 40px;
+      fill: #0b0c0c;
+    }
+    [aria-expanded="false"] ~ .app-c-expander__icon--down {
+      display: block;
+    }
+  }
+  .app-c-expander__content {
+    display: none;
+    padding: 10px 13px;
+  }
+}
+
