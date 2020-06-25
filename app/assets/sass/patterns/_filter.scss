@@ -1,5 +1,9 @@
 .filter-form {
-  .facets__header {
+  .facets__header, .facets__footer {
+    display: none;
+  }
+
+  .facets__clear-link {
     display: none;
   }
 
@@ -37,10 +41,16 @@
     [aria-expanded="false"] ~ .app-c-expander__icon--down {
       display: block;
     }
+    [aria-expanded="true"] ~ .app-c-expander__icon--up {
+      display: block;
+    }
   }
   .app-c-expander__content {
     display: none;
     padding: 10px 13px;
+  }
+  .app-c-expander__content--visible {
+    display: block;
   }
 }
 
