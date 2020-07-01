@@ -1,0 +1,36 @@
+/* Document List eg https://www.gov.uk/search/all */
+
+.gem-c-document-list {
+  color: #0b0c0c;
+  font-family: "nta", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+  .gem-c-document-list__item {
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #b1b4b6;
+    list-style: none;
+    .gem-c-document-list--no-underline .gem-c-document-list__item-title {
+      text-decoration: none;
+    }
+    .gem-c-document-list__item-description, .gem-c-document-list__subtext {
+      font-family: "nta", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #0b0c0c;
+      margin: 5px 0;
+    }
+    .gem-c-document-list__item-metadata {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.gov-uk_results-block {
+
+  .result-info {
+    margin: 0 0 20px 0;
+    border-bottom: solid 1px #0b0c0c;
+  }
+
+  .sort-options {
+    label {
+      padding-right: 5px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+  }
+
+  .results {
+    .finder-results {
+      list-style-type: none;
+      padding-left: 0;
+    }
+  }
+
+}
