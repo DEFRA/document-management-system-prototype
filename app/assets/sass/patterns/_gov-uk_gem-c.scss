@@ -10,15 +10,18 @@
   line-height: 1.25;
   margin: 0;
   padding: 0;
+
   .gem-c-document-list__item {
     overflow: hidden;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #b1b4b6;
     list-style: none;
+
     .gem-c-document-list--no-underline .gem-c-document-list__item-title {
       text-decoration: none;
     }
+
     .gem-c-document-list__item-description, .gem-c-document-list__subtext {
       font-family: "nta", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -29,8 +32,75 @@
       color: #0b0c0c;
       margin: 5px 0;
     }
+
     .gem-c-document-list__item-metadata {
       padding: 0;
+
+      .gem-c-document-list__attribute {
+        color: #0b0c0c;
+        font-family: "nta", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.25;
+        display: inline-block;
+        list-style: none;
+        padding-right: 20px;
+      }
+    }
+
+  }
+}
+
+/* Pagination */
+.gem-c-pagination {
+  display: block;
+  margin: 50px 0;
+
+  .gem-c-pagination__list {
+    margin: 0;
+    padding: 0;
+
+    .gem-c-pagination__item {
+      font-family: "nta", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.25;
+      list-style: none;
+
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+
+    .gem-c-pagination__link-title {
+      display: block;
+      border-top: 1px solid #b1b4b6;
+      padding-top: 15px;
+    }
+
+    .gem-c-pagination__link-divider {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      clip: rect(0 0 0 0) !important;
+      -webkit-clip-path: inset(50%) !important;
+      clip-path: inset(50%) !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    .gem-c-pagination__link-label {
+      display: inline-block;
+      margin-top: .1em;
+      text-decoration: underline;
+      margin-left: 25px;
     }
   }
 }

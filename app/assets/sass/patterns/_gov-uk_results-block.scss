@@ -1,3 +1,5 @@
+@import "gov-uk_gem-c";
+
 .gov-uk_results-block {
 
   .result-info {
@@ -17,6 +19,7 @@
     .finder-results {
       list-style-type: none;
       padding-left: 0;
+      @extend .If gem-c-document-list;
     }
   }
 
