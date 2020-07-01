@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@benwatsonuk/page-flow": "^0.3.5",
+    "@hmcts/frontend": "0.0.41-alpha",
     "acorn": "^7.1.1",
     "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",

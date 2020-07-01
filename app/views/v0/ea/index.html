@@ -1,8 +1,274 @@
 {% include  '../../includes/ea/header.html' %}
 
 <section>
+    <h1>
+        Public registers
+    </h1>
+    <p>
+        The Environment Agency licenses industry, business and individuals to
+        carry out certain activities that have the potential to pollute
+        the environment. <a href="about">See more &hellip;</a>
+    </p>
 
-    <h1>Temp page</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Search for and download application, permit and compliance documents for waste, water quality and regulated industry permits, water resources licenses and...</p>
+
+            <a class="btn btn-primary btn-large btn-block" href="../search-all">
+                <i class="fa fa-angle-double-right"></i>
+                search public register documents
+            </a>
+        </div>
+    </div>
+
+
+    <h2>Quick check</h2>
+    <p>
+        To check a registration, enter the registration number or business name:
+    </p>
+    <form id="permit-search-form" class="quick-check-form form-inline" role="search" method="get" action="/public-register/api/search">
+        <div class="form-group">
+            <input id="permit-search" name="name-number-search" type="text" class="form-control search-box" placeholder="Business name or registration number">
+            <button type="submit" class="btn btn-primary btn-large"><i class="fa fa-search fa-fw"></i> look up </button>
+        </div>
+        <p id="permit-search-error" class="text-danger hidden empty-search">
+            <i class="fa fa-exclamation-triangle"></i> Please enter a name, part name or registration number to search for
+        </p>
+    </form>
+
+    <h2>Choose a register to search:</h2>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                All
+                <span class="nowrap">
+              registers
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Search across all the registers"><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-all">
+                    <i class="fa fa-angle-double-right"></i>
+                    search all registers
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">Environmental Permitting Regulations - </div>
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                Waste
+                <span class="nowrap">
+              Operations
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Waste operations require an environmental permit if the business uses, recycles, treats, stores or disposes of waste or mining waste. The permit can be for activities at one site or for mobile plant used at many sites."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-waste-operations">
+                    <i class="fa fa-angle-double-right"></i>
+                    search waste operations
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                End of Life Vehicles (ATF
+                <span class="nowrap">
+              Register)
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="ELV sites require a waste operation permit to allow them to depollute and dismantle ELVs. Permitted ELV sites are authorised treatment sites (ATF)."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-elv">
+                    <i class="fa fa-angle-double-right"></i>
+                    search end of life vehicles (ATF Register)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                Installations
+                <span class="nowrap">
+
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="An environmental permit is required if an industrial installation uses facilities which carry out processes such as refineries, food and drink factories or intensive farming activities (e.g. large-scale chicken farms)."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-industrial-installations">
+                    <i class="fa fa-angle-double-right"></i>
+                    search installations
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                Discharges to water and
+                <span class="nowrap">
+              groundwater
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Under the Environmental Permitting Regulations, a permit is required for most discharges of potentially polluting liquids in to or onto the ground (i.e. to groundwater) or in to surface waters (such as rivers or streams).   This register contains details of permits authorizing these activities. "><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-water-discharge-consents">
+                    <i class="fa fa-angle-double-right"></i>
+                    search discharges to water and groundwater
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                Radioactive
+                <span class="nowrap">
+              Substances
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Permits issued to organisations who keep or use radioactive substances, or store or dispose of radioactive waste."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-radioactive-substances-permits">
+                    <i class="fa fa-angle-double-right"></i>
+                    search radioactive substances
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Waste Carriers, Brokers and
+                <span class="nowrap">
+              Dealers
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="People or businesses who transport, buy, sell or dispose of waste, or arrange for someone else to do so, must be registered as waste carriers, brokers or dealers."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-waste-carriers-brokers">
+                    <i class="fa fa-angle-double-right"></i>
+                    search waste carriers, brokers and dealers
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Waste
+                <span class="nowrap">
+              Exemptions
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="A waste exemption is a waste operation that is exempt from needing an environmental permit. Each exemption has specific limits and conditions that the holder must operate within."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-waste-exemptions">
+                    <i class="fa fa-angle-double-right"></i>
+                    search waste exemptions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Water Quality
+                <span class="nowrap">
+              Exemptions
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Some low risk water discharge and groundwater activities can be exempt from requiring a permit if they meet certain conditions. Some of these 'exemptions' require the activity to be registered.  This register details exempt activities which have been registered with the Environment Agency.  It is worth noting that the majority of entries in this register are for small sewage discharges which are no longer required to be registered.  Consequently, most of the entries are for activities which were registered before the requirement to register them changed. There are some exempt activities which still require registration, for example groundwater tracer tests."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-water-discharge-exemptions">
+                    <i class="fa fa-angle-double-right"></i>
+                    search water quality exemptions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Scrap Metal
+                <span class="nowrap">
+              Dealers
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="People or Businesses who trade in scrap metal and are licensed by their Local Authority."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-scrap-metal-dealers">
+                    <i class="fa fa-angle-double-right"></i>
+                    search scrap metal dealers
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Enforcement
+                <span class="nowrap">
+              Actions
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Information on formal cautions and prosecutions carried out by the Environment Agency. The content is restricted to actions taken against companies. For information on individuals subject to enforcement actions contact our National Customer Contact Centre. The enforcement dataset extends from 2000 to present."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-enforcement-action">
+                    <i class="fa fa-angle-double-right"></i>
+                    search enforcement actions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-label">
+        <div class="row">
+            <div class="col-md-5">
+                Flood Risk Activity
+                <span class="nowrap">
+              Exemptions
+                              <a tabindex="0" class="btn btn-sm" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="A flood risk exemption is for work on or near a main river or sea defence that is exempt from needing an environmental permit. These are for activities impacting main rivers and sea defences. You may need an environmental permit if you want to work in, over, under or near a main river or flood or sea defence. Some flood risk activities are exempt from needing a permit and you can carry out the work if you register an exemption."><i class="fa fa-question-circle fa-2x"></i></a>
+                          </span>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="search-flood-risk-exemptions">
+                    <i class="fa fa-angle-double-right"></i>
+                    search flood risk exemptions
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <p></p>
+    <div class="register-label">Waste Electrical Electronic Equipment (WEEE) Regulations</div>
+    <div class="row">
+        <div class="col-md-6">
+            In addition to the above registers, the links below provide public register information under the Waste Electrical Electronic Equipment (WEEE) Regulations.
+        </div>
+    </div>
+    <ul>
+        <li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/794247/EEE_producer_public_register.ods">WEEE Approved Producers [ods spreadsheet]</a></li>
+        <li><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/651211/WEEE_approved_compliance_schemes_public_register.pdf">WEEE Approved Compliance Scheme [pdf document]</a></li>
+        <li><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/658150/Approved_authorised_treatment_facility_public_register.pdf">WEEE Approved Authorised Treatment Facilities [ods spreadsheet]</a></li>
+        <li><a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/658152/Approved_exporter_public_register.pdf">WEEE Approved Exporters [ods spreadsheet]</a></li>
+    </ul>
 
 </section>
 

@@ -2,9 +2,18 @@
 
 // Warn about using the kit in production
 if (window.console && window.console.info) {
-  window.console.info('GOV.UK Prototype Kit - do not use for production')
+    window.console.info('GOV.UK Prototype Kit - do not use for production')
 }
 
 $(document).ready(function () {
-  window.GOVUKFrontend.initAll()
+    window.GOVUKFrontend.initAll()
+
+    $('.app-c-expander__button').on('click', function (e) {
+        let toggleValue = 'true'
+        $(this).attr('aria-expanded') === 'true' ? toggleValue = 'false' : toggleValue = 'true';
+        $(this).attr('aria-expanded', toggleValue)
+        console.log($(this).closest('app-c-expander__content'))
+        $(this).parent().next('.app-c-expander__content').toggleClass('app-c-expander__content--visible')
+    })
+
 })

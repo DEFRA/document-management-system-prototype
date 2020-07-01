@@ -82,6 +82,7 @@ middleware.forEach(func => app.use(func))
 // Set up App
 var appViews = extensions.getAppViews([
   path.join(__dirname, '/app/views/'),
+  // path.join(__dirname, '/node_modules/@hmcts/frontend/components/'),
   path.join(__dirname, '/lib/')
 ])
 
@@ -107,15 +108,20 @@ app.set('view engine', 'html')
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend/assets')))
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+// app.use('/node_modules/hmcts-frontend', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend')))
+
 
 // Set up documentation app
 if (useDocumentation) {
   var documentationViews = [
     path.join(__dirname, '/node_modules/govuk-frontend/'),
     path.join(__dirname, '/node_modules/govuk-frontend/components'),
+    path.join(__dirname, '/node_modules/@hmcts/frontend/'),
+    path.join(__dirname, '/node_modules/@hmcts/frontend/components'),
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
   ]
