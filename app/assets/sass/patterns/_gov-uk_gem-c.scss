@@ -18,8 +18,11 @@
     border-bottom: 1px solid #b1b4b6;
     list-style: none;
 
-    .gem-c-document-list--no-underline .gem-c-document-list__item-title {
+    .gem-c-document-list__item-title {
       text-decoration: none;
+      font-size: 19px;
+      line-height: 1.3157894737;
+      font-weight: 700;
     }
 
     .gem-c-document-list__item-description, .gem-c-document-list__subtext {
