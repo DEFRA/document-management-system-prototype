@@ -1,3 +1,10 @@
+.filter-type-2-row {
+  display: flex;
+  .filter-type-2 {
+    align-self: flex-end;
+  }
+}
+
 .defra-filter--action {
   position: relative;
 
@@ -103,12 +110,13 @@
   }
 }
 
-.derfa-filter--content {
+.defra-filter--content {
+  margin-top: 20px;
   background-color: #f3f2f1;
   padding: 20px;
   margin-bottom: 20px;
   @include govuk-media-query($from: desktop) {
-    margin-top: -10px;
+    //margin-top: -10px;
   }
 
   .govuk-grid-column--divider {
@@ -117,6 +125,9 @@
 }
 
 .defra-filter--open {
+  @include govuk-media-query($from: desktop) {
+    margin-bottom: -20px;
+  }
   .govuk-button {
     box-shadow: none !important;
     background-color: #dee0e2 !important;
