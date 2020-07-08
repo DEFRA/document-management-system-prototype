@@ -16,6 +16,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/search-layout";
 @import "patterns/gov-uk_filter";
 @import "patterns/defra_filter";
+@import "patterns/pagination";
 @import "patterns/gov-uk_results-block";
 
 // Components that aren't in Frontend
