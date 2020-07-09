@@ -9,18 +9,29 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "/"
+      }) }}
       <h1 class="govuk-heading-xl">
-        Baseline version
+        <span class="govuk-caption-m">(1/7/20 - 14/7/20)</span>
+
+        Sprint 1
       </h1>
       <p>
-        This version represents an interactive version of wireframes that were initially tested with users.
+        This version begins to consider issues that were discovered in rounds of user testing earlier in the year.
       </p>
+
+
 
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       {{ govukButton({
       text: "View linear journey",
-      href: "./ea/index.html"
+      href: "./search-all.html"
       }) }}
 
     </div>
