@@ -13,6 +13,7 @@ module.exports = function (router) {
 
     router.get(['/' + versionDirectory + '/search-results'], (req, res) => {
         let thePageObject = documentData
+        thePageObject.filterType = 1
         res.render( versionDirectory + '/search-results.html', {
             pageObject: thePageObject
         })

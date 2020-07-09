@@ -14,7 +14,7 @@
 
         </div>
 
-        {% if pageObject.filterType === 2 %}
+        {% if filterType == 2 %}
             <div class="govuk-grid-column-one-third filter-type-2">
 
                 <div class="defra-filter--action" style="">
@@ -30,14 +30,13 @@
 
     </div>
 
-    {% if pageObject.filterType === 2 %}
+    {% if filterType == 2 %}
         <div class="govuk-grid-row">
             {% include './includes/search-filter-2.html' %}
         </div>
-    {% endif %}
-
-    <div class="govuk-grid-row search-container">
-    {% if pageObject.filterType === 1 %}
+        <div class="govuk-grid-row search-container">
+    {% else %}
+        <div class="govuk-grid-row search-container">
 
         <div class="govuk-grid-column-one-third">
 
@@ -47,26 +46,30 @@
 
     {% endif %}
 
-    {% if pageObject.filterType === 2 %}
-
+    {% if filterType == 2 %}
     <div class="govuk-grid-column-full">
-
     {% else %}
-
     <div class="govuk-grid-column-two-thirds">
-
     {% endif %}
+
+    {% if resultsType == 2 %}
 
     {% include './includes/search-results-2.html' %}
 
-{#    {% include './includes/pagination.html' %}#}
+    {% else %}
+
+    {% include './includes/search-results-1.html' %}
+
+    {% endif %}
+
+    {% include './includes/pagination.html' %}
 
     </div>
 
     </div>
 
     <script type="text/javascript">
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var count = $('.govuk-table__row').length - 1
             // show hide content
             $('.derfa-filter--content').hide()
@@ -76,7 +79,7 @@
                 $('.govuk-table').hide()
             }
             $('.derfa-filter--content').hide()
-            $('#defra-filter--button').on("click", function() {
+            $('#defra-filter--button').on("click", function () {
                 if (!$('.defra-filter--action').hasClass('defra-filter--open')) {
                     $('.defra-filter--content').show().focus()
                     $('.defra-filter--action').addClass('defra-filter--open')

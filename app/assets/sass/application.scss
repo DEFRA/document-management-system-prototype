@@ -15,9 +15,12 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/related-items";
 @import "patterns/search-layout";
 @import "patterns/gov-uk_filter";
+@import "patterns/defra_filter";
+@import "patterns/pagination";
 @import "patterns/gov-uk_results-block";
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
+@import "components/secondary-button";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
