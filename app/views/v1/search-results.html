@@ -6,10 +6,6 @@
 
 {% block content %}
 
-    <p>PV: {{ pageVariant }}</p>
-    <p>FT: {{ filterType }}</p>
-    <p>RT: {{ resultsType }}</p>
-
     <div class="govuk-grid-row filter-type-2-row">
 
         <div class="govuk-grid-column-two-thirds">
@@ -38,7 +34,7 @@
         <div class="govuk-grid-row">
             {% include './includes/search-filter-2.html' %}
         </div>
-        <div class="govuk-grid-row">
+        <div class="govuk-grid-row search-container">
     {% else %}
         <div class="govuk-grid-row search-container">
 
