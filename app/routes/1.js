@@ -10,13 +10,15 @@ module.exports = function (router) {
     router.get(['/' + versionDirectory + '/search-results', '/' + versionDirectory + '/search-results/:variant'], (req, res) => {
         let thePageObject = documentData
         let pageVariant = req.params.variant || 1
-        let filterType = req.query.filterType || 1
-        let resultsType = req.query.resultsType || 1
+        let filterType
+        let resultsType
         if (pageVariant == 2) {
-            filterType = 2
-            resultsType = 2
+            filterType = req.query.filterType || 2
+            resultsType = req.query.resultsType || 2
+        } else {
+            filterType = req.query.filterType || 1
+            resultsType = req.query.resultsType || 1
         }
-        console.log(req.params.variant)
         res.render( versionDirectory + '/search-results.html', {
             pageObject: thePageObject,
             pageVariant: pageVariant,
