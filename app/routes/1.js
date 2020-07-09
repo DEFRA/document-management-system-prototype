@@ -10,6 +10,7 @@ module.exports = function (router) {
     router.get(['/' + versionDirectory + '/search-results', '/' + versionDirectory + '/search-results/:variant'], (req, res) => {
         let thePageObject = documentData
         let pageVariant = req.params.variant || 1
+        let searchType = req.query.searchType || 1
         let filterType
         let resultsType
         if (pageVariant == 2) {
@@ -21,6 +22,7 @@ module.exports = function (router) {
         }
         res.render( versionDirectory + '/search-results.html', {
             pageObject: thePageObject,
+            searchType: searchType,
             pageVariant: pageVariant,
             resultsType:resultsType,
             filterType: filterType

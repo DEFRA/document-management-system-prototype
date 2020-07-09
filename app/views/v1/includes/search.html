@@ -16,13 +16,26 @@
     You can search by X, Y or Z
   </span>
 
-            <input class="govuk-input inline-search__input " id="search" name="search" type="search"
-                   aria-describedby="search-hint">
+
+
+        {% if searchType == 2 %}
+            <div class="search-input-wrapper search-wrapper">
+                <input type="search" value="" id="search-reservations" name="search" title="Search" class="govuk-input">
+                <div class="search-input-submit-wrapper">
+                    <button type="submit" class="search-submit">Search</button>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
-            Search
-        </button>
+        {% else %}
+        <input class="govuk-input inline-search__input " id="search" name="search" type="search"
+               aria-describedby="search-hint">
+            </div>
+            <button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
+                Search
+            </button>
+
+        {% endif %}
 
     </form>
 </div>
