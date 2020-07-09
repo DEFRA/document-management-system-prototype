@@ -6,6 +6,10 @@
 
 {% block content %}
 
+    <p>PV: {{ pageVariant }}</p>
+    <p>FT: {{ filterType }}</p>
+    <p>RT: {{ resultsType }}</p>
+
     <div class="govuk-grid-row filter-type-2-row">
 
         <div class="govuk-grid-column-two-thirds">
@@ -14,7 +18,7 @@
 
         </div>
 
-        {% if pageObject.filterType === 2 %}
+        {% if filterType === 2 %}
             <div class="govuk-grid-column-one-third filter-type-2">
 
                 <div class="defra-filter--action" style="">
@@ -30,14 +34,13 @@
 
     </div>
 
-    {% if pageObject.filterType === 2 %}
+    {% if filterType === 2 %}
         <div class="govuk-grid-row">
             {% include './includes/search-filter-2.html' %}
         </div>
-    {% endif %}
-
-    <div class="govuk-grid-row search-container">
-    {% if pageObject.filterType === 1 %}
+        <div class="govuk-grid-row">
+    {% else %}
+        <div class="govuk-grid-row search-container">
 
         <div class="govuk-grid-column-one-third">
 
@@ -47,21 +50,23 @@
 
     {% endif %}
 
-    {% if pageObject.filterType === 2 %}
+    {% if resultsType === 2 %}
 
-    <div class="govuk-grid-column-full">
+        <div class="govuk-grid-column-full">
+
+        {% include './includes/search-results-2.html' %}
 
     {% else %}
 
-    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-two-thirds">
+
+        {% include './includes/search-results-1.html' %}
 
     {% endif %}
 
-    {% include './includes/search-results-1.html' %}
-
     {% include './includes/pagination.html' %}
 
-    </div>
+        </div>
 
     </div>
 

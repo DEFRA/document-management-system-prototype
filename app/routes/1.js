@@ -7,16 +7,30 @@ module.exports = function (router) {
 
     // include common / userflows.js
 
-    router.get(['/' + versionDirectory + '/dir/'], function (req, res) {
-        res.redirect('/' + versionDirectory + '/dir/example')
-    })
-
-    router.get(['/' + versionDirectory + '/search-results'], (req, res) => {
+    router.get(['/' + versionDirectory + '/search-results', '/' + versionDirectory + '/search-results/:variant'], (req, res) => {
         let thePageObject = documentData
-        thePageObject.filterType = 2
+        let pageVariant = req.params.variant || 1
+        let filterType = req.query.filterType || 1
+        let resultsType = req.query.resultsType || 1
+        if (pageVariant == 2) {
+            filterType = 2
+            resultsType = 2
+        }
+        console.log(req.params.variant)
         res.render( versionDirectory + '/search-results.html', {
-            pageObject: thePageObject
+            pageObject: thePageObject,
+            pageVariant: pageVariant,
+            resultsType:resultsType,
+            filterType: filterType
         })
     })
+    //
+    // router.get(['/' + versionDirectory + '/search-results/:variant'], function (req, res) {
+    //     let thePageObject = documentData
+    //     thePageObject.filterType = req.params.variant
+    //     res.render( versionDirectory + '/search-results.html', {
+    //         pageObject: thePageObject
+    //     })
+    // })
 
 }
