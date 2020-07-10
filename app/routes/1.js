@@ -13,7 +13,11 @@ module.exports = function (router) {
         let searchType = req.query.searchType || 1
         let filterType
         let resultsType
-        if (pageVariant == 2) {
+        if (pageVariant == 3) {
+            filterType = req.query.filterType || 3
+            resultsType = req.query.resultsType || 1
+            searchType = req.query.resultsType || 2
+        } else if (pageVariant == 2) {
             filterType = req.query.filterType || 2
             resultsType = req.query.resultsType || 2
         } else {
