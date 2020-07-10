@@ -6,6 +6,11 @@
 
 {% block content %}
 
+    {#    <p>PV: {{ pageVariant }}</p>#}
+    {#    <p>ST: {{ searchType }}</p>#}
+    {#    <p>FT: {{ filterType}} </p>#}
+    {#    <p>RT: {{ resultsType}} </p>#}
+
     <div class="govuk-grid-row filter-type-2-row">
 
         <div class="govuk-grid-column-two-thirds">
@@ -30,7 +35,28 @@
 
     </div>
 
-    {% if filterType == 2 %}
+    {% if filterType == 3 %}
+        <div class="govuk-grid-row">
+
+            <div class="hmcts-action-bar govuk-grid-column-full">
+
+                <div class="hmcts-action-bar__filter">
+                    <button class="govuk-button hmcts-button--secondary" type="button" aria-haspopup="true"
+                            aria-expanded="false">
+                        Show filter
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if filterType == 3 %}
+        <div class="govuk-grid-row">
+        <div class="filter-3">
+            {% include './includes/search-filter-3.html' %}
+        </div>
+    {% elseif filterType == 2 %}
         <div class="govuk-grid-row">
             {% include './includes/search-filter-2.html' %}
         </div>
@@ -49,16 +75,16 @@
     {% if filterType == 2 %}
     <div class="govuk-grid-column-full">
     {% else %}
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds {% if filterType == 3 %} filter-3-results {% endif %}">
     {% endif %}
 
     {% if resultsType == 2 %}
 
-    {% include './includes/search-results-2.html' %}
+        {% include './includes/search-results-2.html' %}
 
     {% else %}
 
-    {% include './includes/search-results-1.html' %}
+        {% include './includes/search-results-1.html' %}
 
     {% endif %}
 
@@ -70,6 +96,7 @@
 
     <script type="text/javascript">
         window.addEventListener('load', function () {
+            // Filter 2 (EUE) JS
             var count = $('.govuk-table__row').length - 1
             // show hide content
             $('.derfa-filter--content').hide()
@@ -92,6 +119,26 @@
                     $('#defra-filter--button').attr('aria-expanded', 'false');
                     $(".defra-filter--button-content").text('Show filters')
                 }
+            })
+            // Filter 3 (HMCTS) JS
+            $('.filter-3').hide();
+            $('.filter-3-results').addClass('govuk-grid-column-full')
+            $('.hmcts-action-bar__filter button').on("click", function() {
+                if ($(this).hasClass('filter--open')) {
+                    $(this).text('Show filter')
+                    $('.filter-3').hide()
+                    $('.filter-3').removeClass('govuk-grid-column-one-third')
+                    $('.filter-3-results').removeClass('govuk-grid-column-two-thirds')
+                    $('.filter-3-results').addClass('govuk-grid-column-full')
+                } else {
+                    $(this).text('Hide filter')
+                    $('.filter-3').show()
+                    $('.filter-3').addClass('govuk-grid-column-one-third')
+                    $('.filter-3-results').addClass('govuk-grid-column-two-thirds')
+                    $('.filter-3-results').removeClass('govuk-grid-column-full')
+                }
+                $(this).toggleClass('filter--open')
+                // alert('asd')
             })
         })
     </script>
