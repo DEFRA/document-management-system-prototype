@@ -112,6 +112,7 @@ app.use('/assets', express.static(path.join(__dirname, '/node_modules/@hmcts/fro
 
 // Serve govuk-frontend in from node_modules (so not to break pre-extenstions prototype kits)
 app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend')))
+app.use('/public/assets', express.static(path.join(__dirname, '/node_modules/@benwatsonuk/page-flow/assets')))
 // app.use('/node_modules/hmcts-frontend', express.static(path.join(__dirname, '/node_modules/@hmcts/frontend')))
 
 
@@ -122,6 +123,7 @@ if (useDocumentation) {
     path.join(__dirname, '/node_modules/govuk-frontend/components'),
     path.join(__dirname, '/node_modules/@hmcts/frontend/'),
     path.join(__dirname, '/node_modules/@hmcts/frontend/components'),
+
     path.join(__dirname, '/docs/views/'),
     path.join(__dirname, '/lib/')
   ]

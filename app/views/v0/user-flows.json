@@ -1,0 +1,41 @@
+{
+  "sprintDetails": {
+    "highLevelFeedback": {
+      "positive": [
+      ],
+      "negative": [
+      ]
+    },
+    "urDetails": [
+      {
+        "where": "",
+        "who": ""
+      },
+      {
+        "where": "",
+        "who": ""
+      }
+    ]
+  },
+  "journeys": [
+    {
+      "name": "Corporate substance and company tax return",
+      "userType": "company",
+      "id": "company-tax-return",
+      "description": "First iteration of a company tax return for 2019/2020. The focus here is on the organisation of how questions are asked and integrating corporate substance questions where necessary",
+      "changeLog": [
+        "First iteration"
+      ],
+      "userQuotes": [
+      ],
+      "flow": [
+        {
+          "stage": "agent-account",
+          "version": 1,
+          "pageId": "3",
+          "location": "dashboard"
+        }
+      ]
+    }
+  ]
+}
