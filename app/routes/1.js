@@ -52,7 +52,7 @@ module.exports = function (router) {
             filterType = req.query.filterType || 1
             resultsType = req.query.resultsType || 1
         }
-        res.render(versionDirectory + '/search-results.html', {
+        res.render(versionDirectory + '/search/search-results.html', {
             pageObject: thePageObject,
             searchType: searchType,
             pageVariant: pageVariant,
