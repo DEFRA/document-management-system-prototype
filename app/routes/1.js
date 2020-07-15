@@ -1,13 +1,41 @@
 const version = '1'
 const versionDirectory = 'v' + version
+const previousVersionDirectory = 'v0'
+const pf = require('@benwatsonuk/page-flow')
+let pageFlow = require('../data/pages')
+let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
+let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
 module.exports = function (router) {
 
+    router.get(['/' + versionDirectory + '/page-flow/'], function (req, res) {
+        res.render('./includes/page-flow.html',
+            {
+                pageIndex: pf.renderPageIndex(pageFlow)
+            }
+        )
+    })
+
+    router.get(['/' + versionDirectory + '/user-flow/'], function (req, res) {
+        res.render('./includes/user-flow.html',
+            {
+                userFlow: pf.renderUserFlow(userFlow, pageFlow, previousUserFlow, version)
+            }
+        )
+    })
+
+    router.get(['/' + versionDirectory + '/user-flow/:journeyId/:theJourneyDirectory/:page', '/' + versionDirectory + '/user-flow/:journeyId/:theJourneyDirectory/:stage/:page'], function (req, res) {
+        res.render('./includes/user-flow.html',
+            {
+                userFlow: pf.renderUserFlowPage(pageFlow, userFlow, req.params.page, req.params.theJourneyDirectory, versionDirectory, req.params.journeyId, req.params.stage)
+            }
+        )
+    })
     // include common / userflows.js
 
-    router.get(['/' + versionDirectory + '/search-results', '/' + versionDirectory + '/search-results/:variant'], (req, res) => {
+    router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
         let thePageObject = documentData
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
@@ -24,11 +52,11 @@ module.exports = function (router) {
             filterType = req.query.filterType || 1
             resultsType = req.query.resultsType || 1
         }
-        res.render( versionDirectory + '/search-results.html', {
+        res.render(versionDirectory + '/search-results.html', {
             pageObject: thePageObject,
             searchType: searchType,
             pageVariant: pageVariant,
-            resultsType:resultsType,
+            resultsType: resultsType,
             filterType: filterType
         })
     })

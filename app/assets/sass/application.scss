@@ -24,3 +24,5 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/secondary-button";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+@import "node_modules/@benwatsonuk/page-flow/assets/scss/page-flow";

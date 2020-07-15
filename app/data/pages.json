@@ -1,0 +1,63 @@
+{
+  "stages": [
+    {
+      "name": "Entry points into service",
+      "location": "entry-points",
+      "id": "entry-points",
+      "description": "",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v0",
+          "location": "entry-points",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Electronic Public Register (ePR)",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "An anticipated route into the service",
+              "type": "text-input",
+              "location": "index"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Public Register of Documents",
+      "location": "search",
+      "id": "search",
+      "description": "Device to search for and filter on results",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v0",
+          "location": "search",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Search",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Blank search page (no results)",
+              "type": "text-input",
+              "location": "search-all"
+            },
+            {
+              "title": "Results",
+              "id": "2",
+              "userNeeds": [
+              ],
+              "description": "Results played back to user with ability to filter and search",
+              "type": "text-input",
+              "location": "search-results"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
