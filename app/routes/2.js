@@ -9,6 +9,15 @@ const defaultPermitId = 'EAWML403958'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
+function convertToReadableDate (theDateString) {
+    theDateString = theDateString.toString()
+    // console.log(theDateString.toString().slice(0,4))
+    const yyyy = theDateString.slice(0,4)
+    const mm = theDateString.slice(5,6)
+    const dd = theDateString.slice(7,8)
+    return dd + '/' + mm + '/' + yyyy
+}
+
 function createDataFromJson(permitId) {
     const validPermitIds = [
         'EAWML65519',
@@ -29,7 +38,7 @@ function createDataFromJson(permitId) {
                 "registration": dataSrc[item]["Case Reference"],
                 "docTitle": dataSrc[item]["Title/Subject"],
                 "name": dataSrc[item]["Customer Name"],
-                "uploadedOn": dataSrc[item]["Date Loaded"],
+                "uploadedOn": convertToReadableDate(dataSrc[item]["Date Loaded"]),
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
                 "documentLink": dataSrc[item]["Tif File Names"],

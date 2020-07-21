@@ -12,7 +12,7 @@
                             text: row.name
                         },
                         {
-                            text: row.docTitle
+                            html: '<a href="/public/EDRM/' + pageObject.permitNumber + '/' + row.documentLink +'" target="_blank">' + row.docTitle + '</a>'
                         }
                     ]
                     ), tableRows) %}
