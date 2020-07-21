@@ -1,6 +1,6 @@
-const version = '1'
+const version = '2'
 const versionDirectory = 'v' + version
-const previousVersionDirectory = 'v0'
+const previousVersionDirectory = 'v1'
 const pf = require('@benwatsonuk/page-flow')
 let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')

@@ -17,21 +17,27 @@
         href: "/"
       }) }}
       <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-m">(1/7/20 - 21/7/20)</span>
-
-        Sprint 1
+        <span class="govuk-caption-m">(22/7/20 - 5/8/20)</span>
+        Sprint 2
       </h1>
-      <p>
-        This version begins to consider issues that were discovered in rounds of user testing earlier in the year.
-      </p>
+      <p>'Real' data added form EDRM. Static data for 4 genuine permits (including documents) added to prototype.</p>
+      {{ govukDetails({
+        summaryText: "Example permit numbers",
+        html: "<ul>
+        <li>EAWML403958</li>
+        <li>EAWML65519</li>
+        <li>EPRZP3821GK</li>
+        <li>T39458840</li>
+        </ul"
+      }) }}
 
       <h2 class="govuk-heading-m">Design variants</h2>
 
       <ol class="govuk-list--number govuk-list">
-        <li><a href="/v1/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
+        <li><a href="/v2/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
+        <li><a href="/v2/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
+        <li><a href="/v2/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
+        <li><a href="/v2/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
       </ol>
 
       {% from "govuk/components/button/macro.njk" import govukButton %}
