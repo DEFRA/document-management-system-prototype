@@ -10,7 +10,7 @@
             {% for item in pageObject %}
                 <li class="gem-c-document-list__item  ">
                     <a class="gem-c-document-list__item-title   gem-c-document-list__item-link"
-                       href="#">{{ item.docTitle }}</a>
+                       href="/public/EDRM/{{ pageObject.permitNumber }}/{{ item.documentLink }}" target="_blank">{{ item.docTitle }}</a>
                     <p class="gem-c-document-list__item-description">
                         {{ item.registration }} - {{ item.name }}
                     </p>
@@ -23,7 +23,7 @@
                         </li>
                         <li class="gem-c-document-list__attribute">
                             Updated:
-                            <time datetime="2019-04-23">{{ item.uploadedOn }}</time>
+                            <time datetime="{{ item.uploadedOn }}">{{ item.uploadedOn }}</time>
                         </li>
                     </ul>
                 </li>

@@ -1,6 +1,6 @@
 <div class="inline-search">
 
-    <form action="./search-results" method="post">
+    <form action="./search-results" method="get">
 
         <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper"><label class="govuk-label inline-search__label govuk-label--xl"
@@ -20,7 +20,7 @@
 
         {% if searchType == 2 %}
             <div class="search-input-wrapper search-wrapper">
-                <input type="search" value="" id="search-reservations" name="search" title="Search" class="govuk-input">
+                <input type="search" value="permitNumber" id="search-reservations" name="permitNumber" title="Search" class="govuk-input" value="{{ pageObject.permitNumber }}" />
                 <div class="search-input-submit-wrapper">
                     <button type="submit" class="search-submit">Search</button>
                 </div>
@@ -28,8 +28,8 @@
         </div>
 
         {% else %}
-        <input class="govuk-input inline-search__input " id="search" name="search" type="search"
-               aria-describedby="search-hint">
+        <input class="govuk-input inline-search__input " id="permitNumber" name="permitNumber" type="search"
+               aria-describedby="search-hint" value="{{ pageObject.permitNumber }}" />
             </div>
             <button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
                 Search
