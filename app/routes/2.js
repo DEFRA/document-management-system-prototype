@@ -8,6 +8,20 @@ let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-f
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
+function createDataFromJson(permitId) {
+    permitId = permitId || 'EAWML403958'
+    const dataObject =  [{
+        "registration": "EPR-AA1234FQ",
+        "docTitle" : "Issued transfer notice",
+        "name" : "Carter Plant Limited",
+        "uploadedOn" : "03/12/2019",
+        "permitType" : "Installation",
+        "documentType" : "Permit",
+        "fileType" :"PDF"
+    }]
+    return dataObject
+}
+
 module.exports = function (router) {
 
     router.get(['/' + versionDirectory + '/page-flow/'], function (req, res) {
@@ -36,7 +50,7 @@ module.exports = function (router) {
     // include common / userflows.js
 
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
-        let thePageObject = documentData
+        let thePageObject = createDataFromJson()
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
         let filterType
