@@ -8,7 +8,7 @@
       "versions": [
         {
           "version": 0,
-          "versionDirectory": "v0",
+          "versionDirectory": "v1",
           "location": "entry-points",
           "design-notes": "",
           "pages": [
@@ -33,7 +33,7 @@
       "versions": [
         {
           "version": 0,
-          "versionDirectory": "v0",
+          "versionDirectory": "v1",
           "location": "search",
           "design-notes": "",
           "pages": [
