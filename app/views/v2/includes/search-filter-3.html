@@ -1,0 +1,271 @@
+{% set permitTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Waste',
+                checked: true
+            },
+            {
+                value: '2',
+                text: 'Installations',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Waste Exemptions'
+            },
+            {
+                value: '4',
+                text: 'Water Abstraction'
+            },
+            {
+                value: '5',
+                text: 'Water Quality'
+            },
+            {
+                value: '6',
+                text: 'Radioactive Substances'
+            },
+            {
+                value: '7',
+                text: 'Nuclear',
+                checked: true
+            }
+        ]
+    }) }}
+
+{% endset %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Pre-application',
+                checked: false
+            },
+            {
+                value: '2',
+                text: 'Application & Associated docs',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Pre-operational criteria'
+            },
+            {
+                value: '4',
+                text: 'Compliance'
+            },
+            {
+                value: '5',
+                text: 'Monitoring'
+            },
+            {
+                value: '6',
+                text: 'Permit',
+                checked: true
+            },
+            {
+                value: '7',
+                text: 'Enforcement'
+            },
+            {
+                value: '8',
+                text: 'Returns'
+            },
+            {
+                value: '9',
+                text: 'Charging'
+            },
+            {
+                value: '10',
+                text: 'General correspondence'
+            }
+        ]
+    }) }}
+
+{% endset %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+
+<div class="hmcts-filter-layout__filter">
+    
+    <div class="hmcts-filter" tabindex="-1">
+
+        <div class="hmcts-filter__header">
+
+            <div class="hmcts-filter__header-title">
+                <h2 class="govuk-heading-m">Filter</h2>
+            </div>
+
+            <div class="hmcts-filter__header-action">
+
+            </div>
+
+        </div>
+
+        <div class="hmcts-filter__content">
+
+
+            <div class="hmcts-filter__selected">
+
+                <div class="hmcts-filter__selected-heading">
+
+                    <div class="hmcts-filter__heading-title">
+                        <h2 class="govuk-heading-m">Selected filters</h2>
+                    </div>
+
+                    <div class="hmcts-filter__heading-action">
+                        <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+                    </div>
+
+                </div>
+
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Permit Type</h3>
+
+                <ul class="hmcts-filter-tags">
+
+                    <li>
+                        <a class="hmcts-filter__tag" href="/path/to/remove/this">
+                            <span class="govuk-visually-hidden">Remove this filter</span>
+                            Waste</a>
+                    </li>
+
+                    <li>
+                        <a class="hmcts-filter__tag" href="/path/to/remove/this">
+                            <span class="govuk-visually-hidden">Remove this filter</span>
+                            Nuclear</a>
+                    </li>
+
+                </ul>
+
+                <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Document Type</h3>
+
+                <ul class="hmcts-filter-tags">
+
+                    <li>
+                        <a class="hmcts-filter__tag" href="/path/to/remove/this">
+                            <span class="govuk-visually-hidden">Remove this filter</span>
+                            Permit</a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+
+            <div class="hmcts-filter__options">
+
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Apply filters
+                </button>
+
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--m" for="keywords">
+                        Keywords
+                    </label>
+
+
+                    <input class="govuk-input" id="keywords" name="keywords" type="text">
+                </div>
+
+
+                <div class="govuk-form-group">
+
+                    <fieldset class="govuk-fieldset">
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+                            Permit Type
+
+                        </legend>
+
+                        {{  permitTypeOptionsHtml | safe }}
+
+                    </fieldset>
+
+
+                </div>
+
+
+                <div class="govuk-form-group">
+
+                    <fieldset class="govuk-fieldset">
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+                            Document Type
+
+                        </legend>
+
+                        {{  docTypeOptionsHtml | safe }}
+
+                    </fieldset>
+
+
+                </div>
+
+                <div class="govuk-form-group">
+
+                    <fieldset class="govuk-fieldset">
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+                            Date
+
+                        </legend>
+
+                        {{  dateOptionsHtml | safe }}
+
+                    </fieldset>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
