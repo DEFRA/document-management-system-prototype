@@ -5,20 +5,38 @@ const pf = require('@benwatsonuk/page-flow')
 let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
 let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
+const defaultPermitId = 'EAWML403958'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
 function createDataFromJson(permitId) {
-    permitId = permitId || 'EAWML403958'
-    const dataObject =  [{
-        "registration": "EPR-AA1234FQ",
-        "docTitle" : "Issued transfer notice",
-        "name" : "Carter Plant Limited",
-        "uploadedOn" : "03/12/2019",
-        "permitType" : "Installation",
-        "documentType" : "Permit",
-        "fileType" :"PDF"
-    }]
+    const validPermitIds = [
+        'EAWML65519',
+        'EPRZP3821GK',
+        'T3945884O',
+        'EAWML403958',
+    ]
+    if (validPermitIds.includes(permitId)) {
+        permitId = permitId || defaultPermitId
+    } else {
+        permitId = defaultPermitId
+    }
+    let dataSrc = require('../views/' + versionDirectory + '/data/EDRM/' + permitId + 'documents.json')
+    const dataObject =  []
+    for (item in dataSrc) {
+        if (dataSrc[item]["Disclosure Status"] === "Public Register") {
+            dataObject.push({
+                "registration": dataSrc[item]["Case Reference"],
+                "docTitle": dataSrc[item]["Title/Subject"],
+                "name": dataSrc[item]["Customer Name"],
+                "uploadedOn": dataSrc[item]["Date Loaded"],
+                "permitType": dataSrc[item]["Sub-Folder"],
+                "documentType": dataSrc[item]["Document Type"],
+                "documentLink": dataSrc[item]["Tif File Names"],
+                "fileType": ""
+            })
+        }
+    }
     return dataObject
 }
 
@@ -47,10 +65,11 @@ module.exports = function (router) {
             }
         )
     })
-    // include common / userflows.js
 
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
-        let thePageObject = createDataFromJson()
+        const permitNumber = req.query.permitNumber || defaultPermitId
+        let thePageObject = createDataFromJson(permitNumber)
+        thePageObject.permitNumber = permitNumber
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
         let filterType
