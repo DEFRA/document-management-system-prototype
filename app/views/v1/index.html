@@ -18,23 +18,46 @@
       }) }}
       <h1 class="govuk-heading-xl">
         <span class="govuk-caption-m">(1/7/20 - 21/7/20)</span>
-
         Sprint 1
       </h1>
+
+      <h2 class="govuk-heading-m">Design objectives</h2>
       <p>
-        This version begins to consider issues that were discovered in rounds of user testing earlier in the year.
+        In lieu of user research sessions, research and prepare examples of search mechanisms across the department and wider GOV.UK contexts.
       </p>
 
-      <h2 class="govuk-heading-m">Design variants</h2>
-
-      <ol class="govuk-list--number govuk-list">
-        <li><a href="/v1/search/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
-        <li><a href="/v1/search/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
+      {{ govukAccordion({
+        id: "accordion-default",
+        items: [
+          {
+            expanded: true,
+            heading: {
+            text: "Scenarios"
+          },
+            content: {
+            html: "<ol class='govuk-list--number govuk-list'>
+                            <li><a href='./search/search-all'>View stand alone service</a></li>
+                        </ol>"
+          }
+          },
+          {
+            heading: {
+            text: "Design Variants"
+          },
+            content: {
+            html: '
+<ol class="govuk-list--number govuk-list">
+        <li><a href="./search/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
       </ol>
+'
+          }
+          }
 
-      {% from "govuk/components/button/macro.njk" import govukButton %}
+        ]
+      }) }}
 
       {{ govukButton({
       text: "View linear journey",
