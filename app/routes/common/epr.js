@@ -4,7 +4,6 @@ module.exports = function (router, versionDirectory, eprData) {
         let thePageObject = {}
         let permitId = req.query.permitNumber || "EAWML403958"
         thePageObject = eprData.find((item) => {return item.caseReference === permitId})
-        console.log(thePageObject)
         res.render(versionDirectory + '/entry-points/ea/existing/results-details.html', {
                 pageObject: thePageObject
             }
