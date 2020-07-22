@@ -2,6 +2,11 @@
 
 {% block content %}
 
-{{ userFlow | safe }}
+    {{ govukBackLink({
+        text: "Back",
+        href: "javascript:history.back(-1)"
+    }) }}
+
+    {{ userFlow | safe }}
 
 {% endblock %}

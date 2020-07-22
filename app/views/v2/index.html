@@ -1,56 +1,84 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+    GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-      {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+            {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
-      {{ govukBackLink({
-        text: "Back",
-        href: "/"
-      }) }}
-      <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-m">(22/7/20 - 5/8/20)</span>
-        Sprint 2
-      </h1>
-      <p>'Real' data added from EDRM. Static data for 4 genuine permits (including documents) added to prototype.</p>
-      {{ govukDetails({
-        summaryText: "Example permit numbers",
-        html: "<ul>
+            {{ govukBackLink({
+                text: "Back",
+                href: "/"
+            }) }}
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">(22/7/20 - 5/8/20)</span>
+                Sprint 2
+            </h1>
+            <h3 class="govuk-heading-m">Design objectives</h3>
+            <p>Add 'real' data and documents from EDRM to allow for more accurate search scenarios. In lieu of testing
+                sessions, prepare for potential end to end scenarios including the Electronic Public Register as a
+                starting point.</p>
+
+            {{ govukDetails({
+                summaryText: "Example permit numbers",
+                html: "<ul>
         <li><a href='./search/search-results?permitNumber=EAWML403958'>EAWML403958</a></li>
         <li><a href='./search/search-results?permitNumber=EAWML65519'>EAWML65519</a></li>
         <li><a href='./search/search-results?permitNumber=EPRZP3821GK'>EPRZP3821GK</a></li>
         <li><a href='./search/search-results?permitNumber=T3945884O'>T3945884O</a></li>
         </ul"
-      }) }}
+            }) }}
 
-      <h2 class="govuk-heading-m">Design variants</h2>
-
-      <ol class="govuk-list--number govuk-list">
-        <li><a href="/v2/search/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
-        <li><a href="/v2/search/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
-        <li><a href="/v2/search/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
-        <li><a href="/v2/search/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
+            {{ govukAccordion({
+                id: "accordion-default",
+                items: [
+                    {
+                        expanded: true,
+                        heading: {
+                        text: "Scenarios"
+                    },
+                        content: {
+                        html: "<ol class='govuk-list--number govuk-list'>
+                            <li><a href='./search/search-all'>View stand alone service</a></li>
+                            <li><a href='./entry-points/ea/'>Start from ePR (Electronic Public Register)</a></li>
+                        </ol>"
+                    }
+                    },
+                    {
+                        heading: {
+                        text: "Design Variants"
+                    },
+                        content: {
+                        html: '
+<ol class="govuk-list--number govuk-list">
+        <li><a href="./search/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
+        <li><a href="./search/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
       </ol>
+'
+                    }
+                    }
 
-      {% from "govuk/components/button/macro.njk" import govukButton %}
+                ]
+            }) }}
 
-      {{ govukButton({
-      text: "View linear journey",
-      href: "./search/search-all.html"
-      }) }}
+            {% from "govuk/components/button/macro.njk" import govukButton %}
 
-      <p><a href="./user-flow">View user flows</a></p>
-      <p><a href="./page-flow">View all pages</a></p>
+            {{ govukButton({
+                text: "View linear journey",
+                href: "./search/search-all.html"
+            }) }}
 
+            <p><a href="./user-flow/">View user flows</a></p>
+            <p><a href="./page-flow/">View all pages</a></p>
+
+        </div>
     </div>
-  </div>
 
 {% endblock %}

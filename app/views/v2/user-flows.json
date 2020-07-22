@@ -53,16 +53,22 @@
       ],
       "flow": [
         {
-          "stage": "entry-points",
+          "stage": "entry-points/ea",
           "version": 0,
-          "pageId": "1",
+          "pageId": "2",
           "location": "index"
         },
         {
-          "stage": "search",
+          "stage": "entry-points/ea",
           "version": 0,
-          "pageId": "1",
-          "location": "search-all"
+          "pageId": "3",
+          "location": "results"
+        },
+        {
+          "stage": "entry-points/ea",
+          "version": 0,
+          "pageId": "4",
+          "location": "results-details"
         },
         {
           "stage": "search",
