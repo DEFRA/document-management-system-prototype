@@ -1,0 +1,88 @@
+{% include  '../header.html' %}
+
+<section class="results">
+    <div class="controls">
+        <div class="summary">
+            Showing {{ pageObject.results.length }} result(s) for:
+            <ul class="list-inline">
+
+
+                <li class="search-term">
+                    Name or registration number: <span class="term-value">Smith</span>
+                    <a class="btn btn-sm btn-default" data-term-name="name-number-search"
+                       href="/public-register/view/index">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="additional-links">
+            <ul class="list-inline">
+                <li>
+                    <a href="/public-register/api/search?name-number-search=Smith" class="btn btn-default">Show results
+                        summary …</a>
+                </li>
+                <li>
+                    <a href="/public-register/api/search.csv?__details=true&amp;name-number-search=Smith"
+                       class="btn btn-default">Download this data as CSV …</a>
+                </li>
+                <li>
+                    For data licence terms see <a
+                            href="https://www.gov.uk/government/publications/environment-agency-conditional-licence/environment-agency-conditional-licence">Environment
+                        Agency conditional licence</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <table class="table results details table-condensed table results summary datatable registers dataTable no-footer">
+        <thead class="sr-only">
+        <tr>
+            <th scope="col">Result field</th>
+            <th scope="col">Result value</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr role="row" class="odd">
+            <td class="sorting_1"><a href="/public-register/view/search-waste-operations">Environmental Permitting
+                    Regulations – Waste Operations for England</a></td>
+            <td> Veolia E S South Downs Ltd
+            </td>
+            <td><a href="/public-register/waste-operations/registration/NP3499VS-V002?__pageState=result-all
+">NP3499VS/V002</a></td>
+            <td>
+
+            </td>
+            <td>
+                Land / Premises At, Hollingdean Lane, Hollingdean, Brighton, East Sussex, BN1 7BB
+            </td>
+        </tr>
+
+
+
+        {% for item in pageObject.results %}
+            <tr role="row" class="odd">
+                <td class="sorting_1"><a href="/public-register/view/search-waste-operations">Environmental Permitting
+                        Regulations – Waste Operations for England</a></td>
+                <td> Veolia E S South Downs Ltd
+                </td>
+                <td><a href="/public-register/waste-operations/registration/NP3499VS-V002?__pageState=result-all">{{ item.registration }}</a></td>
+                <td>
+
+                </td>
+                <td>
+                    Land / Premises At, Hollingdean Lane, Hollingdean, Brighton, East Sussex, BN1 7BB
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</section>
+
+{% include  '../footer.html' %}

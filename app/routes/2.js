@@ -51,6 +51,8 @@ function createDataFromJson(permitId) {
 
 module.exports = function (router) {
 
+    require('./common/epr')(router)
+
     router.get(['/' + versionDirectory + '/page-flow/'], function (req, res) {
         res.render('./includes/page-flow.html',
             {
