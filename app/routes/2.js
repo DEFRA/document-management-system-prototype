@@ -5,6 +5,7 @@ const pf = require('@benwatsonuk/page-flow')
 let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
 let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
+let eprData = require('../views/' + versionDirectory + '/data/ePR/results.json')
 const defaultPermitId = 'EAWML403958'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
@@ -51,7 +52,7 @@ function createDataFromJson(permitId) {
 
 module.exports = function (router) {
 
-    require('./common/epr')(router)
+    require('./common/epr')(router, versionDirectory, eprData)
 
     router.get(['/' + versionDirectory + '/page-flow/'], function (req, res) {
         res.render('./includes/page-flow.html',

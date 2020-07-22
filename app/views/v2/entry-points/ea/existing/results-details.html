@@ -1,88 +1,120 @@
 {% include  '../header.html' %}
 
-<section class="results">
-    <div class="controls">
-        <div class="summary">
-            Showing {{ pageObject.results.length }} result(s) for:
-            <ul class="list-inline">
+
+    <ol class="breadcrumb">
+        <li><a href="../index">Home</a></li>
+        <li><a href="../index">Search all</a></li>
+        <li class="active">Result from {{ pageObject.register }}</li>
+    </ol>
 
 
-                <li class="search-term">
-                    Name or registration number: <span class="term-value">Smith</span>
-                    <a class="btn btn-sm btn-default" data-term-name="name-number-search"
-                       href="/public-register/view/index">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </li>
+    <section class="registration">
+        <h1>Permit {{ pageObject.permitId }} – {{ pageObject['permit-holder'] }}</h1>
+    </section>
 
-
-            </ul>
-        </div>
-        <div class="additional-links">
-            <ul class="list-inline">
-                <li>
-                    <a href="/public-register/api/search?name-number-search=Smith" class="btn btn-default">Show results
-                        summary …</a>
-                </li>
-                <li>
-                    <a href="/public-register/api/search.csv?__details=true&amp;name-number-search=Smith"
-                       class="btn btn-default">Download this data as CSV …</a>
-                </li>
-                <li>
-                    For data licence terms see <a
-                            href="https://www.gov.uk/government/publications/environment-agency-conditional-licence/environment-agency-conditional-licence">Environment
-                        Agency conditional licence</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <table class="table results details table-condensed table results summary datatable registers dataTable no-footer">
-        <thead class="sr-only">
-        <tr>
-            <th scope="col">Result field</th>
-            <th scope="col">Result value</th>
-        </tr>
-        </thead>
+    <table class="table">
         <tbody>
-
-        <tr role="row" class="odd">
-            <td class="sorting_1"><a href="/public-register/view/search-waste-operations">Environmental Permitting
-                    Regulations – Waste Operations for England</a></td>
-            <td> Veolia E S South Downs Ltd
-            </td>
-            <td><a href="/public-register/waste-operations/registration/NP3499VS-V002?__pageState=result-all
-">NP3499VS/V002</a></td>
-            <td>
-
-            </td>
-            <td>
-                Land / Premises At, Hollingdean Lane, Hollingdean, Brighton, East Sussex, BN1 7BB
-            </td>
-        </tr>
-
-
-
-        {% for item in pageObject.results %}
-            <tr role="row" class="odd">
-                <td class="sorting_1"><a href="/public-register/view/search-waste-operations">Environmental Permitting
-                        Regulations – Waste Operations for England</a></td>
-                <td> Veolia E S South Downs Ltd
-                </td>
-                <td><a href="/public-register/waste-operations/registration/NP3499VS-V002?__pageState=result-all">{{ item.registration }}</a></td>
-                <td>
-
-                </td>
-                <td>
-                    Land / Premises At, Hollingdean Lane, Hollingdean, Brighton, East Sussex, BN1 7BB
-                </td>
+        {% if pageObject.permitId %}
+            <tr>
+                <th scope="row">Permit number</th>
+                <td>{{ pageObject.permitId }}</td>
             </tr>
-        {% endfor %}
+        {% endif %}
+
+        {% if pageObject.registration %}
+            <tr>
+                <th scope="row">License number</th>
+                <td>{{ pageObject.registration }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject['permit-holder'] %}
+            <tr>
+                <th scope="row">License Holder Name</th>
+                <td>{{ pageObject['permit-holder'] }}</td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <th scope="row" colspan="2"><h3>Site</h3></th>
+        </tr>
+        {% if pageObject.site.name %}
+        <tr>
+            <th scope="row">Site name</th>
+            <td>{{ pageObject.site.name }}</td>
+        </tr>
+        {% endif %}
+
+        {% if pageObject.site.type %}
+            <tr>
+                <th scope="row">Site type</th>
+                <td>{{ pageObject.site.type }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site.address %}
+            <tr>
+                <th scope="row">Site Address</th>
+                <td>{{ pageObject.site.address }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site.postcode %}
+            <tr>
+                <th scope="row">Site Postcode</th>
+                <td>{{ pageObject.site.postcode }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site['grid-reference'] %}
+            <tr>
+                <th scope="row">Site Grid Reference</th>
+                <td>{{ pageObject.site['grid-reference']  }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site['easting'] %}
+            <tr>
+                <th scope="row">Easting</th>
+                <td>{{ pageObject.site['easting']  }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site['northing'] %}
+            <tr>
+                <th scope="row">Northing</th>
+                <td>{{ pageObject.site['northing']  }}</td>
+            </tr>
+        {% endif %}
+
+        {% if pageObject.site['LA'] %}
+            <tr>
+                <th scope="row">Local Authority</th>
+                <td>{{ pageObject.site['LA']  }}</td>
+            </tr>
+        {% endif %}
+
+        <tr>
+            <th scope="row" colspan="2"><h3>Status</h3></th>
+        </tr>
+        {% if pageObject['startDate'] %}
+            <tr>
+                <th scope="row">Issued Date</th>
+                <td>{{ pageObject['startDate']  }}</td>
+            </tr>
+        {% endif %}
+
 
         </tbody>
     </table>
 
+    <div>
+        <a class="btn btn-primary" href="../../../search/search-results?permitNumber={{ pageObject.permitId }}">Request documents</a>
+    </div>
+    <p></p>
+    <div>
+        <a href="javascript: history.back(-1)" class="btn btn-sm btn-default back">Back</a>
+    </div>
 
-</section>
 
 {% include  '../footer.html' %}
