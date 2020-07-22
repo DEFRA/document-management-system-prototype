@@ -13,13 +13,65 @@
           "design-notes": "",
           "pages": [
             {
-              "title": "Electronic Public Register (ePR)",
+              "title": "Electronic Public Register (ePR) modified index page",
               "id": "1",
               "userNeeds": [
               ],
-              "description": "An anticipated route into the service",
+              "description": "An anticipated route into the service with a major modification that demonstrates a full ink out to our service",
               "type": "text-input",
               "location": "index"
+            },
+            {
+              "title": "Electronic Public Register (ePR) current index page",
+              "id": "2",
+              "userNeeds": [
+              ],
+              "description": "An anticipated route into the service, the 'as is' version of the index page",
+              "type": "text-input",
+              "location": "ea/index"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Entry points into service from ePR",
+      "location": "entry-points/ea",
+      "id": "entry-points/ea",
+      "description": "",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v2",
+          "location": "entry-points/ea",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Electronic Public Register (ePR) current index page",
+              "id": "2",
+              "userNeeds": [
+              ],
+              "description": "An anticipated route into the service, the 'as is' version of the index page",
+              "type": "text-input",
+              "location": "index"
+            },
+            {
+              "title": "(ePR) - Search all - Results page",
+              "id": "3",
+              "userNeeds": [
+              ],
+              "description": "The results generated for a search using the 'Quick check' look up mechanism",
+              "type": "check-answers",
+              "location": "results"
+            },
+            {
+              "title": "(ePR) - Search all - Individual result page",
+              "id": "4",
+              "userNeeds": [
+              ],
+              "description": "The individual permit record page",
+              "type": "check-answers",
+              "location": "results-details"
             }
           ]
         }
@@ -52,7 +104,7 @@
               "userNeeds": [
               ],
               "description": "Results played back to user with ability to filter and search",
-              "type": "text-input",
+              "type": "check-answers",
               "location": "search-results"
             }
           ]

@@ -71,6 +71,8 @@ module.exports = function (router) {
     })
 
     router.get(['/' + versionDirectory + '/user-flow/:journeyId/:theJourneyDirectory/:page', '/' + versionDirectory + '/user-flow/:journeyId/:theJourneyDirectory/:stage/:page'], function (req, res) {
+        console.log('1')
+
         res.render('./includes/user-flow.html',
             {
                 userFlow: pf.renderUserFlowPage(pageFlow, userFlow, req.params.page, req.params.theJourneyDirectory, versionDirectory, req.params.journeyId, req.params.stage)
