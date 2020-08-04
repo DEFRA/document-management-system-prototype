@@ -1,0 +1,154 @@
+{% include  '../header.html' %}
+<section>
+    <h1>Register of Flood Risk Activity Exemptions</h1>
+    <p>A flood risk exemption is for work on or near a main river or sea defence that is exempt from needing an environmental permit.</p>
+
+    <p>
+        Search for matching registrations by holder name, reference number or location of a registered site.
+    </p>
+
+    <form class="form-horizontal half-width" role="search" method="get" action="/public-register/flood-risk-exemptions/registration">
+        <input id="easting" name="easting" type="hidden">
+        <input id="northing" name="northing" type="hidden">
+
+        <div class="form-group">
+            <label for="name-search" class="control-label col-md-2">
+                Operator name
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="name-search" type="search" class="form-control search-box" name="name-search" placeholder="Complete or partial operator name, if known">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="number-search" class="control-label col-md-2">
+                Exemption reference number
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="number-search" type="search" class="form-control search-box" name="number-search" placeholder="Exemption reference number, if known">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="water-management-area-search" class="control-label col-md-2">
+                Water Management Area
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="water-management-area-search" type="search" class="form-control search-box ui-autocomplete-input" name="water-management-area-search" placeholder="Water management area" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="la-search" class="control-label col-md-2">
+                Local Authority
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="la-search" type="search" class="form-control search-box ui-autocomplete-input" name="local-authority" placeholder="Name of Local Authority" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location-postcode" class="control-label col-md-2">
+                Postcode
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="location-postcode" type="search" class="form-control search-box ui-autocomplete-input" name="__postcode" placeholder="Postcode (required if you want to do a distance search)" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+                <p class="validation-error invalid-postcode-fail hidden text-danger">
+                    <i class="fa fa-warning"></i> Not a valid postcode
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group disabled">
+            <label for="radius" class="control-label col-sm-2">
+                Maximum distance from postcode
+            </label>
+            <div class="col-md-6">
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-1" value="1" checked="">
+                    1km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-3" value="3">
+                    3km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-5" value="5">
+                    5km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-10" value="10">
+                    10km
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exemption-filter" class="col-sm-2 control-label">Filter by exemption (optional)</label>
+            <div class="col-md-6">
+                <div class="btn-group full-width">
+                    <div class="combobox-container"> <input type="hidden" name="exemptionCode" value=""> <div class="input-group"> <input type="text" autocomplete="false" id="exemption-filterundefined" placeholder="" class="combobox form-control"> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret"></span> <span class="glyphicon glyphicon-remove"></span> </span> </div> </div><select class="combobox form-control" id="exemption-filter" data-live-search="true" style="display: none;">
+                    <option></option>
+                    <option value="FRA2">FRA2 - Electrical cable service crossing over a main river</option>
+                    <option value="FRA3">FRA3 - Service crossing below the bed of a main river not involving an open cut technique&nbsp;</option>
+                    <option value="FRA4">FRA4 - Service crossings attached to the outside of existing structures over a main river</option>
+                    <option value="FRA5">FRA5 - Footbridge over a main river not more than 8m wide from bank to bank</option>
+                    <option value="FRA6">FRA6 - Temporary scaffolding in or over a main river for no more than 4 weeks</option>
+                    <option value="FRA7">FRA7 - Temporary dewatering of a work area for no more than 4 weeks</option>
+                    <option value="FRA8">FRA8 - Maintaining a raised river defence or sea defence&nbsp;</option>
+                    <option value="FRA9">FRA9 - Maintaining structures within the channel of a main river that are not raised defences&nbsp;</option>
+                    <option value="FRA10">FRA10 - Constructing drinking bays for livestock on the bank of a main river</option>
+                    <option value="FRA11">FRA11 - Constructing a small access platform on the bank of a river or that projects into or over a main river</option>
+                    <option value="FRA12">FRA12 - Outfall pipes less than 300mm diameter through a headwall</option>
+                    <option value="FRA13">FRA13 - Repairing and protecting up to 10m of main river banks using natural materials</option>
+                    <option value="FRA14">FRA14 - Repairing bank slips and erosion using the fallen materials&nbsp;</option>
+                    <option value="FRA15">FRA15 - Installing channel habitat structures made of natural materials excluding weirs and berms</option>
+                    <option value="FRA16">FRA16 - Installing temporary small rafts for surveys&nbsp;</option>
+                    <option value="FRA17">FRA17 - Gravel-cleaning for fish spawning beds</option>
+                    <option value="FRA18">FRA18 - Placing stones or logs in a main river to enhance habitats</option>
+                    <option value="FRA19">FRA19 - Constructing eel pass devices on existing structures</option>
+                    <option value="FRA20">FRA20 - Constructing fish passage notches in an existing impounding structure</option>
+                    <option value="FRA21">FRA21 - Removing silt and sand from bridge arches and any material from existing culverts</option>
+                    <option value="FRA22">FRA22 - Removing silt and sand adjacent to in-river structures&nbsp;</option>
+                    <option value="FRA23">FRA23 - Dredging to remove accumulated silt and sand from the bed of up to 1.5km of man-made ditches, land drains, agricultural drains and previously straightened watercourses that are main rivers</option>
+                    <option value="FRA24">FRA24 - Dredging to remove accumulated silt and sand from the bed of up to 20m of a main river</option>
+                    <option value="FRA25">FRA25 - Excavating scrapes and shallow wetland features totalling 0.1ha in a flood plain</option>
+                    <option value="FRA26">FRA26 - Constructing raised flood defences around a maximum of 6 adjoining properties&nbsp;</option>
+                    <option value="FRA27">FRA27 - Constructing bankside wildlife refuge structures</option>
+                    <option value="FRA28">FRA28 - Improvement works for existing tracks and paths</option>
+                </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p class="text-danger hidden empty-search">
+                    <i class="fa fa-exclamation-triangle"></i> Please put in a value for at least one of the search criteria.
+                </p>
+                <input type="submit" class="btn btn-primary btn-lg" value="search the register">
+            </div>
+        </div>
+    </form>
+
+</section>
+{% include  '../footer.html' %}

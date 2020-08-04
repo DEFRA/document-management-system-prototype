@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-full">
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "javascript: history.back(-1)"
+            }) }}
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">Permit SW/EPRZP3821GK/002</span>
+                WESSEX WATER SERVICES LIMITED
+            </h1>
+
+            {% set permitHTML %}
+                <h2 class="govuk-heading-m">Summary</h2>
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Start Date"
+                        },
+                            value: {
+                            text: "Sarah Philips"
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Permit number"
+                        },
+                            value: {
+                            text: "Sarah Philips"
+                        }
+                        }
+                    ]
+                }) }}
+            {% endset %}
+
+            {{ govukTabs({
+                items: [
+                    {
+                        label: "Permit",
+                        id: "permit",
+                        panel: {
+                        html: permitHTML
+                    }
+                    },
+                    {
+                        label: "Documents",
+                        id: "documents",
+                        panel: {
+                        html: documentsHtml
+                    }
+                    }
+                ]
+            }) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

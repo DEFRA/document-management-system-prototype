@@ -1,0 +1,42 @@
+[
+  {
+    "permitId": "FB3006FQ/A001",
+    "name": "Wicks Services Limited",
+    "permit-holder": "Wicks Services Limited",
+    "registration": "403958",
+    "Addressee": "Andrew Orr",
+    "register": "Environmental Permitting Regulations – End of Life Vehicles for England",
+    "startDate":  "02/12/2019",
+    "caseReference": "EAWML403958",
+    "site": {
+      "name": "Wicks Services Limited",
+      "type": "S1517 No 17: Vehicle Depollution Facility",
+      "address": "Sowerby Woods Business Park Scarth Road Barrow In Furness Cumbria LA13 4QR",
+      "postcode":"LA13 4QR",
+      "grid-reference": "SD2001473438",
+      "easting": "320014",
+      "northing": "473438",
+      "LA": "Barrow-in-Furness"
+    }
+  },
+  {
+    "permitId": "T-39-45884-O",
+    "name": "SEVERN TRENT WATER LIMITED",
+    "permit-holder": "SEVERN TRENT WATER LIMITED",
+    "registration": "403958",
+    "register": "Environmental Permitting Regulations - Discharges to water and groundwater for England",
+    "Addressee": "Andrew Orr",
+    "startDate": "02/12/2019",
+    "caseReference": "T3945884O",
+    "site": {
+      "name": "BOWERS HALL CSO",
+      "type": "Storm Tank/CSO on Sewerage Network (water company)",
+      "address": "BOWERS HALL, BOWERS HALL CSO, NEAR BOWERS RAKE, ALPORT, BAKEWELL, DERBYSHIRE, DE45 1LD",
+      "postcode":"DE45 1LD",
+      "grid-reference": "SK2349465057",
+      "easting": "423494",
+      "northing": "365057",
+      "LA": "Derbyshire Dales"
+    }
+  }
+]
