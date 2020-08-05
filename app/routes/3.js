@@ -10,14 +10,48 @@ const defaultPermitId = 'EAWML403958'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
-function convertToReadableDate (theDateString) {
+function convertToReadableDate(theDateString) {
     theDateString = theDateString.toString()
     // console.log(theDateString.toString().slice(0,4))
-    const yyyy = theDateString.slice(0,4)
-    const mm = theDateString.slice(5,6)
-    const dd = theDateString.slice(7,8)
+    const yyyy = theDateString.slice(0, 4)
+    const mm = theDateString.slice(5, 6)
+    const dd = theDateString.slice(7, 8)
     return dd + '/' + mm + '/' + yyyy
 }
+
+function getDocTypeItems(documents) {
+
+    let docTypeItems = []
+    const map = new Map();
+    for (const item of documents) {
+        if(!map.has(item.documentType)){
+            map.set(item.documentType, true);    // set any value to Map
+            docTypeItems.push({
+                text: item.documentType + ' (99)',
+                value: item.documentType
+            });
+        }
+    }
+
+    return docTypeItems
+}
+function getPermitTypeItems(documents) {
+
+    let permitTypeItems = []
+    const map = new Map();
+    for (const item of documents) {
+        if(!map.has(item['permitType'])){
+            map.set(item['permitType'], true);    // set any value to Map
+            permitTypeItems.push({
+                text: item['permitType'] + ' (99)',
+                value: item['permitType']
+            });
+        }
+    }
+
+    return permitTypeItems
+}
+
 //
 // function getSearchResultsForCompanies() {
 //     let results = []
@@ -43,7 +77,7 @@ function createDataFromJson(permitId) {
         permitId = defaultPermitId
     }
     let dataSrc = require('../views/' + versionDirectory + '/data/EDRM/' + permitId + 'documents.json')
-    const dataObject =  []
+    const dataObject = []
     for (item in dataSrc) {
         if (dataSrc[item]["Disclosure Status"] === "Public Register") {
             dataObject.push({
@@ -137,8 +171,7 @@ module.exports = function (router) {
         } else if (pageVariant == 2) {
             filterType = req.query.filterType || 2
             resultsType = req.query.resultsType || 2
-        }
-        else {
+        } else {
             filterType = req.query.filterType || 1
             resultsType = req.query.resultsType || 1
         }
@@ -158,8 +191,10 @@ module.exports = function (router) {
         let thePageObject = {}
         thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
         thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
         thePageObject.permitNumber = permitNumber
-        console.log(thePageObject.details)
+        // console.log(thePageObject)
         res.render(versionDirectory + '/all-in-one/index.html',
             {
                 pageObject: thePageObject

@@ -6,38 +6,7 @@
         idPrefix: 'permitType',
         name: 'permitType',
         classes: "govuk-checkboxes--small",
-        items: [
-            {
-                value: '1',
-                text: 'Waste',
-                checked: false
-            },
-            {
-                value: '2',
-                text: 'Installations',
-                checked: false
-            },
-            {
-                value: '3',
-                text: 'Waste Exemptions'
-            },
-            {
-                value: '4',
-                text: 'Water Abstraction'
-            },
-            {
-                value: '5',
-                text: 'Water Quality'
-            },
-            {
-                value: '6',
-                text: 'Radioactive Substances'
-            },
-            {
-                value: '7',
-                text: 'Nuclear'
-            }
-        ]
+        items: pageObject.permitTypeItems
     }) }}
 
 {% endset  %}
@@ -49,50 +18,7 @@
         idPrefix: 'docType',
         name: 'docType',
         classes: "govuk-checkboxes--small",
-        items: [
-            {
-                value: '1',
-                text: 'Pre-application',
-                checked: false
-            },
-            {
-                value: '2',
-                text: 'Application & Associated docs',
-                checked: false
-            },
-            {
-                value: '3',
-                text: 'Pre-operational criteria'
-            },
-            {
-                value: '4',
-                text: 'Compliance'
-            },
-            {
-                value: '5',
-                text: 'Monitoring'
-            },
-            {
-                value: '6',
-                text: 'Permit'
-            },
-            {
-                value: '7',
-                text: 'Enforcement'
-            },
-            {
-                value: '8',
-                text: 'Returns'
-            },
-            {
-                value: '9',
-                text: 'Charging'
-            },
-            {
-                value: '10',
-                text: 'General correspondence'
-            }
-        ]
+        items: pageObject.docTypeItems
     }) }}
 
 {% endset  %}
@@ -125,8 +51,14 @@
 {{ searchFilter({
     rows: [
         {
+            title: 'Permit Type',
+            body: permitTypeOptionsHtml | safe,
+            expanded: 'true'
+        },
+        {
             title: 'Document Type',
-            body: docTypeOptionsHtml | safe
+            body: docTypeOptionsHtml | safe,
+            expanded: 'true'
         },
         {
             title: 'Date',
@@ -134,3 +66,22 @@
         }
     ]
 }) }}
+
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        $('#facet-wrapper input').on('click', (e) => {
+            let searchArray = []
+            //
+            let checked = ($(e).val());
+            if ($(this).is(':checked')) {
+
+                searchArray.push(checked);
+            } else {
+                searchArray.splice($.inArray(checked, searchArray),1);
+            }
+
+            console.log(searchArray)
+
+        })
+    })
+</script>
