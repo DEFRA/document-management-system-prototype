@@ -69,6 +69,13 @@
 
 <script type="text/javascript">
     window.addEventListener('load', function () {
+        function showHideResults(data) {
+            if(data.length) {
+
+            } else {
+
+            }
+        }
         $('#facet-wrapper input').on('click', (e) => {
             let searchArray = []
             //
@@ -80,8 +87,10 @@
                 searchArray.splice($.inArray(checked, searchArray),1)
             }
 
-            console.log(searchArray)
 
+
+            console.log(searchArray)
+            showHideResults(searchArray)
         })
     })
 </script>
