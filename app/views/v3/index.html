@@ -16,21 +16,23 @@
                 href: "/"
             }) }}
             <h1 class="govuk-heading-xl">
-                <span class="govuk-caption-m">(22/7/20 - 4/8/20)</span>
-                Sprint 2
+                <span class="govuk-caption-m">(5/8/20 - 18/8/20)</span>
+                Sprint 3
             </h1>
             <h3 class="govuk-heading-m">Design objectives</h3>
-            <p>Add 'real' data and documents from EDRM to allow for more accurate search scenarios. In lieu of testing
-                sessions, prepare for potential end to end scenarios including the Electronic Public Register as a
-                starting point.</p>
+            <p>Address main outputs from our first round of research: </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Group documents in a view that is connected to the entity to which it relates</li>
+                <li>Allow users to view a document before downloading</li>
+            </ul>
 
             {{ govukDetails({
                 summaryText: "Example permit numbers",
                 html: "<ul>
-        <li><a href='./search/search-results?permitNumber=EAWML403958'>EAWML403958</a></li>
-        <li><a href='./search/search-results?permitNumber=EAWML65519'>EAWML65519</a></li>
-        <li><a href='./search/search-results?permitNumber=EPRZP3821GK'>EPRZP3821GK</a></li>
-        <li><a href='./search/search-results?permitNumber=T3945884O'>T3945884O</a></li>
+        <li><a href='./all-in-one?permitNumber=EAWML403958'>EAWML403958</a></li>
+        <li><a href='./all-in-one?permitNumber=EAWML65519'>EAWML65519</a></li>
+        <li><a href='./all-in-one?permitNumber=EPRZP3821GK'>EPRZP3821GK</a></li>
+        <li><a href='./all-in-one?permitNumber=T3945884O'>T3945884O</a></li>
         </ul>"
             }) }}
 
@@ -56,10 +58,7 @@
                         content: {
                         html: '
 <ol class="govuk-list--number govuk-list">
-        <li><a href="./search/search-results/1/">Results variant 1</a> - results and filter aligned to GOV.UK search (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
-        <li><a href="./search/search-results/2/">Results variant 2</a> - results and filter aligned to DEFRA EUE (exports) search and filter (<a href="https://exports-defra.herokuapp.com/beta/v6/EXP-10498-date-filter/dashboard" target="_blank">see example</a>)</li>
-        <li><a href="./search/search-results/3/">Filter variant 3</a> - results and filter aligned to HMCTS search and filter (<a href="https://hmcts-design-system.herokuapp.com/patterns/filter-a-list" target="_blank">see example</a>)</li>
-        <li><a href="./search/search-results?searchType=2">Search variant 2</a> - inline with both GOV.UK search and DEFRA EUE</li>
+        <li><a href="./search/search-results-grouped/1/">Results variant (grouped)</a> - Document results grouped by organisation or site (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
       </ol>
 '
                     }
@@ -67,8 +66,6 @@
 
                 ]
             }) }}
-
-            {% from "govuk/components/button/macro.njk" import govukButton %}
 
             {{ govukButton({
                 text: "View linear journey",

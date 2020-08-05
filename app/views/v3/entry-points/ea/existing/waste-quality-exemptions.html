@@ -1,0 +1,106 @@
+{% include  '../header.html' %}
+
+<section>
+    <h1>Water Quality Exemptions</h1>
+    <p>Some low risk water discharge and groundwater activities can be exempt from requiring a permit if they meet certain conditions. Some of these 'exemptions' require the activity to be registered.  This register details exempt activities which have been registered with the Environment Agency.  It is worth noting that the majority of entries in this register are for small sewage discharges which are no longer required to be registered.  Consequently, most of the entries are for activities which were registered before the requirement to register them changed. There are some exempt activities which still require registration, for example groundwater tracer tests.  For more information see the <em>Check the guidance for your activity</em> section: <a href="https://www.gov.uk/guidance/discharges-to-surface-water-and-groundwater-environmental-permits">https://www.gov.uk/guidance/discharges-to-surface-water-and-groundwater-environmental-permits</a></p>
+    <p>
+        Search for matching exemptions by registration number or site location.
+    </p>
+
+
+    <form class="form-horizontal" role="search" method="get" action="/public-register/water-discharge-exemptions/registration">
+        <input id="easting" name="easting" type="hidden">
+        <input id="northing" name="northing" type="hidden">
+
+
+        <div class="form-group">
+            <label for="number-search" class="control-label col-md-2">
+                Registration number
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="number-search" type="search" class="form-control search-box" name="number-search" placeholder="Registration number, if known">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="la-search" class="control-label col-md-2">
+                Local Authority
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="la-search" type="search" class="form-control search-box ui-autocomplete-input" name="local-authority" placeholder="Name of Local Authority (optional)" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="location-address" class="control-label col-md-2">
+                Address
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="location-address" type="search" class="form-control search-box" name="address-search" placeholder="Address (optional)">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+                <span class="help-block">Enter a complete address, or partial details such as the name of the town.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location-postcode" class="control-label col-md-2">
+                Postcode
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="location-postcode" type="search" class="form-control search-box ui-autocomplete-input" name="__postcode" placeholder="Postcode (required if you want to do a distance search)" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+                <p class="validation-error invalid-postcode-fail hidden text-danger">
+                    <i class="fa fa-warning"></i> Not a valid postcode
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group disabled">
+            <label for="radius" class="control-label col-sm-2">
+                Maximum distance from postcode
+            </label>
+            <div class="col-md-6">
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-1" value="1" checked="">
+                    1km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-3" value="3">
+                    3km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-5" value="5">
+                    5km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-10" value="10">
+                    10km
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p class="text-danger hidden empty-search">
+                    <i class="fa fa-exclamation-triangle"></i> Please put in a value for at least one of the search criteria.
+                </p>
+                <input type="submit" class="btn btn-primary btn-lg" value="search the register">
+            </div>
+        </div>
+    </form>
+
+</section>
+{% include  '../footer.html' %}
