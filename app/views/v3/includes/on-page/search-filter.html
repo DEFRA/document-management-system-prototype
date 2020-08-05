@@ -72,12 +72,12 @@
         $('#facet-wrapper input').on('click', (e) => {
             let searchArray = []
             //
-            let checked = ($(e).val());
-            if ($(this).is(':checked')) {
-
-                searchArray.push(checked);
+            console.log(e.target.checked)
+            let checked = e.target.value
+            if (e.target.checked) {
+                searchArray.push(e.target.value)
             } else {
-                searchArray.splice($.inArray(checked, searchArray),1);
+                searchArray.splice($.inArray(checked, searchArray),1)
             }
 
             console.log(searchArray)

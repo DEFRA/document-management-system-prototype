@@ -52,18 +52,6 @@ function getPermitTypeItems(documents) {
     return permitTypeItems
 }
 
-//
-// function getSearchResultsForCompanies() {
-//     let results = []
-//     for (result in eprData) {
-//         results.push(
-//             {
-//
-//             }
-//         )
-//     }
-// }
-
 function createDataFromJson(permitId) {
     const validPermitIds = [
         'EAWML65519',
