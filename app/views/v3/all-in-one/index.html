@@ -16,8 +16,8 @@
             }) }}
 
             <h1 class="govuk-heading-xl">
-                <span class="govuk-caption-m">Permit SW/EPRZP3821GK/002</span>
-                WESSEX WATER SERVICES LIMITED
+                <span class="govuk-caption-m">Permit {{ pageObject.details.permitId }}</span>
+                {{ pageObject.details.name }}
             </h1>
 
             {% set permitHTML %}
@@ -29,19 +29,87 @@
                             text: "Start Date"
                         },
                             value: {
-                            text: "Sarah Philips"
+                            text: pageObject.details.startDate
                         }
                         },
                         {
                             key: {
-                            text: "Permit number"
+                            text: "Register"
                         },
                             value: {
-                            text: "Sarah Philips"
+                            text: pageObject.details.register
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Registration"
+                        },
+                            value: {
+                            text: pageObject.details.registration
                         }
                         }
                     ]
                 }) }}
+                <h2 class="govuk-heading-m">Site details</h2>
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Type"
+                        },
+                            value: {
+                            text: pageObject.details.site.type
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Address"
+                        },
+                            value: {
+                            text: pageObject.details.site.address
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Postcode"
+                        },
+                            value: {
+                            text: pageObject.details.site.postcode
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Local authority"
+                        },
+                            value: {
+                            text: pageObject.details.site.LA
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Grid reference"
+                        },
+                            value: {
+                            text: pageObject.details.site['grid-reference']
+                        }
+                        }
+                    ]
+                }) }}
+            {% endset %}
+
+            {% set documentsHtml %}
+                {# {% for document in pageObject.documents %} #}
+                <div class="govuk-grid-row">
+
+                    <div class="govuk-grid-column-one-third">
+                        {% include '../includes/on-page/search-filter.html' %}
+                    </div>
+                    <div class="govuk-grid-column-two-thirds">
+
+                        {% include '../includes/search-results-on-page.html' %}
+                        {% include '../includes/pagination.html' %}
+                    </div>
+                </div>
             {% endset %}
 
             {{ govukTabs({

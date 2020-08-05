@@ -1,6 +1,6 @@
 <div class="inline-search">
 
-    <form action="./search-results" method="get">
+    <form action="./search-results-grouped/2/" method="get">
 
         <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper"><label class="govuk-label inline-search__label govuk-label--xl"
@@ -9,18 +9,20 @@
                 </label>
 
             </h1>
-            {#            <label class="govuk-label inline-search__label govuk-!-font-weight-bold" for="search">#}
-            {#            </label>#}
+
+            <p class="govuk-body-lead">This service allows you to search for and view documents related to a permit. In order to use this service, you will need to know the permit number that you are looking for.</p>
+            {# <label class="govuk-label inline-search__label govuk-!-font-weight-bold" for="search"> #}
+            {# </label> #}
 
             <span id="search-hint" class="govuk-hint inline-search__hint ">
-    You can search by X, Y or Z
+    Enter a permit number
   </span>
 
 
-
-        {% if searchType == 2 %}
+            {% if searchType == 2 %}
             <div class="search-input-wrapper search-wrapper">
-                <input type="search" value="permitNumber" id="search-reservations" name="permitNumber" title="Search" class="govuk-input" value="{{ pageObject.permitNumber }}" />
+                <input type="search" value="permitNumber" id="search-reservations" name="permitNumber" title="Search"
+                       class="govuk-input" value="{{ pageObject.permitNumber }}"/>
                 <div class="search-input-submit-wrapper">
                     <button type="submit" class="search-submit">Search</button>
                 </div>
@@ -29,13 +31,18 @@
 
         {% else %}
         <input class="govuk-input inline-search__input " id="permitNumber" name="permitNumber" type="search"
-               aria-describedby="search-hint" value="{{ pageObject.permitNumber }}" />
-            </div>
-            <button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
-                Search
-            </button>
-
-        {% endif %}
-
-    </form>
+               aria-describedby="search-hint" value="{{ pageObject.permitNumber }}"/>
 </div>
+<button type="submit" class="govuk-button inline-search__button " data-module="govuk-button">
+    Search
+</button>
+
+
+</form>
+</div>
+
+<p></p>
+{{ govukDetails({
+    summaryText: "Finding a permit number",
+    html: "To find the permit number of an orgnsiation, you can use the search service available on the <a href='https://environment.data.gov.uk/public-register/view/index'>Electronic Public Register</a>."
+}) }}{% endif %}

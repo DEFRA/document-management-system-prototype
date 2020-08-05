@@ -6,13 +6,10 @@
                 {% set tableRows = (tableRows.push(
                     [
                         {
-                            text: row.registration
+                            text: row.caseReference
                         },
                         {
-                            text: row.name
-                        },
-                        {
-                            html: '<a href="/public/EDRM/' + pageObject.permitNumber + '/' + row.documentLink +'" target="_blank">' + row.docTitle + '</a>'
+                            html: '<a href="/v3/all-in-one/' + row.caseReference +'">' + row.name + '</a>'
                         }
                     ]
                     ), tableRows) %}
@@ -27,9 +24,6 @@
         },
         {
             text: "Name"
-        },
-        {
-            text: "Document"
         }
     ],
     rows: tableRows

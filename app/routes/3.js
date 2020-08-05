@@ -18,6 +18,17 @@ function convertToReadableDate (theDateString) {
     const dd = theDateString.slice(7,8)
     return dd + '/' + mm + '/' + yyyy
 }
+//
+// function getSearchResultsForCompanies() {
+//     let results = []
+//     for (result in eprData) {
+//         results.push(
+//             {
+//
+//             }
+//         )
+//     }
+// }
 
 function createDataFromJson(permitId) {
     const validPermitIds = [
@@ -82,7 +93,8 @@ module.exports = function (router) {
 
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
         const permitNumber = req.query.permitNumber || defaultPermitId
-        let thePageObject = createDataFromJson(permitNumber)
+        let thePageObject = {}
+        thePageObject.documents = createDataFromJson(permitNumber)
         thePageObject.permitNumber = permitNumber
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
@@ -107,6 +119,53 @@ module.exports = function (router) {
             filterType: filterType
         })
     })
+
+    router.get(['/' + versionDirectory + '/search/search-results-grouped', '/' + versionDirectory + '/search/search-results-grouped/:variant'], (req, res) => {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        // let thePageObject = {}
+        let thePageObject = eprData
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.permitNumber = permitNumber
+        let pageVariant = req.params.variant || 1
+        let searchType = req.query.searchType || 1
+        let filterType
+        let resultsType
+        if (pageVariant == 3) {
+            filterType = req.query.filterType || 3
+            resultsType = req.query.resultsType || 1
+            searchType = req.query.resultsType || 2
+        } else if (pageVariant == 2) {
+            filterType = req.query.filterType || 2
+            resultsType = req.query.resultsType || 2
+        } else {
+            filterType = req.query.filterType || 1
+            resultsType = req.query.resultsType || 1
+        }
+        res.render(versionDirectory + '/search/search-results-grouped.html', {
+            pageObject: thePageObject,
+            searchType: searchType,
+            pageVariant: pageVariant,
+            resultsType: resultsType,
+            filterType: filterType
+        })
+    })
+
+    /* The 'All in One' page - similar to https://trademarks.ipo.gov.uk/ipo-tmcase/page/Results/4/EU002925709 or https://beta.companieshouse.gov.uk/company/11868746 */
+
+    router.get(['/' + versionDirectory + '/all-in-one/:permitNumber', '/' + versionDirectory + '/all-in-one/:permitNumber/'], function (req, res) {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        let thePageObject = {}
+        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.permitNumber = permitNumber
+        console.log(thePageObject.details)
+        res.render(versionDirectory + '/all-in-one/index.html',
+            {
+                pageObject: thePageObject
+            }
+        )
+    })
+
     //
     // router.get(['/' + versionDirectory + '/search-results/:variant'], function (req, res) {
     //     let thePageObject = documentData

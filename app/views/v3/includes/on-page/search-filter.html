@@ -1,0 +1,136 @@
+{% from '../../macros/searchFilter.njk' import searchFilter %}
+
+{% set permitTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Waste',
+                checked: false
+            },
+            {
+                value: '2',
+                text: 'Installations',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Waste Exemptions'
+            },
+            {
+                value: '4',
+                text: 'Water Abstraction'
+            },
+            {
+                value: '5',
+                text: 'Water Quality'
+            },
+            {
+                value: '6',
+                text: 'Radioactive Substances'
+            },
+            {
+                value: '7',
+                text: 'Nuclear'
+            }
+        ]
+    }) }}
+
+{% endset  %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Pre-application',
+                checked: false
+            },
+            {
+                value: '2',
+                text: 'Application & Associated docs',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Pre-operational criteria'
+            },
+            {
+                value: '4',
+                text: 'Compliance'
+            },
+            {
+                value: '5',
+                text: 'Monitoring'
+            },
+            {
+                value: '6',
+                text: 'Permit'
+            },
+            {
+                value: '7',
+                text: 'Enforcement'
+            },
+            {
+                value: '8',
+                text: 'Returns'
+            },
+            {
+                value: '9',
+                text: 'Charging'
+            },
+            {
+                value: '10',
+                text: 'General correspondence'
+            }
+        ]
+    }) }}
+
+{% endset  %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+{{ searchFilter({
+    rows: [
+        {
+            title: 'Document Type',
+            body: docTypeOptionsHtml | safe
+        },
+        {
+            title: 'Date',
+            body: dateOptionsHtml | safe
+        }
+    ]
+}) }}
