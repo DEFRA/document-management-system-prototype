@@ -126,7 +126,7 @@ module.exports = function (router) {
         let thePageObject = eprData
         thePageObject.documents = createDataFromJson(permitNumber)
         thePageObject.permitNumber = permitNumber
-        let pageVariant = req.params.variant || 1
+        let pageVariant = req.params.variant || 2
         let searchType = req.query.searchType || 1
         let filterType
         let resultsType
@@ -137,7 +137,8 @@ module.exports = function (router) {
         } else if (pageVariant == 2) {
             filterType = req.query.filterType || 2
             resultsType = req.query.resultsType || 2
-        } else {
+        }
+        else {
             filterType = req.query.filterType || 1
             resultsType = req.query.resultsType || 1
         }
