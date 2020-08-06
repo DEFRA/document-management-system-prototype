@@ -198,6 +198,23 @@ module.exports = function (router) {
         thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
         thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
         thePageObject.permitNumber = permitNumber
+        console.log(thePageObject.permitTypeItems)
+        res.render(versionDirectory + '/all-in-one/documentTree.html',
+            {
+                pageObject: thePageObject
+            }
+        )
+    })
+
+    // @todo - put the documents into an iframe or similar
+    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber/:docId', '/' + versionDirectory + '/all-in-one-doc-tree//:permitNumber/:docId/'], function (req, res) {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        let thePageObject = {}
+        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        thePageObject.permitNumber = permitNumber
         // console.log(thePageObject)
         res.render(versionDirectory + '/all-in-one/documentTree.html',
             {

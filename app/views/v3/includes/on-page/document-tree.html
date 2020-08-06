@@ -1,18 +1,76 @@
-<div class="jui-casefile govuk-!-margin-bottom-6">
+<div class="jui-cf__window">
 
-    <div class="jui-casefile-files">
-        <ul class="jui-casefile-list">
-            {% for document in pageObject.documents %}
-                <li class="jui-casefile-list__item">
-                    <a class="jui-casefile-list__link" href="#">{{document.name}}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="jui-casefile-document-wrapper">
-        {% block file_actions %}{% endblock %}
-        <div class="jui-casefile-page editable">
-            {% block file_content %}{% endblock %}
+    <div class="jui-cf__window-container">
+
+        <div class="jui-cf__files" id="files">
+
+            <h2 class="govuk-visually-hidden" id="all-items">All items</h2>
+
+            <ul class="jui-tree" aria-labelledby="all-items">
+                {% for subFolder in pageObject.permitTypeItems %}
+
+
+                    <li class="jui-tree__item {% if loop.index === 1 %}jui-tree__item--open{% endif %}">
+
+                        <span class="jui-tree__folder">{{ subFolder.text }}</span>
+
+                        <ul class="jui-tree__folder-group">
+                            {% for document in pageObject.documents %}
+
+                                {% if document.permitType === subFolder.value %}
+                                    <li class="jui-tree__doc">
+                                        <a class="jui-tree__doc-link" href="#" aria-current="true">
+                                            <span class="jui-tree__doc-name">{{ document.docTitle }}</span>
+                                            <span class="jui-tree__doc-meta">Last edited on {{ document.uploadedOn }}</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+
+        <div class="jui-cf__document">
+
+            <div class="jui-cf__document-pages">
+
+                <div class="" style="text-align: right;">
+
+                    <a href="#" class="govuk-button govuk-!-margin-right-2" style="">Download document</a>
+
+                </div>
+
+                <div class="jui-cf__document-page">
+                    <button class="jui-cf__rotate-button">Rotate</button>
+                    <div class="jui-cf__document-page-scroll">
+                        <div class="jui-cf__document-page-inner">
+                            <img src="/public/img/jui/draft-document-1.png" alt="Example doc page 1">
+                        </div>
+                    </div>
+                </div>
+                <div class="jui-cf__document-page">
+                    <button class="jui-cf__rotate-button">Rotate</button>
+                    <div class="jui-cf__document-page-scroll">
+                        <div class="jui-cf__document-page-inner">
+                            <img src="/public/img/jui/draft-document-2.png" alt="Example doc page 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="jui-cf__document-page">
+                    <button class="jui-cf__rotate-button">Rotate</button>
+                    <div class="jui-cf__document-page-scroll">
+                        <div class="jui-cf__document-page-inner">
+                            <img src="/public/img/jui/draft-document-3.png" alt="Example doc page 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </div>
