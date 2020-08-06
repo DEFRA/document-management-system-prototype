@@ -105,6 +105,14 @@
                 </div>
             {% endset %}
 
+            {% set timelineHtml %}
+                <div class="govuk-grid-row">
+
+                    {% include '../includes/on-page/timeline.html' %}
+
+                </div>
+            {% endset %}
+
             {{ govukTabs({
                 items: [
                     {
@@ -119,6 +127,13 @@
                         id: "documents",
                         panel: {
                         html: documentsHtml
+                    }
+                    },
+                    {
+                        label: "Timeline",
+                        id: "timeline",
+                        panel: {
+                        html: timelineHtml
                     }
                     }
                 ]
