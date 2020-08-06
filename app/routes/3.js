@@ -24,10 +24,10 @@ function getDocTypeItems(documents) {
     let docTypeItems = []
     const map = new Map();
     for (const item of documents) {
-        if(!map.has(item.documentType)){
+        if (!map.has(item.documentType)) {
             map.set(item.documentType, true);    // set any value to Map
             docTypeItems.push({
-                text: item.documentType + ' (99)',
+                text: item.documentType + ' (' + getDocCountByType(documents, item.documentType) + ')',
                 value: item.documentType
             });
         }
@@ -35,21 +35,45 @@ function getDocTypeItems(documents) {
 
     return docTypeItems
 }
+
+
 function getPermitTypeItems(documents) {
 
     let permitTypeItems = []
     const map = new Map();
     for (const item of documents) {
-        if(!map.has(item['permitType'])){
+        if (!map.has(item['permitType'])) {
             map.set(item['permitType'], true);    // set any value to Map
             permitTypeItems.push({
-                text: item['permitType'] + ' (99)',
+                text: item['permitType'] + ' (' + getPermitCountByType(documents, item['permitType'])+ ')',
                 value: item['permitType']
             });
         }
     }
 
+    permitTypeItems = permitTypeItems.sort(function (a, b) {
+        let nameA = a.text.toUpperCase(); // ignore upper and lowercase
+        let nameB = b.text.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    })
+
     return permitTypeItems
+}
+
+function getPermitCountByType(documents, docType) {
+    let count = documents.filter(item => item.permitType === docType)
+    return count.length.toString()
+}
+
+function getDocCountByType(documents, docType) {
+    let count = documents.filter(item => item.documentType === docType)
+    return count.length.toString()
 }
 
 function createDataFromJson(permitId) {
@@ -184,6 +208,39 @@ module.exports = function (router) {
         thePageObject.permitNumber = permitNumber
         // console.log(thePageObject)
         res.render(versionDirectory + '/all-in-one/index.html',
+            {
+                pageObject: thePageObject
+            }
+        )
+    })
+
+    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber', '/' + versionDirectory + '/all-in-one-doc-tree//:permitNumber/'], function (req, res) {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        let thePageObject = {}
+        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        thePageObject.permitNumber = permitNumber
+        // console.log(thePageObject.permitTypeItems)
+        res.render(versionDirectory + '/all-in-one/documentTree.html',
+            {
+                pageObject: thePageObject
+            }
+        )
+    })
+
+    // @todo - put the documents into an iframe or similar
+    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber/:docId', '/' + versionDirectory + '/all-in-one-doc-tree//:permitNumber/:docId/'], function (req, res) {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        let thePageObject = {}
+        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        thePageObject.permitNumber = permitNumber
+        // console.log(thePageObject)
+        res.render(versionDirectory + '/all-in-one/documentTree.html',
             {
                 pageObject: thePageObject
             }

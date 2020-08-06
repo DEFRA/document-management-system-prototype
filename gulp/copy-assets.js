@@ -14,6 +14,12 @@ gulp.task('copy-assets', function () {
     .pipe(gulp.dest(config.paths.public))
 })
 
+gulp.task('copy-jui-components-assets', function () {
+  return gulp.src([
+      'app/assets/jui/**/*.js'
+  ]).pipe(gulp.dest(config.paths.public + 'javascripts/'))
+})
+
 gulp.task('copy-assets-documentation', function () {
   return gulp.src(['!' + config.paths.docsAssets + 'sass{,/**/*}',
     config.paths.docsAssets + '/**'])
