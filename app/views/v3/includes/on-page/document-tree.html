@@ -7,6 +7,8 @@
             <h2 class="govuk-visually-hidden" id="all-items">All items</h2>
 
             <ul class="jui-tree" aria-labelledby="all-items">
+                {% set theFolderIndex = 0 %}
+
                 {% for subFolder in pageObject.permitTypeItems %}
 
 
@@ -15,20 +17,24 @@
                         <span class="jui-tree__folder">{{ subFolder.text }}</span>
 
                         <ul class="jui-tree__folder-group">
+                            {% set theFileIndex = 0 %}
                             {% for document in pageObject.documents %}
-
                                 {% if document.permitType === subFolder.value %}
                                     <li class="jui-tree__doc">
-                                        <a class="jui-tree__doc-link" href="#" aria-current="true">
+                                        <a class="jui-tree__doc-link" href="#"
+                                           {% if theFolderIndex === 0 and theFileIndex === 0 %}aria-current="true"{% endif %}>
                                             <span class="jui-tree__doc-name">{{ document.docTitle }}</span>
                                             <span class="jui-tree__doc-meta">Last edited on {{ document.uploadedOn }}</span>
                                         </a>
                                     </li>
+                                    {% set theFileIndex = theFileIndex + 1 %}
                                 {% endif %}
                             {% endfor %}
                         </ul>
 
                     </li>
+                    {% set theFolderIndex = theFolderIndex + 1 %}
+
                 {% endfor %}
             </ul>
         </div>
@@ -39,7 +45,7 @@
 
                 <div class="" style="text-align: right;">
 
-                    <a href="#" class="govuk-button govuk-!-margin-right-2" style="">Download document</a>
+                    <a href="/public/EDRM/EAWML403958/00000004.pdf" class="govuk-button govuk-!-margin-right-2" target="_blank" style="">Download document</a>
 
                 </div>
 
