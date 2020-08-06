@@ -45,7 +45,7 @@ function getPermitTypeItems(documents) {
         if (!map.has(item['permitType'])) {
             map.set(item['permitType'], true);    // set any value to Map
             permitTypeItems.push({
-                text: item['permitType'] + ' (' + getDocCountByType(documents, item['permitType'])+ ')',
+                text: item['permitType'] + ' (' + getPermitCountByType(documents, item['permitType'])+ ')',
                 value: item['permitType']
             });
         }
@@ -66,8 +66,13 @@ function getPermitTypeItems(documents) {
     return permitTypeItems
 }
 
-function getDocCountByType(documents, docType) {
+function getPermitCountByType(documents, docType) {
     let count = documents.filter(item => item.permitType === docType)
+    return count.length.toString()
+}
+
+function getDocCountByType(documents, docType) {
+    let count = documents.filter(item => item.documentType === docType)
     return count.length.toString()
 }
 
