@@ -129,3 +129,30 @@
     </div>
 
 {% endblock %}
+
+{% block pageScripts %}
+    <script>
+        console.log('Hello')
+        new Casefile($('.jui-cf'));
+        new Tree($('.jui-tree'));
+        new Toolbar();
+
+
+        $('.jui-cf__rotate-button').on('click', function(e) {
+            var page = $(e.target).parents('.jui-cf__document-page');
+
+            if(page.hasClass('jui-cf__document-page--rotate-90')) {
+                page.removeClass('jui-cf__document-page--rotate-90');
+                page.addClass('jui-cf__document-page--rotate-180');
+            } else if(page.hasClass('jui-cf__document-page--rotate-180')) {
+                page.removeClass('jui-cf__document-page--rotate-180');
+                page.addClass('jui-cf__document-page--rotate-270');
+            } else if(page.hasClass('jui-cf__document-page--rotate-270')) {
+                page.removeClass('jui-cf__document-page--rotate-270');
+            } else {
+                page.addClass('jui-cf__document-page--rotate-90');
+            }
+
+        });
+    </script>
+{% endblock %}

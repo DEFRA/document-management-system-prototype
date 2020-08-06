@@ -1,6 +1,12 @@
 <!-- Javascript -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 
+<!-- Custom JUI Behaviour -->
+<script src="/public/javascripts/casefile/casefile.js"></script>
+<script src="/public/javascripts/tree/tree.js"></script>
+
+
+
 {% for scriptUrl in extensionConfig.scripts %}
   <script src="{{scriptUrl}}"></script>
 {% endfor %}

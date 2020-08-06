@@ -23,6 +23,7 @@ gulp.task('generate-assets', gulp.series(
     'sass',
     'copy-assets',
     'sass-documentation',
+    'copy-jui-components-assets',
     'copy-assets-documentation',
     'sass-v6',
     'copy-assets-v6'
