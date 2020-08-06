@@ -190,6 +190,22 @@ module.exports = function (router) {
         )
     })
 
+    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber', '/' + versionDirectory + '/all-in-one-doc-tree//:permitNumber/'], function (req, res) {
+        const permitNumber = req.params.permitNumber || defaultPermitId
+        let thePageObject = {}
+        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        thePageObject.permitNumber = permitNumber
+        // console.log(thePageObject)
+        res.render(versionDirectory + '/all-in-one/documentTree.html',
+            {
+                pageObject: thePageObject
+            }
+        )
+    })
+
     //
     // router.get(['/' + versionDirectory + '/search-results/:variant'], function (req, res) {
     //     let thePageObject = documentData

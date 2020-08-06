@@ -1,0 +1,18 @@
+<div class="jui-casefile govuk-!-margin-bottom-6">
+
+    <div class="jui-casefile-files">
+        <ul class="jui-casefile-list">
+            {% for document in pageObject.documents %}
+                <li class="jui-casefile-list__item">
+                    <a class="jui-casefile-list__link" href="#">{{document.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="jui-casefile-document-wrapper">
+        {% block file_actions %}{% endblock %}
+        <div class="jui-casefile-page editable">
+            {% block file_content %}{% endblock %}
+        </div>
+    </div>
+</div>
