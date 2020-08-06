@@ -1,80 +1,70 @@
 <div class="hmcts-timeline">
 
-    <div class="hmcts-timeline__item">
 
-        <div class="hmcts-timeline__header">
-            <h2 class="hmcts-timeline__title">
-                Response submitted
-            </h2>
+{#    <div class="hmcts-timeline__item">#}
 
-            <p class="hmcts-timeline__by">by DWP Appeals Officer</p>
+{#        <div class="hmcts-timeline__header">#}
+{#            <h2 class="hmcts-timeline__title">#}
+{#                Appeal marked as compliant#}
+{#            </h2>#}
 
-        </div>
+{#            <p class="hmcts-timeline__by">by DJ DeVere</p>#}
 
-        <p class="hmcts-timeline__date"><time datetime="2018-01-25T14:04">25 Jan 2018 at 14:04pm</time></p>
+{#        </div>#}
 
-        <p class="hmcts-timeline__description">This is a description of the event. And this is what happens when it is long.</p>
+{#        <p class="hmcts-timeline__date"><time datetime="2017-12-05T09:10">5 Dec 2017 at 9:10am</time></p>#}
 
-        <ul class="hmcts-timeline__documents">
+{#        <p class="hmcts-timeline__description">This is a description of the event. And this is what happens when it is long.</p>#}
 
-            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#1">Statement of information</a></li>
+{#        <ul class="hmcts-timeline__documents">#}
 
-            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#2">Another document</a></li>
+{#            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#3">Statement of information</a></li>#}
 
-        </ul>
+{#        </ul>#}
 
-    </div>
+{#    </div>#}
 
-    <div class="hmcts-timeline__item">
 
-        <div class="hmcts-timeline__header">
-            <h2 class="hmcts-timeline__title">
-                Appeal marked as compliant
-            </h2>
 
-            <p class="hmcts-timeline__by">by DJ DeVere</p>
-
-        </div>
-
-        <p class="hmcts-timeline__date"><time datetime="2017-12-05T09:10">5 Dec 2017 at 9:10am</time></p>
-
-        <p class="hmcts-timeline__description">This is a description of the event. And this is what happens when it is long.</p>
-
-        <ul class="hmcts-timeline__documents">
-
-            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#3">Statement of information</a></li>
-
-        </ul>
-
-    </div>
-
-    <div class="hmcts-timeline__item">
-
-        <div class="hmcts-timeline__header">
-            <h2 class="hmcts-timeline__title">
-                Interlocutory referral to DJ DeVere
-            </h2>
-
-            <p class="hmcts-timeline__by">by DLC Admin</p>
-
-        </div>
-
-        <p class="hmcts-timeline__date"><time datetime="2017-11-20T14:27">20 Nov 2017 at 14:27pm</time></p>
-
-        <p class="hmcts-timeline__description">This is a description of the event. And this is what happens when it is long.</p>
-
-    </div>
-
-</div>
 
 {#<ul>#}
-{#{% for document in pageObject.documents %}#}
+{% for document in pageObject.documents %}
+
+    <div class="hmcts-timeline__item">
+
+        <div class="hmcts-timeline__header">
+            <h2 class="hmcts-timeline__title">
+                {{ document.docTitle }}
+            </h2>
+
+{#            <p class="hmcts-timeline__by">by DWP Appeals Officer</p>#}
+
+
+{#        <p class="hmcts-timeline__date"><time datetime="2018-01-25T14:04">{{ document.uploadedOn }}</time></p>#}
+
+{#        <p class="hmcts-timeline__description">This is a description of the event. And this is what happens when it is long.</p>#}
+
+{#        <ul class="hmcts-timeline__documents">#}
+
+{#            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#1">Statement of information</a></li>#}
+
+{#            <li class="hmcts-timeline__document-item"><a class="hmcts-timeline__document-link" href="#2">Another document</a></li>#}
+
+{#        </ul>#}
+
+    </div>
+
+
 {#    <li class="jui-tree__doc">#}
-{#        <a class="jui-tree__doc-link" href="#"#}
-{#           {% if theFolderIndex === 0 and theFileIndex === 0 %}aria-current="true"{% endif %}>#}
-{#            <span class="jui-tree__doc-name">{{ document.docTitle }}</span>#}
-{#            <span class="jui-tree__doc-meta">Last edited on {{ document.uploadedOn }}</span>#}
-{#        </a>#}
-{#    </li>#}
-{#{% endfor %}#}
+        <a class="jui-tree__doc-link" href="#"
+           {% if theFolderIndex === 0 and theFileIndex === 0 %}aria-current="true"{% endif %}>
+            <span class="jui-tree__doc-name">{{ document.docTitle }}</span>
+            <span class="jui-tree__doc-meta">Last edited on {{ document.uploadedOn }}</span>
+        </a>
+    </div>
+
+    {#    </li>#}
+{% endfor %}
 {#</ul>#}
+
+</div>
