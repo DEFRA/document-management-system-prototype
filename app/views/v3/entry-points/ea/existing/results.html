@@ -86,7 +86,13 @@
                     <td class="sorting_1"><a href="#">{{ item.register }}</a></td>
                     <td> {{ item.name }}
                     </td>
-                    <td><a href="./results-details?permitNumber={{ item.caseReference }}">{{ item.permitId }}</a></td>
+                    {% if streamlinedEpr !== false %}
+                        <td><a href="../../all-in-one/{{ item.caseReference }}">{{ item.permitId }}</a>
+                        </td>
+                    {% else %}
+                        <td><a href="./results-details?permitNumber={{ item.caseReference }}">{{ item.permitId }}</a>
+                        </td>
+                    {% endif %}
                     <td>
 
                     </td>

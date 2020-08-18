@@ -45,7 +45,7 @@ function getPermitTypeItems(documents) {
         if (!map.has(item['permitType'])) {
             map.set(item['permitType'], true);    // set any value to Map
             permitTypeItems.push({
-                text: item['permitType'] + ' (' + getPermitCountByType(documents, item['permitType'])+ ')',
+                text: item['permitType'] + ' (' + getPermitCountByType(documents, item['permitType']) + ')',
                 value: item['permitType']
             });
         }
@@ -135,6 +135,16 @@ module.exports = function (router) {
                 userFlow: pf.renderUserFlowPage(pageFlow, userFlow, req.params.page, req.params.theJourneyDirectory, versionDirectory, req.params.journeyId, req.params.stage)
             }
         )
+    })
+
+    // Set session for variants in EPR journey
+    router.get(['/' + versionDirectory + '/entry-points/ea', '/' + versionDirectory + '/entry-points/ea/'], (req, res) => {
+        let thePageObject = {}
+        let sess = req.session
+        sess.streamlinedEpr = req.query.onerecord || false
+        res.render(versionDirectory + '/entry-points/ea/index.html', {
+            pageObject: thePageObject
+        })
     })
 
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
