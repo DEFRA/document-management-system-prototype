@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "/"
+            }) }}
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">(19/8/20 - 1/9/20)</span>
+                Sprint 4
+            </h1>
+            <h3 class="govuk-heading-m">Design objectives</h3>
+            <p>Address main outputs from our first round of research: </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Group documents in a view that is connected to the entity to which it relates</li>
+                <li>Allow users to view a document before downloading</li>
+            </ul>
+
+            {{ govukDetails({
+                summaryText: "Example permit numbers",
+                html: "<ul>
+        <li><a href='./all-in-one?permitNumber=EAWML403958'>EAWML403958</a></li>
+        <li><a href='./all-in-one?permitNumber=EAWML65519'>EAWML65519</a></li>
+        <li><a href='./all-in-one?permitNumber=EPRZP3821GK'>EPRZP3821GK</a></li>
+        <li><a href='./all-in-one?permitNumber=T3945884O'>T3945884O</a></li>
+        </ul>"
+            }) }}
+
+            {{ govukAccordion({
+                id: "accordion-default",
+                items: [
+                    {
+                        expanded: true,
+                        heading: {
+                        text: "Scenarios"
+                    },
+                        content: {
+                        html: "<ol class='govuk-list--number govuk-list'>
+                            <li><a href='./search/search-all'>View stand alone service</a></li>
+                            <li><a href='./entry-points/ea/'>Start from ePR (Electronic Public Register) - go to documents section if requested</a></li>
+                            <li><a href='./entry-points/ea/?onerecord=true'>Start from ePR (Electronic Public Register) - go direct to a consolidated record page</a></li>
+                        </ol>"
+                    }
+                    },
+                    {
+                        heading: {
+                        text: "Design Variants"
+                    },
+                        content: {
+                        html: '
+<ol class="govuk-list--number govuk-list">
+        <li><a href="./search/search-results-grouped/1/">Results variant (grouped)</a> - Document results grouped by organisation or site (<a href="http://gov.uk/search/all" target="_blank">see example</a>)</li>
+        <li><a href="./all-in-one/EAWML403958#documents">Documents in tab with filter</a> - Associated documents shown in a tab</li>
+        <li><a href="./all-in-one-doc-tree/EAWML403958#documents">Document Tree and preview</a> - Associated documents shown in a tree as per use in HMCTS\' expert UI</li>
+      </ol>
+'
+                    }
+                    }
+
+                ]
+            }) }}
+
+            {{ govukButton({
+                text: "View linear journey",
+                href: "./search/search-all.html"
+            }) }}
+
+            <p><a href="./user-flow/">View user flows</a></p>
+            <p><a href="./page-flow/">View all pages</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}

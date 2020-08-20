@@ -1,0 +1,96 @@
+{% from '../../macros/searchFilter.njk' import searchFilter %}
+
+{% set permitTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.permitTypeItems
+    }) }}
+
+{% endset  %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docTypeItems
+    }) }}
+
+{% endset  %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+{{ searchFilter({
+    rows: [
+        {
+            title: 'Permit Type',
+            body: permitTypeOptionsHtml | safe,
+            expanded: 'true'
+        },
+        {
+            title: 'Document Type',
+            body: docTypeOptionsHtml | safe,
+            expanded: 'true'
+        },
+        {
+            title: 'Date',
+            body: dateOptionsHtml | safe
+        }
+    ]
+}) }}
+
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        function showHideResults(data) {
+            if(data.length) {
+
+            } else {
+
+            }
+        }
+        $('#facet-wrapper input').on('click', (e) => {
+            let searchArray = []
+            //
+            console.log(e.target.checked)
+            let checked = e.target.value
+            if (e.target.checked) {
+                searchArray.push(e.target.value)
+            } else {
+                searchArray.splice($.inArray(checked, searchArray),1)
+            }
+
+
+
+            console.log(searchArray)
+            showHideResults(searchArray)
+        })
+    })
+</script>
