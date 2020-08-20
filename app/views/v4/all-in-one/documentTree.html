@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-full">
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "/v3/search/search-results-grouped/"
+            }) }}
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">Permit {{ pageObject.details.permitId }}</span>
+                {{ pageObject.details.name }}
+            </h1>
+
+            {% set permitHTML %}
+                <h2 class="govuk-heading-m">Summary</h2>
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Start Date"
+                        },
+                            value: {
+                            text: pageObject.details.startDate
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Register"
+                        },
+                            value: {
+                            text: pageObject.details.register
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Registration"
+                        },
+                            value: {
+                            text: pageObject.details.registration
+                        }
+                        }
+                    ]
+                }) }}
+                <h2 class="govuk-heading-m">Site details</h2>
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Type"
+                        },
+                            value: {
+                            text: pageObject.details.site.type
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Address"
+                        },
+                            value: {
+                            text: pageObject.details.site.address
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Postcode"
+                        },
+                            value: {
+                            text: pageObject.details.site.postcode
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Local authority"
+                        },
+                            value: {
+                            text: pageObject.details.site.LA
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Grid reference"
+                        },
+                            value: {
+                            text: pageObject.details.site['grid-reference']
+                        }
+                        }
+                    ]
+                }) }}
+            {% endset %}
+
+            {% set documentsHtml %}
+                <div class="govuk-grid-row">
+
+                    {% include '../includes/on-page/document-tree.html' %}
+
+                </div>
+            {% endset %}
+
+            {{ govukTabs({
+                items: [
+                    {
+                        label: "Permit",
+                        id: "permit",
+                        panel: {
+                        html: permitHTML
+                    }
+                    },
+                    {
+                        label: "Documents",
+                        id: "documents",
+                        panel: {
+                        html: documentsHtml
+                    }
+                    }
+                ]
+            }) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script>
+        console.log('Hello')
+        new Casefile($('.jui-cf'));
+        new Tree($('.jui-tree'));
+        new Toolbar();
+
+
+        $('.jui-cf__rotate-button').on('click', function(e) {
+            var page = $(e.target).parents('.jui-cf__document-page');
+
+            if(page.hasClass('jui-cf__document-page--rotate-90')) {
+                page.removeClass('jui-cf__document-page--rotate-90');
+                page.addClass('jui-cf__document-page--rotate-180');
+            } else if(page.hasClass('jui-cf__document-page--rotate-180')) {
+                page.removeClass('jui-cf__document-page--rotate-180');
+                page.addClass('jui-cf__document-page--rotate-270');
+            } else if(page.hasClass('jui-cf__document-page--rotate-270')) {
+                page.removeClass('jui-cf__document-page--rotate-270');
+            } else {
+                page.addClass('jui-cf__document-page--rotate-90');
+            }
+
+        });
+    </script>
+{% endblock %}
