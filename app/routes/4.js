@@ -1,6 +1,7 @@
 const version = '4'
 const versionDirectory = 'v' + version
 const previousVersionDirectory = 'v3'
+const axios = require('axios');
 const pf = require('@benwatsonuk/page-flow')
 let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
@@ -107,13 +108,38 @@ function createDataFromJson(permitId) {
     return dataObject
 }
 
-function getEPRData (permitNumber) {
-    let data = {}
-    return data
+async function getEPRData(permitNumber, registerName) {
+    const url = "https://environment.data.gov.uk/public-register/" + registerName + "/registration/" + permitNumber + ".json"
+    try {
+        return await axios.get(url)
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-function mapEPRData (data) {
-    let organisedData = {}
+function mapEPRData(data) {
+    console.log(data)
+    let organisedData = {
+        "permitId": data.registrationNumber,
+        "name": data.site.siteOf.name,
+        "permit-holder": data.holder.name,
+        // "registration": "403958",
+        "Addressee": "Andrew Orr",
+        "register": data.register.label,
+        "startDate": data.effectiveDate,
+        "caseReference": "EAWML403958",
+        "site": {
+            "name": data.site.label,
+            "type": data.site.siteType.comment,
+            "address": data.site.siteAddress.address,
+            "postcode": data.site.siteAddress.postcode,
+            "region": data.site.siteAddress.region,
+            "grid-reference": data.site.siteAddress.location.gridReference,
+            "easting": data.site.siteAddress.location.easting,
+            "northing": data.site.siteAddress.location.northing,
+            "LA": data.localAuthority.altLabel
+        }
+    }
     return organisedData
 }
 
@@ -218,23 +244,43 @@ module.exports = function (router) {
 
     /* The 'All in One' page - similar to https://trademarks.ipo.gov.uk/ipo-tmcase/page/Results/4/EU002925709 or https://beta.companieshouse.gov.uk/company/11868746 */
 
-    router.get(['/' + versionDirectory + '/all-in-one/:permitNumber', '/' + versionDirectory + '/all-in-one/:permitNumber/'], function (req, res) {
+    router.get(['/' + versionDirectory + '/all-in-one/:permitNumber',
+        '/' + versionDirectory + '/all-in-one/:permitNumber/',
+        '/' + versionDirectory + '/all-in-one/:registerName/:permitNumber',
+        '/' + versionDirectory + '/all-in-one/:registerName/:permitNumber/'
+    ], function (req, res) {
         const permitNumber = req.params.permitNumber || defaultPermitId
         let thePageObject = {}
-        thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
         thePageObject.documents = createDataFromJson(permitNumber)
         thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
         thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
         thePageObject.permitNumber = permitNumber
+        if (req.params.registerName) {
+            // const eprApiData = getEPRData(permitNumber, req.params.registerName)
+            // axios.get("").then(
+            getEPRData(permitNumber, req.params.registerName).then(
+                data => {
+                    console.log(data.data.items)
+                    thePageObject.details = mapEPRData(data.data.items[0])
+                    res.render(versionDirectory + '/all-in-one/index.html',
+                        {
+                            pageObject: thePageObject
+                        }
+                    )
+                }
+            )
+            // console.log(eprData)
+        } else {
+            thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+        }
+
         // console.log(thePageObject)
-        res.render(versionDirectory + '/all-in-one/index.html',
-            {
-                pageObject: thePageObject
-            }
-        )
+
     })
 
-    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber', '/' + versionDirectory + '/all-in-one-doc-tree//:permitNumber/'], function (req, res) {
+    router.get(['/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber',
+        '/' + versionDirectory + '/all-in-one-doc-tree/:permitNumber/'
+    ], function (req, res) {
         const permitNumber = req.params.permitNumber || defaultPermitId
         let thePageObject = {}
         thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]

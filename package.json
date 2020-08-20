@@ -16,6 +16,7 @@
     "@hmcts/frontend": "0.0.41-alpha",
     "acorn": "^7.1.1",
     "ansi-colors": "^4.1.1",
+    "axios": "^0.19.2",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.14.1",
