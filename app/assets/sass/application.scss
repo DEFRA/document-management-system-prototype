@@ -31,3 +31,17 @@ $jui-assets-path: '/public/img/jui/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 @import "node_modules/@benwatsonuk/page-flow/assets/scss/page-flow";
+
+// Page Flow
+.page-flow-item--page--changed {
+  &:after {
+    content: "";
+    position: absolute;
+    top: -0.25em;
+    left: -0.25em;
+    display: block;
+    background: red;
+    height: 1em;
+    width: 1em;
+  }
+}
