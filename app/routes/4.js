@@ -183,6 +183,15 @@ module.exports = function (router) {
         })
     })
 
+    router.post(['/' + versionDirectory + '/search/search-all'], (req, res) => {
+        if (req.body['do-you-know-permit-number'] === 'yes') {
+            let permitNumber = req.body['permitNumber'] || defaultPermitId
+            res.redirect('/' + versionDirectory + '/all-in-one/' + permitNumber )
+        } else {
+            res.redirect('/' + versionDirectory + '/entry-points/ea/index?onerecord=true')
+        }
+    })
+
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
         const permitNumber = req.query.permitNumber || defaultPermitId
         let thePageObject = {}
