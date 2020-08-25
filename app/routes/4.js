@@ -8,6 +8,7 @@ let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
 let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
 let eprData = require('../views/' + versionDirectory + '/data/ePR/results.json')
 const defaultPermitId = 'EAWML403958'
+const livePermitId = 'SO-P12930-001'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
 
@@ -185,8 +186,12 @@ module.exports = function (router) {
 
     router.post(['/' + versionDirectory + '/search/search-all'], (req, res) => {
         if (req.body['do-you-know-permit-number'] === 'yes') {
-            let permitNumber = req.body['permitNumber'] || defaultPermitId
-            res.redirect('/' + versionDirectory + '/all-in-one/' + permitNumber )
+            let permitNumber = defaultPermitId
+            if (req.body['permitNumber'] === livePermitId) {
+                res.redirect('/' + versionDirectory + '/all-in-one/water-discharges/' + livePermitId)
+            } else {
+                res.redirect('/' + versionDirectory + '/all-in-one/' + permitNumber)
+            }
         } else {
             res.redirect('/' + versionDirectory + '/entry-points/ea/index?onerecord=true')
         }
@@ -281,6 +286,11 @@ module.exports = function (router) {
             // console.log(eprData)
         } else {
             thePageObject.details = eprData.filter((item) => permitNumber === item.caseReference)[0]
+            res.render(versionDirectory + '/all-in-one/index.html',
+                {
+                    pageObject: thePageObject
+                }
+            )
         }
 
         // console.log(thePageObject)
