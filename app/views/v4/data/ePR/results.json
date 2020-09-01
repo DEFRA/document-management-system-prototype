@@ -20,6 +20,21 @@
     }
   },
   {
+    "permitId": "EPR/KB3337RL",
+    "name": "AJ Spares",
+    "permit-holder": "AJ Spares",
+    "registration": "CBDL270083",
+    "Addressee": "Cobb Andrew",
+    "register": "Waste Carriers and Brokers Public Register for England",
+    "startDate":  "10/01/2019",
+    "caseReference": "EAWML104608",
+    "site": {
+      "name": "A J SPARES VEHICLE DISMANTLERS LTD",
+      "address": "WORTLEY ROAD, ROTHERHAM, S61 1LZ",
+      "postcode":"S61 1LZ"
+    }
+  },
+  {
     "permitId": "T-39-45884-O",
     "name": "SEVERN TRENT WATER LIMITED",
     "permit-holder": "SEVERN TRENT WATER LIMITED",
