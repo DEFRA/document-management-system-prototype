@@ -69,7 +69,7 @@
       ]
     },
     {
-      "name": "Public Register of Documents - Search",
+      "name": "Public Register of Documents",
       "location": "search",
       "id": "search",
       "description": "Device to search for and filter on results",
@@ -99,68 +99,8 @@
               "location": "search-results"
             }
           ]
-        },
-        {
-          "version": 1,
-          "versionDirectory": "v3",
-          "location": "search",
-          "design-notes": "",
-          "pages": [
-            {
-              "title": "Search",
-              "id": "1",
-              "userNeeds": [
-              ],
-              "description": "Blank search page (no results) - altered to be prescriptive about what can be entered as search criteria (reference number)",
-              "type": "text-input",
-              "location": "search-all"
-            }
-          ]
-        },
-        {
-          "version": 2,
-          "versionDirectory": "v4",
-          "location": "search",
-          "design-notes": "",
-          "pages": [
-            {
-              "title": "Search",
-              "id": "1",
-              "userNeeds": [
-              ],
-              "description": "Simplified routing of user to relevant entry point based on the information that they have to search with",
-              "type": "text-input",
-              "location": "search-all"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Public Register Individual Record",
-      "location": "all-in-one",
-      "id": "record",
-      "description": "Mechanism to display a single entity's record",
-      "versions": [
-        {
-          "version": 0,
-          "versionDirectory": "v3",
-          "location": "all-in-one",
-          "design-notes": "First pass at keeping all record information in one location",
-          "pages": [
-            {
-              "title": "Record",
-              "id": "1",
-              "userNeeds": [
-              ],
-              "description": "Permit summary and associated documents",
-              "type": "check-answers",
-              "location": "index"
-            }
-          ]
         }
       ]
     }
   ]
 }
-
