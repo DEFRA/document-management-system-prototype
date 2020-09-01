@@ -70,40 +70,96 @@
 <script type="text/javascript">
     window.addEventListener('load', function () {
         let searchArray = []
+        let permitArray = []
+        let documentArray = []
         $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
 
-        function showHideResults(data) {
-            if(data.length) {
-                console.log(data)
-                // $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'green')
+        function showHideResults(permitData, documentData) {
+            if(permitData.length && documentData.length) {
                 $(".finder-results li.gem-c-document-list__item").each(function() {
-                    // console.log($(this).data('permit-type'))
-                    if(data.includes($(this).data('permit-type'))) {
+                    if(permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
-                        // console.log('asd')
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else if(permitData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(permitData.includes($(this).data('permit-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else if(documentData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(documentData.includes($(this).data('document-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
                     }
                 })
                 // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
             } else {
                 $('.finder-results li.gem-c-document-list__item').show()
             }
+
+            // if(permitData.length) {
+            //     $(".finder-results li.gem-c-document-list__item").each(function() {
+            //         if(data.includes($(this).data('permit-type'))) {
+            //             $(this).show()
+            //         } else {
+            //             $(this).hide()
+            //         }
+            //     })
+            //     // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            // } else {
+            //     $('.finder-results li.gem-c-document-list__item').show()
+            // }
+            // if(documentData.length) {
+            //     $(".finder-results li.gem-c-document-list__item").each(function() {
+            //         if(data.includes($(this).data('document-type'))) {
+            //             $(this).show()
+            //         } else {
+            //             $(this).hide()
+            //         }
+            //     })
+            //     // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            // } else {
+            //     $('.finder-results li.gem-c-document-list__item').show()
+            // }
         }
         $('#facet-wrapper input').on('click', (e) => {
             //
             console.log(e.target.checked)
             let checked = e.target.value
             if (e.target.checked) {
+                if(e.target.name === 'permitType') {
+                    permitArray.push(e.target.value)
+                }
+                if(e.target.name === 'docType') {
+                    documentArray.push(e.target.value)
+                }
                 searchArray.push(e.target.value)
             } else {
+                if(e.target.name === 'permitType') {
+                    permitArray.splice($.inArray(checked, permitArray),1)
+                }
+                if(e.target.name === 'docType') {
+                    documentArray.splice($.inArray(checked, documentArray),1)
+                }
                 searchArray.splice($.inArray(checked, searchArray),1)
             }
 
 
 
-            console.log(searchArray)
-            showHideResults(searchArray)
+            console.log('Search: ' + searchArray)
+            console.log('Permit: ' + permitArray)
+            console.log('Doc: ' + documentArray)
+            // showHideResults(searchArray)
+            showHideResults(permitArray, documentArray)
         })
     })
 </script>
