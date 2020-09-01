@@ -7,6 +7,7 @@ let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
 let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
 let eprData = require('../views/' + versionDirectory + '/data/ePR/results.json')
+let folderMap = require('../views/' + versionDirectory + '/data/folder-maps.js')
 const defaultPermitId = 'EAWML104608'
 const livePermitId = 'SO-P12930-001'
 
@@ -51,6 +52,56 @@ function getPermitTypeItems(documents) {
                 value: item['permitType']
             });
         }
+    }
+
+    permitTypeItems = permitTypeItems.sort(function (a, b) {
+        let nameA = a.text.toUpperCase(); // ignore upper and lowercase
+        let nameB = b.text.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    })
+
+    return permitTypeItems
+}
+
+function mapDocuments (documents) {
+    let mappedDocuments = []
+    for (let doc of documents) {
+        mappedDocuments.push({
+            ...doc,
+            'permitType': folderMap(doc['permitType'])
+        })
+    }
+    return mappedDocuments
+}
+
+function getMappedPermitTypes(documents) {
+    let permitTypeItems = []
+    // Run map on the documents
+    const mappedDocuments = mapDocuments(documents)
+    const map = new Map();
+    for (const item of mappedDocuments) {
+        // let mappedTerm = folderMap(item['permitType'])
+        if (!map.has(item['permitType'])) {
+            map.set(item['permitType'], true);    // set any value to Map
+            permitTypeItems.push({
+                text: item['permitType'] + ' (' + getPermitCountByType(mappedDocuments, item['permitType']) + ')',
+                value: item['permitType']
+            });
+        }
+        // let mappedTerm = folderMap(item['permitType'])
+        // if (!map.has(mappedTerm)) {
+        //     map.set(mappedTerm, true);    // set any value to Map
+        //     permitTypeItems.push({
+        //         text: mappedTerm + ' (' + getPermitCountByType(documents, mappedTerm) + ')',
+        //         value: mappedTerm
+        //     });
+        // }
     }
 
     permitTypeItems = permitTypeItems.sort(function (a, b) {
@@ -265,9 +316,11 @@ module.exports = function (router) {
     ], function (req, res) {
         const permitNumber = req.params.permitNumber || defaultPermitId
         let thePageObject = {}
-        thePageObject.documents = createDataFromJson(permitNumber)
+        // thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.documents = mapDocuments(createDataFromJson(permitNumber))
         thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
         thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        // thePageObject.permitTypeItems = getMappedPermitTypes(thePageObject.documents)
         thePageObject.permitNumber = permitNumber
         if (req.params.registerName) {
             // const eprApiData = getEPRData(permitNumber, req.params.registerName)
