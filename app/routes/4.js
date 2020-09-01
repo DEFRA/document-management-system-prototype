@@ -7,7 +7,7 @@ let pageFlow = require('../data/pages')
 let userFlow = require('../views/' + versionDirectory + '/user-flows.json')
 let previousUserFlow = require('../views/' + previousVersionDirectory + '/user-flows.json')
 let eprData = require('../views/' + versionDirectory + '/data/ePR/results.json')
-const defaultPermitId = 'EAWML403958'
+const defaultPermitId = 'EAWML104608'
 const livePermitId = 'SO-P12930-001'
 
 const documentData = require('../views/' + versionDirectory + '/data/documents.json');
