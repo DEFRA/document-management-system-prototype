@@ -43,50 +43,67 @@
                     ]
                 }) }}
                 <h2 class="govuk-heading-m">Site details</h2>
-                {{ govukSummaryList({
-                    rows: [
-                        {
-                            key: {
-                            text: "Type"
-                        },
-                            value: {
-                            text: pageObject.details.site.type
-                        }
-                        },
-                        {
-                            key: {
-                            text: "Address"
-                        },
-                            value: {
-                            text: pageObject.details.site.address
-                        }
-                        },
-                        {
-                            key: {
-                            text: "Postcode"
-                        },
-                            value: {
-                            text: pageObject.details.site.postcode
-                        }
-                        },
-                        {
-                            key: {
-                            text: "Local authority"
-                        },
-                            value: {
-                            text: pageObject.details.site.LA
-                        }
-                        },
-                        {
-                            key: {
-                            text: "Grid reference"
-                        },
-                            value: {
-                            text: pageObject.details.site['grid-reference']
-                        }
-                        }
-                    ]
-                }) }}
+
+                <dl class="govuk-summary-list">
+
+                    {% for key, value in pageObject.details.site %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="text-transform: capitalize">
+                            {{ key }}
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ value }}
+                        </dd>
+
+                    </div>
+                    {% endfor %}
+
+                </dl>
+
+{#                {{ govukSummaryList({#}
+{#                    rows: [#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Type"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.type#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Address"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.address#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Postcode"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.postcode#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Local authority"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.LA#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Grid reference"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site['grid-reference']#}
+{#                        }#}
+{#                        }#}
+{#                    ]#}
+{#                }) }}#}
             {% endset %}
 
             {% set documentsHtml %}
