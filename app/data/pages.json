@@ -99,6 +99,65 @@
               "location": "search-results"
             }
           ]
+        },
+        {
+          "version": 1,
+          "versionDirectory": "v3",
+          "location": "search",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Search",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Search page updated to give advice and direction. Search criteria narrowed to single type to test how users reacted.",
+              "type": "text-input",
+              "location": "search-all"
+            }
+          ]
+        },
+        {
+          "version": 2,
+          "versionDirectory": "v4",
+          "location": "search",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Search",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Binary options added to help direct users to relevant next steps based on insight from previous version",
+              "type": "text-input",
+              "location": "search-all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Record Details",
+      "location": "all-in-one",
+      "id": "record",
+      "description": "Consolidated permit record",
+      "versions": [
+        {
+          "version": 0,
+          "versionDirectory": "v3",
+          "location": "record",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Record Details",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Page to show consolidated permit overview and documents. Data pulled in from existing ePR APIs where necessary.",
+              "type": "text-input",
+              "location": "index"
+            }
+          ]
         }
       ]
     }
