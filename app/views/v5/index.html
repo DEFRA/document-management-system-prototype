@@ -22,8 +22,8 @@
             <h3 class="govuk-heading-m">Design objectives</h3>
             <p>Address main outputs from our first round of research: </p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Group documents in a view that is connected to the entity to which it relates</li>
-                <li>Allow users to view a document before downloading</li>
+                <li>Consider unhappy paths - how do we continue to help users that can't find documents?</li>
+                <li>Attach greater semantic weight to the permit information </li>
             </ul>
 
             {{ govukDetails({
@@ -54,6 +54,7 @@
                         content: {
                         html: "<ol class='govuk-list--number govuk-list'>
                             <li><a href='./search/search-all'>View stand alone service</a></li>
+                            <li><a href='./all-in-one/EAWML12345'>View stand record with no documents (Unhappy path)</a></li>
                             <li><a href='./entry-points/ea/'>Start from ePR (Electronic Public Register) - go to documents section if requested</a></li>
                             <li><a href='./entry-points/ea/?onerecord=true'>Start from ePR (Electronic Public Register) - go direct to a consolidated record page</a></li>
                         </ol>"

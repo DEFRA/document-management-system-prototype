@@ -158,6 +158,23 @@
               "location": "index"
             }
           ]
+        },
+        {
+          "version": 1,
+          "versionDirectory": "v5",
+          "location": "record",
+          "design-notes": "",
+          "pages": [
+            {
+              "title": "Record Details",
+              "id": "1",
+              "userNeeds": [
+              ],
+              "description": "Consolidated page with link to existing document request mechanism i.e. email link to customer support team in order to join up this channel",
+              "type": "text-input",
+              "location": "index"
+            }
+          ]
         }
       ]
     }

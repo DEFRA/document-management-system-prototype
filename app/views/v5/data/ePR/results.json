@@ -35,6 +35,21 @@
     }
   },
   {
+    "permitId": "EPR/12345",
+    "name": "NoDox Limited",
+    "permit-holder": "NoDox Limited",
+    "registration": "CBDL123456",
+    "Addressee": "Jane Doe",
+    "register": "Waste Carriers and Brokers Public Register for England",
+    "startDate":  "10/01/2019",
+    "caseReference": "EAWML12345",
+    "site": {
+      "name": "NoDox LTD",
+      "address": "WORTLEY ROAD, ROTHERHAM, S61 1LZ",
+      "postcode":"S61 1LZ"
+    }
+  },
+  {
     "permitId": "T-39-45884-O",
     "name": "SEVERN TRENT WATER LIMITED",
     "permit-holder": "SEVERN TRENT WATER LIMITED",

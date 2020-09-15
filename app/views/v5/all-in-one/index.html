@@ -109,15 +109,24 @@
             {% set documentsHtml %}
                 {# {% for document in pageObject.documents %} #}
                 <div class="govuk-grid-row">
-
+                    {% if pageObject.documents.length > 0 %}
                     <div class="govuk-grid-column-one-third">
                         {% include '../includes/on-page/search-filter.html' %}
                     </div>
                     <div class="govuk-grid-column-two-thirds">
 
                         {% include '../includes/search-results-on-page.html' %}
-{#                        {% include '../includes/pagination.html' %}#}
+                        {% include '../includes/on-page/unhappy-path.html' %}
+
+                        {#                        {% include '../includes/pagination.html' %}#}
                     </div>
+                    {% else %}
+                    <div class="govuk-grid-column-full">
+
+                    <h2 class="govuk-heading-m">No documents found</h2>
+                        {% include '../includes/on-page/unhappy-path.html' %}
+                    </div>
+                    {% endif %}
                 </div>
             {% endset %}
 
