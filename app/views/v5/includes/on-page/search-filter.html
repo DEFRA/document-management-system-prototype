@@ -72,7 +72,17 @@
         let searchArray = []
         let permitArray = []
         let documentArray = []
-        $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
+        // $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
+
+        function countResults() {
+            let itemsShowing = []
+            $('.finder-results li.gem-c-document-list__item').each(function() {
+                if($(this).is(":visible")) {
+                    itemsShowing.push(this)
+                }
+            })
+            return itemsShowing.length
+        }
 
         function showHideResults(permitData, documentData) {
             if(permitData.length && documentData.length) {
@@ -130,6 +140,8 @@
             // } else {
             //     $('.finder-results li.gem-c-document-list__item').show()
             // }
+            $('#resultCounter').text(countResults())
+
         }
         $('#facet-wrapper input').on('click', (e) => {
             //
@@ -159,6 +171,7 @@
             console.log('Permit: ' + permitArray)
             console.log('Doc: ' + documentArray)
             // showHideResults(searchArray)
+
             showHideResults(permitArray, documentArray)
         })
     })
