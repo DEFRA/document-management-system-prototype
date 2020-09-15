@@ -36,7 +36,7 @@
         },
         {
           "stage": "record",
-          "version": 0,
+          "version": 1,
           "pageId": "1",
           "location": "index"
         }
@@ -72,7 +72,7 @@
         },
         {
           "stage": "record",
-          "version": 0,
+          "version": 1,
           "pageId": "1",
           "location": "index"
         }
@@ -108,7 +108,7 @@
         },
         {
           "stage": "record",
-          "version": 0,
+          "version": 1,
           "pageId": "1",
           "location": "index"
         }
@@ -138,7 +138,7 @@
         },
         {
           "stage": "record",
-          "version": 0,
+          "version": 1,
           "pageId": "1",
           "location": "index"
         }
