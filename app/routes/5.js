@@ -316,10 +316,14 @@ module.exports = function (router) {
     ], function (req, res) {
         const permitNumber = req.params.permitNumber || defaultPermitId
         let thePageObject = {}
-        // thePageObject.documents = createDataFromJson(permitNumber)
-        thePageObject.documents = mapDocuments(createDataFromJson(permitNumber))
-        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
-        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        if(req.params.permitNumber === 'EAWML12345') {
+            thePageObject.documents = []
+        } else {
+            // thePageObject.documents = createDataFromJson(permitNumber)
+            thePageObject.documents = mapDocuments(createDataFromJson(permitNumber))
+            thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+            thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        }
         // thePageObject.permitTypeItems = getMappedPermitTypes(thePageObject.documents)
         thePageObject.permitNumber = permitNumber
         if (req.params.registerName) {
