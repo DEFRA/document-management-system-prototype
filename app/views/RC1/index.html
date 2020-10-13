@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "/"
+            }) }}
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">October 2020</span>
+                Release Candidate 1
+            </h1>
+            <h3 class="govuk-heading-m">Private Beta</h3>
+            <p>The purpose of this version is to articulate what is being produced for 'day 1 private beta'.</p>
+            <p>Other prototypes will continue to iterate and demonstrate what has tested well with users and ideally, 'what good looks like'. This version will focus on the most straight forward path to MVP and is not necessarily the recommended flow for the product.</p>
+            <p><a href="./user-flow/">View user flows</a></p>
+            <p><a href="./page-flow/">View all pages</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}
