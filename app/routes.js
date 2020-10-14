@@ -10,5 +10,6 @@ require('./routes/3.js')(router)
 require('./routes/4.js')(router)
 require('./routes/5.js')(router)
 require('./routes/6.js')(router)
+require('./routes/7.js')(router)
 
 module.exports = router

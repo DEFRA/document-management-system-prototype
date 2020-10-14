@@ -91,11 +91,12 @@
             {% endset %}
 
             {% set documentsHtml %}
-                <h2 class="govuk-heading-l">Documents</h2>
                 {# {% for document in pageObject.documents %} #}
                 <div class="govuk-grid-row">
                     {% if pageObject.documents.length > 0 %}
-                    <div class="govuk-grid-column-one-third">
+                        <h2 class="govuk-heading-l">Documents</h2>
+
+                        <div class="govuk-grid-column-one-third">
                         {% include '../includes/on-page/search-filter.html' %}
                     </div>
                     <div class="govuk-grid-column-two-thirds">
@@ -108,7 +109,7 @@
                     {% else %}
                     <div class="govuk-grid-column-full">
 
-                    <h2 class="govuk-heading-m">No documents found</h2>
+                    <h2 class="govuk-heading-l">No documents found</h2>
                         {% include '../includes/on-page/unhappy-path.html' %}
                     </div>
                     {% endif %}
