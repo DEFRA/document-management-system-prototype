@@ -1,0 +1,173 @@
+{% from '../../macros/searchFilter.njk' import searchFilter %}
+
+{% set permitTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.permitTypeItems
+    }) }}
+
+{% endset  %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docTypeItems
+    }) }}
+
+{% endset  %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+{{ searchFilter({
+    rows: [
+        {
+            title: 'Permit Type',
+            body: permitTypeOptionsHtml | safe,
+            expanded: 'true'
+        },
+        {
+            title: 'Date',
+            body: dateOptionsHtml | safe
+        }
+    ]
+}) }}
+
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        let searchArray = []
+        let permitArray = []
+        let documentArray = []
+        // $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
+
+        function countResults() {
+            let itemsShowing = []
+            $('.finder-results li.gem-c-document-list__item').each(function() {
+                if($(this).is(":visible")) {
+                    itemsShowing.push(this)
+                }
+            })
+            return itemsShowing.length
+        }
+
+        function showHideResults(permitData, documentData) {
+            if(permitData.length && documentData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else if(permitData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(permitData.includes($(this).data('permit-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else if(documentData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(documentData.includes($(this).data('document-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else {
+                $('.finder-results li.gem-c-document-list__item').show()
+            }
+
+            // if(permitData.length) {
+            //     $(".finder-results li.gem-c-document-list__item").each(function() {
+            //         if(data.includes($(this).data('permit-type'))) {
+            //             $(this).show()
+            //         } else {
+            //             $(this).hide()
+            //         }
+            //     })
+            //     // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            // } else {
+            //     $('.finder-results li.gem-c-document-list__item').show()
+            // }
+            // if(documentData.length) {
+            //     $(".finder-results li.gem-c-document-list__item").each(function() {
+            //         if(data.includes($(this).data('document-type'))) {
+            //             $(this).show()
+            //         } else {
+            //             $(this).hide()
+            //         }
+            //     })
+            //     // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            // } else {
+            //     $('.finder-results li.gem-c-document-list__item').show()
+            // }
+            $('#resultCounter').text(countResults())
+
+        }
+        $('#facet-wrapper input').on('click', (e) => {
+            //
+            console.log(e.target.checked)
+            let checked = e.target.value
+            if (e.target.checked) {
+                if(e.target.name === 'permitType') {
+                    permitArray.push(e.target.value)
+                }
+                if(e.target.name === 'docType') {
+                    documentArray.push(e.target.value)
+                }
+                searchArray.push(e.target.value)
+            } else {
+                if(e.target.name === 'permitType') {
+                    permitArray.splice($.inArray(checked, permitArray),1)
+                }
+                if(e.target.name === 'docType') {
+                    documentArray.splice($.inArray(checked, documentArray),1)
+                }
+                searchArray.splice($.inArray(checked, searchArray),1)
+            }
+
+
+
+            console.log('Search: ' + searchArray)
+            console.log('Permit: ' + permitArray)
+            console.log('Doc: ' + documentArray)
+            // showHideResults(searchArray)
+
+            showHideResults(permitArray, documentArray)
+        })
+    })
+</script>
