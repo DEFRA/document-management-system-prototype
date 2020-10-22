@@ -1,18 +1,24 @@
 
     <form action="" method="post">
 
-        {% set yesHtml %}
+        {% set operatorHtml %}
             {{ govukInput({
-                id: "permitNumber",
-                name: "permitNumber",
+                id: "operator",
+                name: "operator",
                 label: {
-                    text: "Permit Number"
+                    text: "Name of operator"
                 }
             }) }}
         {% endset -%}
 
-        {% set noHtml %}
-           <p>You will be redirected to the Electronic Public Register search page to assist you in finding the record you are looking for</p>
+        {% set locationHtml %}
+            {{ govukInput({
+                id: "location",
+                name: "location",
+                label: {
+                    text: "Town or city"
+                }
+            }) }}
         {% endset -%}
 
         {{ govukRadios({
@@ -20,7 +26,7 @@
             name: "do-you-know-permit-number",
             fieldset: {
                 legend: {
-                    text: "Do you know the permit number of the record you are looking for?",
+                    text: "How would you like to search?",
                     isPageHeading: true,
                     classes: "govuk-fieldset__legend--l"
                 }
@@ -30,17 +36,17 @@
             },
             items: [
                 {
-                    value: "yes",
-                    text: "Yes",
+                    value: "operator",
+                    text: "By operator",
                     conditional: {
-                        html: yesHtml
+                        html: operatorHtml
                     }
                 },
                 {
-                    value: "no",
-                    text: "No",
+                    value: "location",
+                    text: "By location",
                     conditional: {
-                     html: noHtml
+                     html: locationHtml
                   }
                 }
             ]
@@ -48,7 +54,8 @@
 
 
         {{ govukButton({
-            text: 'Continue'
+            text: 'Search',
+            href: 'search-results'
         }) }}
     </form>
 

@@ -22,7 +22,7 @@
                 legend: {
                     text: "Are you looking for documents for a single permit record?",
                     isPageHeading: true,
-                    classes: "govuk-fieldset__legend--xl"
+                    classes: "govuk-fieldset__legend--l"
                 }
             },
             hint: {
@@ -32,16 +32,16 @@
                 {
                     value: "single",
                     hint : {
-                        text: "asda asdasdasndds n"
+                        text: 'Search for documents related to a particular permit'
                     },
                     text: "Yes"
                 },
                 {
                     value: "multiple",
                     text: "No",
-                    conditional: {
-                     html: noHtml
-                  }
+                    hint: {
+                        text: 'Search for documents across many permits'
+                    }
                 }
             ]
         }) }}

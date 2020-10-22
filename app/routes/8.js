@@ -239,7 +239,7 @@ module.exports = function (router) {
         if (req.body['single-or-multiple'] === 'single') {
             res.redirect('/' + versionDirectory + '/search/search-all')
         } else {
-            res.redirect('/' + versionDirectory + '/entry-points/ea/index?onerecord=true')
+            res.redirect('/' + versionDirectory + '/search/search-multiple-permits')
         }
     })
 

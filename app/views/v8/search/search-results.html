@@ -15,7 +15,11 @@
 
         <div class="govuk-grid-column-two-thirds">
 
-            {% include '../includes/search.html' %}
+            {{ govukBackLink({
+                href: "javascript: history.back(-1)"
+            }) }}
+
+{#            {% include '../includes/search.html' %}#}
 
         </div>
 
