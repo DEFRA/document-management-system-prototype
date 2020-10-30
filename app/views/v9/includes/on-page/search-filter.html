@@ -48,6 +48,22 @@
     }) }}
 {% endset %}
 
+<div id="keywords" role="search" aria-label="Official documents">
+    {#    <h2 class="govuk-heading-s">Search document title</h2>#}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label" data-module="gem-toggle-input-class-on-focus">
+        <label for="finder-keyword-search" class="gem-c-search__label">
+            Search document title
+        </label>
+        <div class="gem-c-search__item-wrapper">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search" aria-controls="js-search-results-info" class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                <button type="submit" class="gem-c-search__submit">Search</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 {{ searchFilter({
     rows: [
         {

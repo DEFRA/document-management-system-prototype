@@ -88,12 +88,15 @@
     {% if resultsType == 2 %}
 
         {% include '../includes/search-results-2.html' %}
+    {% endif %}
 
-    {% else %}
+    {% if resultsType == 3 %}
 
         {% include '../includes/search-results-docs.html' %}
 
-{#        {% include '../includes/search-results-1.html' %}#}
+    {% else %}
+        
+        {% include '../includes/search-results-1.html' %}
 
     {% endif %}
 

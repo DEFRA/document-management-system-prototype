@@ -3,7 +3,18 @@
         <h2 class="result-region-header__counter"> <span id="resultCounter">{{ pageObject.documents.length}}</span> results</h2>
     </div>
     <div class="sort-options">
+        <div id="js-sort-options">
+            <div class="govuk-form-group sort-options">
+                <label for="order" class="sort-options__label govuk-label">Sort by</label>
+                <select class="js-order-results govuk-select sort-options__select" name="order" id="order" aria-controls="js-search-results-info" data-default-sort-option="updated-newest" data-relevance-sort-option="relevance" data-module="track-select-change">
+                    <option value="most-viewed" disabled="" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Most viewed">Most viewed</option>
+                    <option value="relevance" selected="" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Relevance">Relevance</option>
+                    <option value="updated-newest" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Updated (newest)">Updated (newest)</option>
+                    <option value="updated-oldest" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Updated (oldest)">Updated (oldest)</option>
+                </select>
+            </div>
 
+        </div>
     </div>
     <div class="finder-results">
         <ol class="gem-c-document-list gem-c-document-list--no-underline">
