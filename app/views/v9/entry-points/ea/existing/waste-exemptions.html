@@ -1,0 +1,173 @@
+{% include  '../header.html' %}
+
+<section>
+    <h1>Register of Waste exemptions</h1>
+    <p>A waste exemption is a waste operation that is exempt from needing an environmental permit. Each exemption has specific limits and conditions that the holder must operate within.</p>
+
+    <p>
+        Search for matching registrations by holder name, registration number or location of a registered site.
+    </p>
+
+    <form class="form-horizontal half-width" role="search" method="get" action="/public-register/waste-exemptions/registration">
+        <input id="easting" name="easting" type="hidden">
+        <input id="northing" name="northing" type="hidden">
+
+        <div class="form-group">
+            <label for="name-search" class="control-label col-md-2">
+                Business name
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="name-search" type="search" class="form-control search-box" name="name-search" placeholder="Complete or partial business name, if known">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="number-search" class="control-label col-md-2">
+                Registration number
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="number-search" type="search" class="form-control search-box" name="number-search" placeholder="Registration number, if known">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="location-address" class="control-label col-md-2">
+                Address
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="location-address" type="search" class="form-control search-box" name="address-search" placeholder="Address (optional)">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+                <span class="help-block">Enter a complete address, or partial details such as the name of the town.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location-postcode" class="control-label col-md-2">
+                Postcode
+            </label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="location-postcode" type="search" class="form-control search-box ui-autocomplete-input" name="__postcode" placeholder="Postcode (required if you want to do a distance search)" autocomplete="off">
+                    <span class="input-group-addon search-clear"><i class="fa fa-times"></i></span>
+                </div>
+                <p class="validation-error invalid-postcode-fail hidden text-danger">
+                    <i class="fa fa-warning"></i> Not a valid postcode
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group disabled">
+            <label for="radius" class="control-label col-sm-2">
+                Maximum distance from postcode
+            </label>
+            <div class="col-md-6">
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-1" value="1" checked="">
+                    1km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-3" value="3">
+                    3km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-5" value="5">
+                    5km
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="dist" id="radius-10" value="10">
+                    10km
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exemption-filter" class="col-sm-2 control-label">Filter by exemption (optional)</label>
+            <div class="col-md-6">
+                <div class="btn-group full-width">
+                    <div class="combobox-container"> <input type="hidden" name="exemptionCode" value=""> <div class="input-group"> <input type="text" autocomplete="false" id="exemption-filterundefined" placeholder="" class="combobox form-control"> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret"></span> <span class="glyphicon glyphicon-remove"></span> </span> </div> </div><select class="combobox form-control" id="exemption-filter" data-live-search="true" style="display: none;">
+                    <option></option>
+                    <option value="D1">D1 - Depositing waste from dredging inland waters</option>
+                    <option value="D2">D2 - Depositing waste from a railway sanitary convenience</option>
+                    <option value="D3">D3 - Depositing waste from a portable sanitary convenience</option>
+                    <option value="D4">D4 - Depositing agricultural waste consisting of plant tissue under a Plant Health Notice</option>
+                    <option value="D5">D5 - Depositing waste samples for testing or analysis</option>
+                    <option value="D6">D6 - Disposal by incineration</option>
+                    <option value="D7">D7 - Burning waste in the open</option>
+                    <option value="D8">D8 - Burning waste at a port under a Plant Health Notice</option>
+                    <option value="S1">S1 - Storing waste in secure containers</option>
+                    <option value="S2">S2 - Storing waste in a secure place</option>
+                    <option value="S3">S3 - Storing sludge</option>
+                    <option value="T1">T1 - Cleaning, washing, spraying or coating relevant waste</option>
+                    <option value="T10">T10 - Sorting mixed waste</option>
+                    <option value="T11">T11 - Repairing or refurbishing waste electrical and electronic equipment (WEEE)</option>
+                    <option value="T12">T12 - Manually treating waste</option>
+                    <option value="T13">T13 - Treating waste food</option>
+                    <option value="T14">T14 - Crushing and emptying vehicle waste oil filters</option>
+                    <option value="T15">T15 - Treating waste aerosol cans</option>
+                    <option value="T16">T16 - Treating waste toner and ink cartridges</option>
+                    <option value="T17">T17 - Crushing waste fluorescent tubes</option>
+                    <option value="T18">T18 - Using flocculants to remove water from waste</option>
+                    <option value="T19">T19 - Physical and chemical treatment of waste edible oil and fat to produce biodiesel</option>
+                    <option value="T2">T2 - Recovering textiles</option>
+                    <option value="T20">T20 - Treating waste at a water treatment works</option>
+                    <option value="T21">T21 - Recovery of waste at a waste water treatment works</option>
+                    <option value="T23">T23 - Aerobic composting and associated prior treatment</option>
+                    <option value="T24">T24 - Anaerobic digestion at premises used for agriculture and burning resulting biogas</option>
+                    <option value="T25">T25 - Anaerobic digestion at premises not used for agriculture and burning resulting biogas</option>
+                    <option value="T26">T26 - Treatment of kitchen waste in a wormery</option>
+                    <option value="T27">T27 - Treatment of sheep dip using organophosphate-degrading enzyme</option>
+                    <option value="T28">T28 - Sort and denature controlled drugs for disposal</option>
+                    <option value="T29">T29 - Treatment of non-hazardous pesticide washings by carbon filtration for disposal</option>
+                    <option value="T30">T30 - Recovery of silver</option>
+                    <option value="T31">T31 - Recovery of monopropylene glycol from aircraft antifreeze fluids</option>
+                    <option value="T32">T32 - Treatment of waste in a biobed or biofilter</option>
+                    <option value="T33">T33 - Recovery of central heating oil by filtration</option>
+                    <option value="T4">T4 - Preparatory treatments (baling, sorting, shredding etc)</option>
+                    <option value="T5">T5 - Screening and blending waste</option>
+                    <option value="T6">T6 - Treating waste wood and waste plant matter by chipping, shredding, cutting or pulverising</option>
+                    <option value="T8">T8 - Mechanically treating end-of-life tyres</option>
+                    <option value="T9">T9 - Recovering scrap metal</option>
+                    <option value="U1">U1 - Use of waste in construction</option>
+                    <option value="U10">U10 - Spreading waste to benefit agricultural land</option>
+                    <option value="U11">U11 - Spreading waste to benefit non-agricultural land</option>
+                    <option value="U12">U12 - Using mulch</option>
+                    <option value="U13">U13 - Spreading plant matter to provide benefits</option>
+                    <option value="U14">U14 - Incorporating ash into soil</option>
+                    <option value="U15">U15 - Spreading of pig and poultry ash</option>
+                    <option value="U16">U16 - Using depolluted end-of-life vehicles for parts</option>
+                    <option value="U2">U2 - Use of baled end-of-life tyres in construction</option>
+                    <option value="U3">U3 - Construction of entertainment or educational installations</option>
+                    <option value="U4">U4 - Burning of waste as a fuel in a small appliance</option>
+                    <option value="U5">U5 - Using biodiesel produced from waste as fuel</option>
+                    <option value="U6">U6 - Using sludge to re-seed a waste water treatment plant</option>
+                    <option value="U7">U7 - Using effluent to clean a highway gravel bed</option>
+                    <option value="U8">U8 - Using waste for a specified purpose</option>
+                    <option value="U9">U9 - Using waste to manufacture finished goods</option>
+                </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p class="text-danger hidden empty-search">
+                    <i class="fa fa-exclamation-triangle"></i> Please put in a value for at least one of the search criteria.
+                </p>
+                <input type="submit" class="btn btn-primary btn-lg" value="search the register">
+            </div>
+        </div>
+    </form>
+
+</section>
+{% include  '../footer.html' %}
