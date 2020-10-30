@@ -1,61 +1,77 @@
+<form action="" method="post">
 
-    <form action="" method="post">
-
-        {% set operatorHtml %}
-            {{ govukInput({
-                id: "operator",
-                name: "operator",
-                label: {
-                    text: "Name of operator"
-                }
-            }) }}
-        {% endset -%}
-
-        {% set locationHtml %}
-            {{ govukInput({
-                id: "location",
-                name: "location",
-                label: {
-                    text: "Town or city"
-                }
-            }) }}
-        {% endset -%}
-
-        {{ govukRadios({
-            idPrefix: "do-you-know-permit-number",
-            name: "do-you-know-permit-number",
-            fieldset: {
-                legend: {
-                    text: "How would you like to search?",
-                    isPageHeading: true,
-                    classes: "govuk-fieldset__legend--l"
-                }
-            },
-            hint: {
-                stext: "Select one option."
-            },
-            items: [
-                {
-                    value: "operator",
-                    text: "By operator",
-                    conditional: {
-                        html: operatorHtml
-                    }
-                },
-                {
-                    value: "location",
-                    text: "By location",
-                    conditional: {
-                     html: locationHtml
-                  }
-                }
-            ]
+    {% set operatorHtml %}
+        {{ govukInput({
+            id: "operator",
+            name: "operator",
+            label: {
+                text: "Name of operator"
+            }
         }) }}
+    {% endset -%}
 
-
-        {{ govukButton({
-            text: 'Search',
-            href: 'search-results'
+    {% set locationHtml %}
+        {{ govukInput({
+            id: "location",
+            name: "location",
+            label: {
+                text: "Town or city"
+            }
         }) }}
-    </form>
+    {% endset -%}
+
+    {% set titleHtml %}
+        {{ govukInput({
+            id: "keyword",
+            name: "keyword",
+            label: {
+                text: "Keyword"
+            }
+        }) }}
+    {% endset -%}
+
+    {{ govukRadios({
+        idPrefix: "do-you-know-permit-number",
+        name: "do-you-know-permit-number",
+        fieldset: {
+            legend: {
+                text: "How would you like to search?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            stext: "Select one option."
+        },
+        items: [
+            {
+                value: "operator",
+                text: "By operator",
+                conditional: {
+                html: operatorHtml
+            }
+            },
+            {
+                value: "location",
+                text: "By location",
+                conditional: {
+                html: locationHtml
+            }
+            },
+            {
+                value: "title",
+                text: "By keyword in document title",
+                conditional: {
+                html: titleHtml
+            }
+            }
+        ]
+    }) }}
+
+
+    {{ govukButton({
+        text: 'Search',
+        href: 'search-results'
+    }) }}
+</form>
 
