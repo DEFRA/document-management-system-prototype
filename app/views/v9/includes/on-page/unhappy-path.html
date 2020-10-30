@@ -1,0 +1,72 @@
+{% set unhappyPathHtml %}
+    <p>You can use the form below to submit a request for a member of our team to conduct additional searches for documents related to this permit. Responses can take up to 20 working days.</p>
+    <form method="post">
+
+        {% set textHtml %}
+            {{ govukTextarea({
+                name: "more-detail",
+                id: "more-detail",
+                label: {
+                    text: "What other documents are needed?",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                shint: {
+                    text: "Specify which documents you require"
+                }
+            }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+            idPrefix: "contact",
+            name: "contact",
+            fieldset: {
+                legend: {
+                    text: "Do you require documents other than the permit itself?",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--m"
+                }
+            },
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    conditional: {
+                    html: textHtml
+                }
+                },
+                {
+                    value: "no",
+                    text: "No"
+                }
+            ]
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--s",
+                isPageHeading: true
+            },
+            hint: {
+                text: "We will send responses to this address"
+            },
+            classes: "govuk-!-width-one-half",
+            id: "event-name",
+            name: "event-name"
+        }) }}
+
+
+        {{ govukButton({
+            text: "Request documents",
+            href: "#"
+        }) }}
+    </form>
+{% endset %}
+
+<div class="">
+    {{ govukDetails({
+        summaryText: "Can't find what you're looking for?",
+        html: unhappyPathHtml
+    }) }}
+</div>

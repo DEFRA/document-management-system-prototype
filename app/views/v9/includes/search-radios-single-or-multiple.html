@@ -1,0 +1,54 @@
+
+    <form action="" method="post">
+
+        {% set yesHtml %}
+            {{ govukInput({
+                id: "permitNumber",
+                name: "permitNumber",
+                label: {
+                    text: "Permit Number"
+                }
+            }) }}
+        {% endset -%}
+
+        {% set noHtml %}
+           <p>You will be redirected to the Electronic Public Register search page to assist you in finding the record you are looking for</p>
+        {% endset -%}
+
+        {{ govukRadios({
+            idPrefix: "single-or-multiple",
+            name: "single-or-multiple",
+            fieldset: {
+                legend: {
+                    text: "Are you looking for documents for a single permit record?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                }
+            },
+            hint: {
+                stext: "Select one option."
+            },
+            items: [
+                {
+                    value: "single",
+                    hint : {
+                        text: 'Search for documents related to a particular permit'
+                    },
+                    text: "Yes"
+                },
+                {
+                    value: "multiple",
+                    text: "No",
+                    hint: {
+                        text: 'Search for documents across many permits'
+                    }
+                }
+            ]
+        }) }}
+
+
+        {{ govukButton({
+            text: 'Continue'
+        }) }}
+    </form>
+

@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-full">
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "../search/search-all"
+            }) }}
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">Permit {{ pageObject.details.permitId }}</span>
+                {{ pageObject.details.name }}
+            </h1>
+
+            {% set permitHTML %}
+                <h2 class="govuk-heading-m">Summary</h2>
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Start Date"
+                        },
+                            value: {
+                            text: pageObject.details.startDate
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Register"
+                        },
+                            value: {
+                            text: pageObject.details.register
+                        }
+                        }
+                    ]
+                }) }}
+                <h2 class="govuk-heading-m">Site details</h2>
+
+                <dl class="govuk-summary-list">
+
+                    {% for key, value in pageObject.details.site %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key" style="text-transform: capitalize">
+                            {{ key }}
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            {{ value }}
+                        </dd>
+
+                    </div>
+                    {% endfor %}
+
+                </dl>
+
+{#                {{ govukSummaryList({#}
+{#                    rows: [#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Type"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.type#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Address"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.address#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Postcode"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.postcode#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Local authority"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site.LA#}
+{#                        }#}
+{#                        },#}
+{#                        {#}
+{#                            key: {#}
+{#                            text: "Grid reference"#}
+{#                        },#}
+{#                            value: {#}
+{#                            text: pageObject.details.site['grid-reference']#}
+{#                        }#}
+{#                        }#}
+{#                    ]#}
+{#                }) }}#}
+            {% endset %}
+
+            {% set documentsHtml %}
+                {# {% for document in pageObject.documents %} #}
+                <div class="govuk-grid-row">
+                    {% if pageObject.documents.length > 0 %}
+                    <div class="govuk-grid-column-one-third">
+                        {% include '../includes/on-page/search-filter.html' %}
+                    </div>
+                    <div class="govuk-grid-column-two-thirds">
+
+{#                        {% include '../includes/search-results-on-page.html' %}#}
+                        {% include '../includes/search-results-docs.html' %}
+                        {% include '../includes/on-page/unhappy-path.html' %}
+
+                        {#                        {% include '../includes/pagination.html' %}#}
+                    </div>
+                    {% else %}
+                    <div class="govuk-grid-column-full">
+
+                    <h2 class="govuk-heading-m">No documents found</h2>
+                        {% include '../includes/on-page/unhappy-path.html' %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endset %}
+
+            {{ govukTabs({
+                items: [
+                    {
+                        label: "Permit",
+                        id: "permit",
+                        panel: {
+                        html: permitHTML
+                    }
+                    },
+                    {
+                        label: "Documents",
+                        id: "documents",
+                        panel: {
+                        html: documentsHtml
+                    }
+                    }
+                ]
+            }) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}
