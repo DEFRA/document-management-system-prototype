@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    {#    <p>PV: {{ pageVariant }}</p>#}
+    {#    <p>ST: {{ searchType }}</p>#}
+    {#    <p>FT: {{ filterType}} </p>#}
+    {#    <p>RT: {{ resultsType}} </p>#}
+
+    <div class="govuk-grid-row filter-type-2-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {{ govukBackLink({
+                href: "javascript: history.back(-1)"
+            }) }}
+
+{#            {% include '../includes/search.html' %}#}
+
+            <h1 class="govuk-heading-l">Document search results</h1>
+
+        </div>
+
+        {% if filterType == 2 %}
+            <div class="govuk-grid-column-one-third filter-type-2">
+
+                <div class="defra-filter--action" style="">
+                    <button id="defra-filter--button" class="govuk-button govuk-button--secondary govuk-!-margin-top-6 "
+                            type="button" aria-expanded="false"><span
+                                class="defra-filter--button-content">Show filters</span><span
+                                class="defra-filter__icon"></span>
+                    </button>
+                </div>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+    {% if filterType == 3 %}
+        <div class="govuk-grid-row">
+
+            <div class="hmcts-action-bar govuk-grid-column-full">
+
+                <div class="hmcts-action-bar__filter">
+                    <button class="govuk-button hmcts-button--secondary" type="button" aria-haspopup="true"
+                            aria-expanded="false">
+                        Show filter
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if filterType == 3 %}
+        <div class="govuk-grid-row">
+        <div class="filter-3">
+            {% include '../includes/search-filter-3.html' %}
+        </div>
+    {% elseif filterType == 2 %}
+        <div class="govuk-grid-row">
+            {% include '../includes/search-filter-2.html' %}
+        </div>
+        <div class="govuk-grid-row search-container">
+    {% else %}
+        <div class="govuk-grid-row search-container">
+
+        <div class="govuk-grid-column-one-third">
+
+            {% include '../includes/search-filter.html' %}
+{#            {% include '../includes/on-page/search-filter.html' %}#}
+
+        </div>
+
+    {% endif %}
+
+    {% if filterType == 2 %}
+    <div class="govuk-grid-column-full">
+    {% else %}
+    <div class="govuk-grid-column-two-thirds {% if filterType == 3 %} filter-3-results {% endif %}">
+    {% endif %}
+
+    {% if resultsType == 2 %}
+
+        {% include '../includes/search-results-2.html' %}
+    {% endif %}
+
+    {% if resultsType == 3 %}
+
+        {% include '../includes/search-results-docs.html' %}
+
+    {% else %}
+        
+        {% include '../includes/search-results-1.html' %}
+
+    {% endif %}
+
+    {% include '../includes/pagination.html' %}
+
+    </div>
+
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            // Filter 2 (EUE) JS
+            var count = $('.govuk-table__row').length - 1
+            // show hide content
+            $('.derfa-filter--content').hide()
+            $('.defra-filter--action').show()
+            $('#js-case-count').text(count);
+            if (count == 0) {
+                $('.govuk-table').hide()
+            }
+            $('.derfa-filter--content').hide()
+            $('#defra-filter--button').on("click", function () {
+                if (!$('.defra-filter--action').hasClass('defra-filter--open')) {
+                    $('.defra-filter--content').show().focus()
+                    $('.defra-filter--action').addClass('defra-filter--open')
+                    $('#defra-filter--button').attr('aria-expanded', 'true');
+                    $(".defra-filter--button-content").text('Hide filters')
+
+                } else {
+                    $('.defra-filter--content').hide()
+                    $('.defra-filter--action').removeClass('defra-filter--open')
+                    $('#defra-filter--button').attr('aria-expanded', 'false');
+                    $(".defra-filter--button-content").text('Show filters')
+                }
+            })
+            // Filter 3 (HMCTS) JS
+            $('.filter-3').hide();
+            $('.filter-3-results').addClass('govuk-grid-column-full')
+            $('.hmcts-action-bar__filter button').on("click", function() {
+                if ($(this).hasClass('filter--open')) {
+                    $(this).text('Show filter')
+                    $('.filter-3').hide()
+                    $('.filter-3').removeClass('govuk-grid-column-one-third')
+                    $('.filter-3-results').removeClass('govuk-grid-column-two-thirds')
+                    $('.filter-3-results').addClass('govuk-grid-column-full')
+                } else {
+                    $(this).text('Hide filter')
+                    $('.filter-3').show()
+                    $('.filter-3').addClass('govuk-grid-column-one-third')
+                    $('.filter-3-results').addClass('govuk-grid-column-two-thirds')
+                    $('.filter-3-results').removeClass('govuk-grid-column-full')
+                }
+                $(this).toggleClass('filter--open')
+                // alert('asd')
+            })
+        })
+    </script>
+
+{% endblock %}
