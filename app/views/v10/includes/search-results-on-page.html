@@ -32,7 +32,7 @@
                             {# <span class="references"> #}
                             {# Ref: <span class="unique_reference">LIT_7665_3febc9.pdf</span> #}
                             {# </span> #}
-                            <span class="type"><abbr title="Portable Document Format">PDF</abbr></span>, <span
+                            <span class="type"><abbr title="Portable Document Format">{% if item.fileType.length === 0 %}PDF{% else %}{{ item.fileType }}{% endif %}</abbr></span>, <span
                                     class="file-size">928KB</span>
 {#                        </p>#}
                         </li>

@@ -145,6 +145,7 @@ function createDataFromJson(permitId) {
     const dataObject = []
     for (item in dataSrc) {
         if (dataSrc[item]["Disclosure Status"] === "Public Register") {
+            const fileType = dataSrc[item]["fileType"] || 'PDF'
             dataObject.push({
                 "registration": dataSrc[item]["Case Reference"],
                 "docTitle": dataSrc[item]["Title/Subject"],
@@ -153,7 +154,7 @@ function createDataFromJson(permitId) {
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
                 "documentLink": dataSrc[item]["Tif File Names"],
-                "fileType": ""
+                "fileType": fileType
             })
         }
     }
