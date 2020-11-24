@@ -149,7 +149,8 @@ function createDataFromJson(permitId) {
             dataObject.push({
                 "registration": dataSrc[item]["Case Reference"],
                 "docTitle": dataSrc[item]["Title/Subject"],
-                "name": dataSrc[item]["Customer Name"],
+                "permitHolderName": dataSrc[item]["Customer Name"],
+                "siteName": dataSrc[item]["Site Name"],
                 "uploadedOn": convertToReadableDate(dataSrc[item]["Date Loaded"]),
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
