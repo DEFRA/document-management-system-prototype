@@ -39,6 +39,23 @@ function getDocTypeItems(documents) {
     return docTypeItems
 }
 
+function getDocFileTypeItems(documents) {
+
+    let docFileTypeItems = []
+    const map = new Map();
+    for (const item of documents) {
+        if (!map.has(item.fileType)) {
+            map.set(item.fileType, true);    // set any value to Map
+            docFileTypeItems.push({
+                text: item.fileType + ' (' + getDocCountByFileType(documents, item.fileType) + ')',
+                value: item.fileType
+            });
+        }
+    }
+    console.log(docFileTypeItems)
+    return docFileTypeItems
+}
+
 
 function getPermitTypeItems(documents) {
 
@@ -129,6 +146,11 @@ function getDocCountByType(documents, docType) {
     return count.length.toString()
 }
 
+function getDocCountByFileType(documents, docFileType) {
+    let count = documents.filter(item => item.fileType === docFileType)
+    return count.length.toString()
+}
+
 function createDataFromJson(permitId) {
     const validPermitIds = [
         'EAWML65519',
@@ -149,7 +171,8 @@ function createDataFromJson(permitId) {
             dataObject.push({
                 "registration": dataSrc[item]["Case Reference"],
                 "docTitle": dataSrc[item]["Title/Subject"],
-                "name": dataSrc[item]["Customer Name"],
+                "permitHolderName": dataSrc[item]["Customer Name"],
+                "siteName": dataSrc[item]["Site Name"],
                 "uploadedOn": convertToReadableDate(dataSrc[item]["Date Loaded"]),
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
@@ -277,6 +300,8 @@ module.exports = function (router) {
             filterType = req.query.filterType || 1
             resultsType = req.query.resultsType || 1
         }
+        thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+        thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
         res.render(versionDirectory + '/search/search-results.html', {
             pageObject: thePageObject,
             searchType: searchType,
@@ -331,6 +356,7 @@ module.exports = function (router) {
             // thePageObject.documents = createDataFromJson(permitNumber)
             thePageObject.documents = mapDocuments(createDataFromJson(permitNumber))
             thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
+            thePageObject.docFileTypeItems = getDocFileTypeItems(thePageObject.documents)
             thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
         }
         // thePageObject.permitTypeItems = getMappedPermitTypes(thePageObject.documents)

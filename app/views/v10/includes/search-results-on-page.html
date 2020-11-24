@@ -19,7 +19,7 @@
     <div class="finder-results">
         <ol class="gem-c-document-list gem-c-document-list--no-underline">
             {% for item in pageObject.documents %}
-                <li class="gem-c-document-list__item  " data-permit-type="{{ item.permitType }}" data-document-type="{{ item.documentType }}">
+                <li class="gem-c-document-list__item  " data-permit-type="{{ item.permitType }}" data-document-type="{{ item.documentType }}" data-file-type="{{ item.fileType }}" >
                     <a class="gem-c-document-list__item-title   gem-c-document-list__item-link"
                        href="/public/EDRM/{{ pageObject.permitNumber }}/{{ item.documentLink }}" target="_blank">{{ item.docTitle }}</a>
 {#                    <p class="gem-c-document-list__item-description">#}

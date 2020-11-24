@@ -23,6 +23,17 @@
 
 {% endset  %}
 
+{% set docFileTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docFileType',
+        name: 'docFileType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docFileTypeItems
+    }) }}
+
+{% endset  %}
+
 {% set dateOptionsHtml %}
     {{ govukInput({
         label: {
@@ -72,6 +83,16 @@
             expanded: 'true'
         },
         {
+            title: 'File Type',
+            body: docFileTypeOptionsHtml | safe,
+            expanded: 'false'
+        },
+        {
+            title: 'Document Type',
+            body: docTypeOptionsHtml | safe,
+            expanded: 'false'
+        },
+        {
             title: 'Date',
             body: dateOptionsHtml | safe
         }
@@ -82,6 +103,7 @@
     window.addEventListener('load', function () {
         let searchArray = []
         let permitArray = []
+        let fileTypeArray = []
         let documentArray = []
         // $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
 
@@ -95,10 +117,10 @@
             return itemsShowing.length
         }
 
-        function showHideResults(permitData, documentData) {
-            if(permitData.length && documentData.length) {
+        function showHideResults(permitData, documentData, fileTypeData) {
+            if(permitData.length && documentData.length && fileTypeData.length) {
                 $(".finder-results li.gem-c-document-list__item").each(function() {
-                    if(permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type'))) {
+                    if(permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type')) && fileTypeData.includes($(this).data('file-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
@@ -117,6 +139,15 @@
             } else if(documentData.length) {
                 $(".finder-results li.gem-c-document-list__item").each(function() {
                     if(documentData.includes($(this).data('document-type'))) {
+                        $(this).show()
+                    } else {
+                        $(this).hide()
+                    }
+                })
+                // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
+            } else if(fileTypeData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function() {
+                    if(fileTypeData.includes($(this).data('file-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
@@ -162,6 +193,9 @@
                 if(e.target.name === 'permitType') {
                     permitArray.push(e.target.value)
                 }
+                if(e.target.name === 'docFileType') {
+                    fileTypeArray.push(e.target.value)
+                }
                 if(e.target.name === 'docType') {
                     documentArray.push(e.target.value)
                 }
@@ -173,6 +207,9 @@
                 if(e.target.name === 'docType') {
                     documentArray.splice($.inArray(checked, documentArray),1)
                 }
+                if(e.target.name === 'docFileType') {
+                    fileTypeArray.splice($.inArray(checked, fileTypeArray),1)
+                }
                 searchArray.splice($.inArray(checked, searchArray),1)
             }
 
@@ -180,10 +217,11 @@
 
             console.log('Search: ' + searchArray)
             console.log('Permit: ' + permitArray)
+            console.log('FileType: ' + fileTypeArray)
             console.log('Doc: ' + documentArray)
             // showHideResults(searchArray)
 
-            showHideResults(permitArray, documentArray)
+            showHideResults(permitArray, documentArray, fileTypeArray)
         })
     })
 </script>
