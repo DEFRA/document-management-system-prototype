@@ -23,6 +23,17 @@
 
 {% endset  %}
 
+{% set docFileTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docFileType',
+        name: 'docFileType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docFileTypeItems
+    }) }}
+
+{% endset  %}
+
 {% set dateOptionsHtml %}
     {{ govukInput({
         label: {
@@ -70,6 +81,16 @@
             title: 'Permit Type',
             body: permitTypeOptionsHtml | safe,
             expanded: 'true'
+        },
+        {
+            title: 'File Type',
+            body: docFileTypeOptionsHtml | safe,
+            expanded: 'false'
+        },
+        {
+            title: 'Document Type',
+            body: docTypeOptionsHtml | safe,
+            expanded: 'false'
         },
         {
             title: 'Date',
