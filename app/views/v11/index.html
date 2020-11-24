@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "/"
+            }) }}
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">(25/11/20 - 8/12/20)</span>
+                Sprint 11
+            </h1>
+            <h3 class="govuk-heading-m">Design objectives</h3>
+            <p>Updates to how documents are displayed</p>
+
+            {{ govukDetails({
+                summaryText: "Sample permit numbers - reading from live ePR data",
+                html: "<ul>
+        <li><a href='./all-in-one/water-discharges/SO-P12930-001'>SO-P12930-001</a></li>
+        <li><a href='./all-in-one/water-discharges/SO-EPRAB3694RQ-001'>SO-EPRAB3694RQ-001</a></li>
+        <li><a href='./all-in-one/water-discharges/SO-A00843-001'>SO-A00843-001</a></li>
+        <li><a href='./all-in-one/water-discharges/SO-EPRCB3392ES-001'>SO-EPRCB3392ES-001</a></li>
+        </ul>
+        <h3>Stubbed Data</h3>
+<ul>
+<li><a href='./all-in-one/EAWML403958'>EAWML403958 - Wicks Services Limited</a></li>
+<li><a href='./all-in-one/T3945884O'>T3945884O - Severn Trent Water Limited</a></li>
+<li><a href='./all-in-one/EAWML104608'>EAWML104608 - AJ Spares</a></li>
+</ul>
+"
+            }) }}
+
+            {{ govukAccordion({
+                id: "accordion-default",
+                items: [
+                    {
+                        expanded: true,
+                        heading: {
+                        text: "Scenarios"
+                    },
+                        content: {
+                        html: "<ol class='govuk-list--number govuk-list'>
+                            <li><a href='./search/search-new-starting-page'>View stand alone service</a></li>
+                            <li><a href='./all-in-one/EAWML12345'>View stand record with no documents (Unhappy path)</a></li>
+                            <li><a href='./entry-points/ea/'>Start from ePR (Electronic Public Register) - go to documents section if requested</a></li>
+                            <li><a href='./entry-points/ea/?onerecord=true'>Start from ePR (Electronic Public Register) - go direct to a consolidated record page</a></li>
+                        </ol>"
+                    }
+                    },
+                    {
+                        heading: {
+                        text: "Design Variants"
+                    },
+                        content: {
+                        html: '
+<ol class="govuk-list--number govuk-list">
+        <li><a href="./search/search-results?resultsType=3">Results displayed as documents as per GOV.UK publications</a> - Document results grouped by organisation or site (<a href=https://www.gov.uk/government/publications/actions-for-schools-during-the-coronavirus-outbreak" target="_blank">see example</a>)</li>
+      </ol>
+'
+                    }
+                    }
+
+                ]
+            }) }}
+
+            {{ govukButton({
+                text: "View linear journey",
+                href: "./start.html"
+            }) }}
+
+            <p><a href="./user-flow/">View user flows</a></p>
+            <p><a href="./page-flow/">View all pages</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}

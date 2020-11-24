@@ -1,0 +1,97 @@
+<div class="gov-uk_results-block">
+    <div class="result-info">
+        <h2 class="result-region-header__counter">{{ pageObject.documents.length }} results</h2>
+    </div>
+    <div class="sort-options">
+        <div id="js-sort-options">
+            <div class="govuk-form-group sort-options">
+                <label for="order" class="sort-options__label govuk-label">Sort by</label>
+                <select class="js-order-results govuk-select sort-options__select" name="order" id="order"
+                        aria-controls="js-search-results-info" data-default-sort-option="updated-newest"
+                        data-relevance-sort-option="relevance" data-module="track-select-change">
+                    <option value="most-viewed" disabled="" data-track-category="dropDownClicked"
+                            data-track-action="clicked" data-track-label="Most viewed">Most viewed
+                    </option>
+                    <option value="relevance" selected="" data-track-category="dropDownClicked"
+                            data-track-action="clicked" data-track-label="Relevance">Relevance
+                    </option>
+                    <option value="updated-newest" data-track-category="dropDownClicked" data-track-action="clicked"
+                            data-track-label="Updated (newest)">Updated (newest)
+                    </option>
+                    <option value="updated-oldest" data-track-category="dropDownClicked" data-track-action="clicked"
+                            data-track-label="Updated (oldest)">Updated (oldest)
+                    </option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <div class="finder-results">
+        <ol class="gem-c-document-list gem-c-document-list--no-underline gem-c-govspeak">
+            {% for item in pageObject.documents %}
+                <section class="attachment embedded">
+                    <div class="attachment-thumb">
+                        <a aria-hidden="true" class="thumbnail" tabindex="-1"
+                           href="{{ item.documentLink }}"><img
+                                    alt=""
+                                    src="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/307943/thumbnail_LIT_7665_3febc9.pdf.png"></a>
+                    </div>
+                    <div class="attachment-details">
+                        <h2 class="title"><a aria-describedby="attachment-4584684-accessibility-help"
+                                             href="{{ item.documentLink }}">{{ item.docTitle }}</a></h2>
+                        <p class="metadata">
+                            {# <span class="references"> #}
+                            {# Ref: <span class="unique_reference">LIT_7665_3febc9.pdf</span> #}
+                            {# </span> #}
+                            <span class="type"><abbr title="Portable Document Format">PDF</abbr></span>, <span
+                                    class="file-size">928KB</span>
+                        </p>
+
+
+                        <div data-module="toggle" class="accessibility-warning"
+                             id="attachment-4584684-accessibility-help">
+                            <p>This file may not be suitable for users of assistive technology.</p>
+                            <details class="gem-c-details govuk-details govuk-!-margin-bottom-3"
+                                     data-module="govuk-details">
+                                <summary class="govuk-details__summary" data-details-track-click="">
+                                <span class="govuk-details__summary-text">
+                                  Request an accessible format.
+                                </span>
+                                </summary>
+                                <div class="govuk-details__text">
+
+                                    If you use assistive technology (such as a screen reader) and need a
+                                    version of this document in a more accessible format, please email <a
+                                            href="mailto:enquiries@environment-agency.gov.uk?body=Details%20of%20document%20required%3A%0A%0A%20%20Title%3A%20Pollution%20inventory%20reporting%3A%20general%20guidance%20notes%0A%20%20Original%20format%3A%20pdf%0A%20%20Unique%20reference%3A%20LIT_7665_3febc9.pdf%0A%0APlease%20tell%20us%3A%0A%0A%20%201.%20What%20makes%20this%20format%20unsuitable%20for%20you%3F%0A%20%202.%20What%20format%20you%20would%20prefer%3F%0A%20%20%20%20%20%20&amp;subject=Request%20for%20%27Pollution%20inventory%20reporting%3A%20general%20guidance%20notes%27%20in%20an%20alternative%20format">enquiries@environment-agency.gov.uk</a>.
+                                    Please tell us what format you need. It will help us if you say what assistive
+                                    technology you use.
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </section>
+
+                {# <li class="gem-c-document-list__item  "> #}
+                {# <a class="gem-c-document-list__item-title   gem-c-document-list__item-link" #}
+                {# href="/public/EDRM/{{ pageObject.permitNumber }}/{{ item.documentLink }}" target="_blank">{{ item.docTitle }}</a> #}
+                {# <p class="gem-c-document-list__item-description"> #}
+                {# {{ item.registration }} - {{ item.name }} #}
+                {# </p> #}
+                {# <ul class="gem-c-document-list__item-metadata"> #}
+                {# <li class="gem-c-document-list__attribute"> #}
+                {# {{ item.permitType }} #}
+                {# </li> #}
+                {# <li class="gem-c-document-list__attribute"> #}
+                {# {{ item.documentType }} #}
+                {# </li> #}
+                {# <li class="gem-c-document-list__attribute"> #}
+                {# Updated: #}
+                {# <time datetime="{{ item.uploadedOn }}">{{ item.uploadedOn }}</time> #}
+                {# </li> #}
+                {# </ul> #}
+                {# </li> #}
+            {% endfor %}
+
+        </ol>
+    </div>
+</div>
