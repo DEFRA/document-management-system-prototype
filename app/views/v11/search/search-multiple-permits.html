@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {{ govukBackLink({
+                href: "javascript: history.back(-1)"
+            }) }}
+
+            {% include '../includes/search-multiple-permits.html' %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
