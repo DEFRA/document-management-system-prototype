@@ -154,15 +154,12 @@ function getDocCountByFileType(documents, docFileType) {
 function createDataFromArray(permitNumbers) {
     let dataObject = []
     for (item in permitNumbers) {
-        console.log(item)
         let permitId = permitNumbers[item]
-        console.log(permitId)
         let theData = createDataFromJson(permitId)
-        console.log(theData.length)
-        // dataObject = [...dataObject, theData]
         dataObject = [].concat(dataObject, theData)
     }
-    console.log(dataObject.length)
+    console.log(dataObject)
+    dataObject.sort((a, b) => parseInt(b.uploadedOnRaw) - parseInt(a.uploadedOnRaw));
     return dataObject
 }
 
@@ -189,6 +186,7 @@ function createDataFromJson(permitId) {
                 "permitHolderName": dataSrc[item]["Customer Name"],
                 "siteName": dataSrc[item]["Site Name"],
                 "uploadedOn": convertToReadableDate(dataSrc[item]["Date Loaded"]),
+                "uploadedOnRaw": dataSrc[item]["Date Loaded"],
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
                 "documentLink": dataSrc[item]["Tif File Names"],
