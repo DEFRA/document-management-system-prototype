@@ -151,6 +151,21 @@ function getDocCountByFileType(documents, docFileType) {
     return count.length.toString()
 }
 
+function createDataFromArray(permitNumbers) {
+    let dataObject = []
+    for (item in permitNumbers) {
+        console.log(item)
+        let permitId = permitNumbers[item]
+        console.log(permitId)
+        let theData = createDataFromJson(permitId)
+        console.log(theData.length)
+        // dataObject = [...dataObject, theData]
+        dataObject = [].concat(dataObject, theData)
+    }
+    console.log(dataObject.length)
+    return dataObject
+}
+
 function createDataFromJson(permitId) {
     const validPermitIds = [
         'EAWML65519',
@@ -283,8 +298,9 @@ module.exports = function (router) {
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
         const permitNumber = req.query.permitNumber || defaultPermitId
         let thePageObject = {}
-        thePageObject.documents = createDataFromJson(permitNumber)
-        thePageObject.permitNumber = permitNumber
+        // thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.documents = createDataFromArray(['EAWML65519', 'EPRZP3821GK', 'T3945884O', 'EAWML403958'])
+        // thePageObject.permitNumber = permitNumber
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
         let filterType
