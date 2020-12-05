@@ -151,6 +151,18 @@ function getDocCountByFileType(documents, docFileType) {
     return count.length.toString()
 }
 
+function createDataFromArray(permitNumbers) {
+    let dataObject = []
+    for (item in permitNumbers) {
+        let permitId = permitNumbers[item]
+        let theData = createDataFromJson(permitId)
+        dataObject = [].concat(dataObject, theData)
+    }
+    console.log(dataObject)
+    dataObject.sort((a, b) => parseInt(b.uploadedOnRaw) - parseInt(a.uploadedOnRaw));
+    return dataObject
+}
+
 function createDataFromJson(permitId) {
     const validPermitIds = [
         'EAWML65519',
@@ -174,6 +186,7 @@ function createDataFromJson(permitId) {
                 "permitHolderName": dataSrc[item]["Customer Name"],
                 "siteName": dataSrc[item]["Site Name"],
                 "uploadedOn": convertToReadableDate(dataSrc[item]["Date Loaded"]),
+                "uploadedOnRaw": dataSrc[item]["Date Loaded"],
                 "permitType": dataSrc[item]["Sub-Folder"],
                 "documentType": dataSrc[item]["Document Type"],
                 "documentLink": dataSrc[item]["Tif File Names"],
@@ -283,8 +296,9 @@ module.exports = function (router) {
     router.get(['/' + versionDirectory + '/search/search-results', '/' + versionDirectory + '/search/search-results/:variant'], (req, res) => {
         const permitNumber = req.query.permitNumber || defaultPermitId
         let thePageObject = {}
-        thePageObject.documents = createDataFromJson(permitNumber)
-        thePageObject.permitNumber = permitNumber
+        // thePageObject.documents = createDataFromJson(permitNumber)
+        thePageObject.documents = createDataFromArray(['EAWML65519', 'EPRZP3821GK', 'T3945884O', 'EAWML403958'])
+        // thePageObject.permitNumber = permitNumber
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
         let filterType
