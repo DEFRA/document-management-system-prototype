@@ -158,7 +158,6 @@ function createDataFromArray(permitNumbers) {
         let theData = createDataFromJson(permitId)
         dataObject = [].concat(dataObject, theData)
     }
-    console.log(dataObject)
     dataObject.sort((a, b) => parseInt(b.uploadedOnRaw) - parseInt(a.uploadedOnRaw));
     return dataObject
 }
@@ -182,6 +181,7 @@ function createDataFromJson(permitId) {
             const fileType = dataSrc[item]["fileType"] || 'PDF'
             dataObject.push({
                 "registration": dataSrc[item]["Case Reference"],
+                "permitId": permitId,
                 "docTitle": dataSrc[item]["Title/Subject"],
                 "permitHolderName": dataSrc[item]["Customer Name"],
                 "siteName": dataSrc[item]["Site Name"],

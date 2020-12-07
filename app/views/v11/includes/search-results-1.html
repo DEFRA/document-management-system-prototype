@@ -10,7 +10,7 @@
             {% for item in pageObject.documents %}
                 <li class="gem-c-document-list__item  " data-permit-type="{{ item.permitType }}" data-file-type="{{ item.fileType }}" data-document-type="{{ item.documentType }}">
                     <a class="gem-c-document-list__item-title   gem-c-document-list__item-link"
-                       href="/public/EDRM/{{ pageObject.permitNumber }}/{{ item.documentLink }}"
+                       href="/public/EDRM/{{ item.permitId }}/{{ item.documentLink }}"
                        target="_blank">{{ item.docTitle }}</a>
 
                     <ul class="gem-c-document-list__item-metadata">
