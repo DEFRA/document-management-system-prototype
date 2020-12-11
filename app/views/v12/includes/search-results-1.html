@@ -1,0 +1,64 @@
+<div class="gov-uk_results-block">
+    <div class="result-info">
+        <h2 class="result-region-header__counter"> {{ pageObject.documents.length }} results</h2>
+    </div>
+    <div class="sort-options">
+
+    </div>
+    <div class="finder-results">
+        <ol class="gem-c-document-list gem-c-document-list--no-underline">
+            {% for item in pageObject.documents %}
+                <li class="gem-c-document-list__item  " data-permit-type="{{ item.permitType }}" data-file-type="{{ item.fileType }}" data-document-type="{{ item.documentType }}">
+                    <a class="gem-c-document-list__item-title   gem-c-document-list__item-link"
+                       href="/public/EDRM/{{ item.permitId }}/{{ item.documentLink }}"
+                       target="_blank">{{ item.docTitle }}</a>
+
+                    <ul class="gem-c-document-list__item-metadata">
+                        <li class="gem-c-document-list__attribute">
+
+                            {# <p class="metadata"> #}
+                            {# <span class="references"> #}
+                            {# Ref: <span class="unique_reference">LIT_7665_3febc9.pdf</span> #}
+                            {# </span> #}
+                            <span class="type"><abbr
+                                        title="Portable Document Format">{% if item.fileType.length === 0 %}PDF{% else %}{{ item.fileType }}{% endif %}</abbr></span>,
+                            <span
+                                    class="file-size">928KB</span>
+                            {# </p> #}
+                        </li>
+                        <li class="gem-c-document-list__attribute">
+                            Updated:
+                            <time datetime="{{ item.uploadedOn }}">{{ item.uploadedOn }}</time>
+                        </li>
+                    </ul>
+
+                    <ul class="gem-c-document-list__item-metadata">
+                        <li class="gem-c-document-list__attribute">
+                            Site name: {{ item.siteName }}
+                        </li>
+                        <li class="gem-c-document-list__attribute">
+                            Permit Holder: {{ item.permitHolderName }}
+                        </li>
+                        <li class="gem-c-document-list__attribute">
+                            Permit number: {{ item.registration }}
+                        </li>
+                    </ul>
+
+                    {# <ul class="gem-c-document-list__item-metadata"> #}
+                    {# <li class="gem-c-document-list__attribute"> #}
+                    {# {{ item.permitType }} #}
+                    {# </li> #}
+                    {# <li class="gem-c-document-list__attribute"> #}
+                    {# {{ item.documentType }} #}
+                    {# </li> #}
+                    {# <li class="gem-c-document-list__attribute"> #}
+                    {# Updated: #}
+                    {# <time datetime="{{ item.uploadedOn }}">{{ item.uploadedOn }}</time> #}
+                    {# </li> #}
+                    {# </ul> #}
+                </li>
+            {% endfor %}
+
+        </ol>
+    </div>
+</div>

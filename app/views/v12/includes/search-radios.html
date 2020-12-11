@@ -1,0 +1,59 @@
+<form action="" method="post">
+
+    {% set yesHtml %}
+        {{ govukInput({
+            id: "permitNumber",
+            name: "permitNumber",
+            label: {
+                text: "Permit Number"
+            }
+        }) }}
+    {% endset -%}
+
+    {% set noHtml %}
+        <p>You will be redirected to the Electronic Public Register search page to assist you in finding the record you
+            are looking for</p>
+    {% endset -%}
+
+    {{ govukRadios({
+        idPrefix: "do-you-know-permit-number",
+        name: "do-you-know-permit-number",
+        fieldset: {
+            legend: {
+                text: "Do you know the permit number of the record you are looking for?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            stext: "Select one option."
+        },
+        items: [
+            {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                html: yesHtml
+            }
+            },
+            {
+                value: "no",
+                text: "No",
+                conditional: {
+                html: noHtml
+            }
+            }
+        ]
+    }) }}
+
+    {{ govukDetails({
+        summaryText: "Advanced search",
+        html: "<p>This feature is intended for use by professional and expert users. It allows users to <a href='./search-results'>search for all documents in the public register</a>.</p>"
+    }) }}
+
+
+    {{ govukButton({
+        text: 'Continue'
+    }) }}
+</form>
+
