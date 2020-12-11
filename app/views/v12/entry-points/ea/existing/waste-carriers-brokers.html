@@ -1,0 +1,73 @@
+{% include  '../header.html' %}
+<section>
+    <h1>
+        Register of waste carriers, brokers and dealers
+    </h1>
+
+    <p>People or businesses who transport, buy, sell or dispose of waste, or arrange for someone else to do so, must be registered.</p>
+
+    <h2>Quick check</h2>
+    <p>
+        To check a registration, enter the registration number or business name:
+    </p>
+    <form id="permit-search-form" class="quick-check-form form-inline" role="search" method="get" action="/public-register/waste-carriers-brokers/registration">
+        <div class="form-group">
+            <input id="permit-search" name="name-number-search" type="text" class="form-control search-box" placeholder="Business name or registration number">
+            <input name="register" type="hidden" value="waste-carriers-brokers">
+            <button type="submit" class="btn btn-primary btn-large"><i class="fa fa-search fa-fw"></i> look up </button>
+        </div>
+        <p id="permit-search-error" class="text-danger hidden empty-search">
+            <i class="fa fa-exclamation-triangle"></i> Please enter a name, part name or registration number to search for
+        </p>
+    </form>
+
+    <h2>Choose a register to search:</h2>
+
+    <h3>
+        Lower tier
+        <a class="btn btn-primary btn-large" href="search-waste-carriers-brokers-regime?regime=lower-tier">
+            <i class="fa fa-angle-double-right"></i>
+            search lower tier
+        </a>
+    </h3>
+
+    <h3>
+        Upper tier
+        <a class="btn btn-primary btn-large" href="search-waste-carriers-brokers-regime?regime=upper-tier">
+            <i class="fa fa-angle-double-right"></i>
+            search upper tier
+        </a>
+    </h3>
+
+    <h3>What's the difference between upper and lower tiers?</h3>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-">
+            <p>A person or organisation will be lower tier if they:</p>
+            <ul>
+                <li>only carry waste they produced in the course of carrying out their business <strong>unless</strong> it is construction or demolition waste</li>
+                <li>only carry (carrier), arrange (broker) or deal (dealer) in:</li>
+                <ul>
+                    <li>animal by-products</li>
+                    <li>waste from mines and quarries</li>
+                    <li>waste from agricultural premises</li>
+                </ul>
+                <li>are a charity or voluntary organisation</li>
+            </ul>
+            <p>
+                A lower tier carrier may also include a waste collection, disposal or regulation authority.
+            </p>
+            <p>
+                If none of the lower tier criteria apply, a person or organisation will be in the upper tier. Key examples are if a business:
+            </p><ul>
+            <li>transports other people's waste, like a skip company</li>
+            <li>carries construction and demolition waste</li>
+            <li>arranges for waste from other businesses’ to be transported, recovered or disposed of (broker)</li>
+            <li>buys or sells waste, or uses an agent to do so (dealer)</li>
+        </ul>
+            <p></p>
+        </div>
+    </div>
+
+</section>
+{% include  '../footer.html' %}

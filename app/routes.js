@@ -15,5 +15,6 @@ require('./routes/8.js')(router)
 require('./routes/9.js')(router)
 require('./routes/10.js')(router)
 require('./routes/11.js')(router)
+require('./routes/12.js')(router)
 
 module.exports = router
