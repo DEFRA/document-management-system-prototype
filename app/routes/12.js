@@ -297,7 +297,7 @@ module.exports = function (router) {
         const permitNumber = req.query.permitNumber || defaultPermitId
         let thePageObject = {}
         // thePageObject.documents = createDataFromJson(permitNumber)
-        thePageObject.documents = createDataFromArray(['EAWML65519', 'EPRZP3821GK', 'T3945884O', 'EAWML403958'])
+        thePageObject.documents = createDataFromArray(['EAWML65519', 'EPRZP3821GK', 'T3945884O', 'EAWML403958', 'EAWML104608'])
         // thePageObject.permitNumber = permitNumber
         let pageVariant = req.params.variant || 1
         let searchType = req.query.searchType || 1
@@ -316,6 +316,7 @@ module.exports = function (router) {
         }
         thePageObject.docTypeItems = getDocTypeItems(thePageObject.documents)
         thePageObject.permitTypeItems = getPermitTypeItems(thePageObject.documents)
+        thePageObject.docFileTypeItems = getDocFileTypeItems(thePageObject.documents)
         res.render(versionDirectory + '/search/search-results.html', {
             pageObject: thePageObject,
             searchType: searchType,
