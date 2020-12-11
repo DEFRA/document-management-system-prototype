@@ -9,7 +9,7 @@
         items: pageObject.permitTypeItems
     }) }}
 
-{% endset  %}
+{% endset %}
 
 
 {% set docTypeOptionsHtml %}
@@ -21,7 +21,7 @@
         items: pageObject.docTypeItems
     }) }}
 
-{% endset  %}
+{% endset %}
 
 {% set docFileTypeOptionsHtml %}
 
@@ -32,7 +32,7 @@
         items: pageObject.docFileTypeItems
     }) }}
 
-{% endset  %}
+{% endset %}
 
 {% set dateOptionsHtml %}
     {{ govukInput({
@@ -59,14 +59,60 @@
     }) }}
 {% endset %}
 
+{% set postCodeSearch %}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label"
+         data-module="gem-toggle-input-class-on-focus">
+        <label for="finder-keyword-search" class="gem-c-search__label">
+            Search by postcode
+        </label>
+        <div class="gem-c-search__item-wrapper">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search"
+                   aria-controls="js-search-results-info"
+                   class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                <button type="submit" class="gem-c-search__submit">Search</button>
+            </div>
+        </div>
+        <p></p>
+        {{ govukSelect({
+            id: "distance",
+            name: "distance",
+            label: {
+                text: "Distance from postcode"
+            },
+            items: [
+                {
+                    value: "1",
+                    text: "1km"
+                },
+                {
+                    value: "2",
+                    text: "5km"
+                },
+                {
+                    value: "10",
+                    text: "10km"
+                },
+                {
+                    value: "30",
+                    text: "30km"
+                }
+            ]
+        }) }}
+    </div>
+{% endset %}
+
 <div id="keywords" role="search" aria-label="Official documents">
-    {#    <h2 class="govuk-heading-s">Search document title</h2>#}
-    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label" data-module="gem-toggle-input-class-on-focus">
+    {# <h2 class="govuk-heading-s">Search document title</h2> #}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label"
+         data-module="gem-toggle-input-class-on-focus">
         <label for="finder-keyword-search" class="gem-c-search__label">
             Search document title
         </label>
         <div class="gem-c-search__item-wrapper">
-            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search" aria-controls="js-search-results-info" class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search"
+                   aria-controls="js-search-results-info"
+                   class="gem-c-search__item gem-c-search__input js-class-toggle focus">
             <div class="gem-c-search__item gem-c-search__submit-wrapper">
                 <button type="submit" class="gem-c-search__submit">Search</button>
             </div>
@@ -81,6 +127,11 @@
             title: 'Permit Type',
             body: permitTypeOptionsHtml | safe,
             expanded: 'true'
+        },
+        {
+            title: 'Location',
+            body: postCodeSearch | safe,
+            expanded: 'false'
         },
         {
             title: 'File Type',
@@ -105,12 +156,13 @@
         let permitArray = []
         let fileTypeArray = []
         let documentArray = []
+
         // $(".finder-results").find(`[data-permittype='Compliance']`).css('background', 'red')
 
         function countResults() {
             let itemsShowing = []
-            $('.finder-results li.gem-c-document-list__item').each(function() {
-                if($(this).is(":visible")) {
+            $('.finder-results li.gem-c-document-list__item').each(function () {
+                if ($(this).is(":visible")) {
                     itemsShowing.push(this)
                 }
             })
@@ -118,36 +170,36 @@
         }
 
         function showHideResults(permitData, documentData, fileTypeData) {
-            if(permitData.length && documentData.length && fileTypeData.length) {
-                $(".finder-results li.gem-c-document-list__item").each(function() {
-                    if(permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type')) && fileTypeData.includes($(this).data('file-type'))) {
+            if (permitData.length && documentData.length && fileTypeData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function () {
+                    if (permitData.includes($(this).data('permit-type')) && documentData.includes($(this).data('document-type')) && fileTypeData.includes($(this).data('file-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
                     }
                 })
                 // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
-            } else if(permitData.length) {
-                $(".finder-results li.gem-c-document-list__item").each(function() {
-                    if(permitData.includes($(this).data('permit-type'))) {
+            } else if (permitData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function () {
+                    if (permitData.includes($(this).data('permit-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
                     }
                 })
                 // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
-            } else if(documentData.length) {
-                $(".finder-results li.gem-c-document-list__item").each(function() {
-                    if(documentData.includes($(this).data('document-type'))) {
+            } else if (documentData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function () {
+                    if (documentData.includes($(this).data('document-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
                     }
                 })
                 // $('.finder-results li').attr(['data-permittype', 'Compliance']).css(['background', 'red'])
-            } else if(fileTypeData.length) {
-                $(".finder-results li.gem-c-document-list__item").each(function() {
-                    if(fileTypeData.includes($(this).data('file-type'))) {
+            } else if (fileTypeData.length) {
+                $(".finder-results li.gem-c-document-list__item").each(function () {
+                    if (fileTypeData.includes($(this).data('file-type'))) {
                         $(this).show()
                     } else {
                         $(this).hide()
@@ -185,34 +237,34 @@
             $('#resultCounter').text(countResults())
 
         }
+
         $('#facet-wrapper input').on('click', (e) => {
             //
             console.log(e.target.checked)
             let checked = e.target.value
             if (e.target.checked) {
-                if(e.target.name === 'permitType') {
+                if (e.target.name === 'permitType') {
                     permitArray.push(e.target.value)
                 }
-                if(e.target.name === 'docFileType') {
+                if (e.target.name === 'docFileType') {
                     fileTypeArray.push(e.target.value)
                 }
-                if(e.target.name === 'docType') {
+                if (e.target.name === 'docType') {
                     documentArray.push(e.target.value)
                 }
                 searchArray.push(e.target.value)
             } else {
-                if(e.target.name === 'permitType') {
-                    permitArray.splice($.inArray(checked, permitArray),1)
+                if (e.target.name === 'permitType') {
+                    permitArray.splice($.inArray(checked, permitArray), 1)
                 }
-                if(e.target.name === 'docType') {
-                    documentArray.splice($.inArray(checked, documentArray),1)
+                if (e.target.name === 'docType') {
+                    documentArray.splice($.inArray(checked, documentArray), 1)
                 }
-                if(e.target.name === 'docFileType') {
-                    fileTypeArray.splice($.inArray(checked, fileTypeArray),1)
+                if (e.target.name === 'docFileType') {
+                    fileTypeArray.splice($.inArray(checked, fileTypeArray), 1)
                 }
-                searchArray.splice($.inArray(checked, searchArray),1)
+                searchArray.splice($.inArray(checked, searchArray), 1)
             }
-
 
 
             console.log('Search: ' + searchArray)
