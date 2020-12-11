@@ -365,6 +365,7 @@ module.exports = function (router) {
     ], function (req, res) {
         const permitNumber = req.params.permitNumber || defaultPermitId
         let thePageObject = {}
+        thePageObject.showLocation = false
         if (req.params.permitNumber === 'EAWML12345') {
             thePageObject.documents = []
         } else {

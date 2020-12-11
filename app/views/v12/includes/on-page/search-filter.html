@@ -121,6 +121,8 @@
 
 </div>
 
+{% if pageObject.showLocation !== false %}
+
 {{ searchFilter({
     rows: [
         {
@@ -149,6 +151,33 @@
         }
     ]
 }) }}
+
+{% else %}
+
+    {{ searchFilter({
+        rows: [
+            {
+                title: 'Permit Type',
+                body: permitTypeOptionsHtml | safe,
+                expanded: 'true'
+            },
+            {
+                title: 'File Type',
+                body: docFileTypeOptionsHtml | safe,
+                expanded: 'false'
+            },
+            {
+                title: 'Document Type',
+                body: docTypeOptionsHtml | safe,
+                expanded: 'false'
+            },
+            {
+                title: 'Date',
+                body: dateOptionsHtml | safe
+            }
+        ]
+    }) }}
+{% endif %}
 
 <script type="text/javascript">
     window.addEventListener('load', function () {
