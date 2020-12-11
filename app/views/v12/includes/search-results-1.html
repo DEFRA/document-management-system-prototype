@@ -1,6 +1,18 @@
 <div class="gov-uk_results-block">
-    <div class="result-info">
-        <h2 class="result-region-header__counter"> {{ pageObject.documents.length }} results</h2>
+    <div class="result-info" style="overflow: hidden">
+        <h2 class="result-region-header__counter" style="float: left;"> {{ pageObject.documents.length }} results</h2>
+        <div class="sort-options" style="float: right">
+            <div id="js-sort-options">
+                <div class=" sort-options">
+                    <label for="order" class="sort-options__label govuk-label">Sort by</label>
+                    <select class="js-order-results govuk-select sort-options__select" name="order" id="order" aria-controls="js-search-results-info" data-default-sort-option="updated-newest" data-relevance-sort-option="relevance" data-module="track-select-change">
+                        <option value="updated-newest" selected="" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Updated (newest)">Newest</option>
+                        <option value="updated-oldest" data-track-category="dropDownClicked" data-track-action="clicked" data-track-label="Updated (oldest)">Oldest</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div class="sort-options">
 
