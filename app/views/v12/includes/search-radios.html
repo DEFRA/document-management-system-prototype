@@ -46,14 +46,16 @@
         ]
     }) }}
 
-    {{ govukDetails({
-        summaryText: "Advanced search",
-        html: "<p>This feature is intended for use by professional and expert users. It allows users to <a href='./search-results'>search for all documents in the public register</a>.</p>"
-    }) }}
-
-
     {{ govukButton({
         text: 'Continue'
     }) }}
+
+<p></p>
+    <a href='./search-results'>I want to browse all available documents in the public register</a>
+
+{#    {{ govukDetails({#}
+{#        summaryText: "I want to browse all documents in the public register",#}
+{#        html: "<p>This feature allows users to <a href='./search-results'>browse all documents in the public register</a>.</p>"#}
+{#    }) }}#}
 </form>
 
