@@ -1,0 +1,62 @@
+<form action="" method="post">
+
+    {% set yesHtml %}
+        {{ govukInput({
+            id: "permitNumber",
+            name: "permitNumber",
+            classes: "govuk-input--width-20",
+            label: {
+                text: "Permit Number"
+            }
+        }) }}
+    {% endset -%}
+
+    {% set noHtml %}
+        <p>You will be redirected to the Electronic Public Register search page to assist you in finding the record you
+            are looking for</p>
+    {% endset -%}
+
+    {{ govukRadios({
+        idPrefix: "do-you-know-permit-number",
+        name: "do-you-know-permit-number",
+        fieldset: {
+            legend: {
+                text: "Do you know the permit number of the record you are looking for?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            stext: "Select one option."
+        },
+        items: [
+            {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                html: yesHtml
+            }
+            },
+            {
+                value: "no",
+                text: "No",
+                conditional: {
+                html: noHtml
+            }
+            }
+        ]
+    }) }}
+
+    {{ govukButton({
+        text: 'Continue'
+    }) }}
+
+{#<p></p>#}
+{#    <a href='./search-results'>I want to browse all available documents in the public register</a>#}
+
+{#    {{ govukDetails({#}
+{#        summaryText: "I want to browse all documents in the public register",#}
+{#        html: "<p>This feature allows users to <a href='./search-results'>browse all documents in the public register</a>.</p>"#}
+{#    }) }}#}
+</form>
+

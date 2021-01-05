@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-full">
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "../search/search-all"
+            }) }}
+
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">Permit {{ pageObject.details.permitId }}</span>
+                {{ pageObject.details.name }}
+            </h1>
+
+            {% set permitDocHtml %}
+
+                {{ govukButton({
+                    text: "View permit document(s)",
+                    sclasses: "govuk-button--secondary",
+                    href: "/public/EDRM/EAWML104608/00000094.pdf"
+                }) }}
+
+{#                {{  pageObject.details.site.postcode }}#}
+
+{#                <li class="gem-c-document-list__item  " data-permit-type="General" data-document-type="Permit">#}
+{#                    <a class="gem-c-document-list__item-title   gem-c-document-list__item-link" href="/public/EDRM/EAWML104608/00000094.pdf" target="_blank">Application Standard Permit PDF</a>#}
+
+
+
+{#                    <ul class="gem-c-document-list__item-metadata">#}
+{#                        <li class="gem-c-document-list__attribute">#}
+
+
+
+
+
+{#                            <span class="type"><abbr title="Portable Document Format">PDF</abbr></span>, <span class="file-size">928KB</span>#}
+
+{#                        </li>#}
+
+
+
+{#                        <li class="gem-c-document-list__attribute">#}
+{#                            Updated:#}
+{#                            <time datetime="3/1/2012">3/1/2012</time>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </li>#}
+
+            {% endset %}
+
+            {% set permitHTML %}
+                {#                <h2 class="govuk-heading-m">Summary</h2>#}
+                {#                {{ govukSummaryList({#}
+                {#                    rows: [#}
+                {#                        {#}
+                {#                            key: {#}
+                {#                            text: "Start Date"#}
+                {#                        },#}
+                {#                            value: {#}
+                {#                            text: pageObject.details.startDate#}
+                {#                        }#}
+                {#                        },#}
+                {#                        {#}
+                {#                            key: {#}
+                {#                            text: "Register"#}
+                {#                        },#}
+                {#                            value: {#}
+                {#                            text: pageObject.details.register#}
+                {#                        }#}
+                {#                        }#}
+                {#                    ]#}
+                {#                }) }}#}
+                {#                <h2 class="govuk-heading-m">Site details</h2>#}
+
+                {#                <dl class="govuk-summary-list">#}
+
+                {#                    {% for key, value in pageObject.details.site %}#}
+                {#                    <div class="govuk-summary-list__row">#}
+                {#                        <dt class="govuk-summary-list__key" style="text-transform: capitalize">#}
+                {#                            {{ key }}#}
+                {#                        </dt>#}
+                {#                        <dd class="govuk-summary-list__value">#}
+                {#                            {{ value }}#}
+                {#                        </dd>#}
+
+                {#                    </div>#}
+                {#                    {% endfor %}#}
+
+                {#                </dl>#}
+
+                {{ govukSummaryList({
+                    rows: [
+                        {
+                            key: {
+                            text: "Register"
+                        },
+                            value: {
+                            text: pageObject.details.register
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Address"
+                        },
+                            value: {
+                            text: pageObject.details.site.address
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Postcode"
+                        },
+                            value: {
+                            text: pageObject.details.site.postcode
+                        }
+                        },
+                        {
+                            key: {
+                            text: "Permit Document"
+                        },
+                            value: {
+                            html: permitDocHtml
+                        }
+                        }
+                    ]
+                }) }}
+            {% endset %}
+
+            {% set documentsHtml %}
+                {# {% for document in pageObject.documents %} #}
+                <div class="govuk-grid-row">
+                    {% if pageObject.documents.length > 0 %}
+                        <h2 class="govuk-heading-l">Documents</h2>
+
+                        <div class="govuk-grid-column-one-third">
+                            {% include '../includes/on-page/search-filter.html' %}
+                        </div>
+                        <div class="govuk-grid-column-two-thirds">
+
+                            {% include '../includes/search-results-on-page.html' %}
+                            {% include '../includes/on-page/unhappy-path.html' %}
+
+                            {#                        {% include '../includes/pagination.html' %}#}
+                        </div>
+                    {% else %}
+                        <div class="govuk-grid-column-full">
+
+                            <h2 class="govuk-heading-l">No documents found</h2>
+                            {% include '../includes/on-page/unhappy-path.html' %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endset %}
+
+            {#            {{ govukTabs({#}
+            {#                items: [#}
+            {#                    {#}
+            {#                        label: "Permit",#}
+            {#                        id: "permit",#}
+            {#                        panel: {#}
+            {#                        html: permitHTML#}
+            {#                    }#}
+            {#                    },#}
+            {#                    {#}
+            {#                        label: "Documents",#}
+            {#                        id: "documents",#}
+            {#                        panel: {#}
+            {#                        html: documentsHtml#}
+            {#                    }#}
+            {#                    }#}
+            {#                ]#}
+            {#            }) }}#}
+
+            {{ permitHTML | safe }}
+            {{ documentsHtml | safe }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

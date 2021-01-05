@@ -1,0 +1,180 @@
+{% set permitTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.permitTypeItems
+    }) }}
+
+{% endset %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docTypeItems
+    }) }}
+
+{% endset %}
+
+{% set docFileTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docFileType',
+        name: 'docFileType',
+        classes: "govuk-checkboxes--small",
+        items: pageObject.docFileTypeItems
+    }) }}
+
+{% endset %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+{% set postCodeSearch %}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label"
+         data-module="gem-toggle-input-class-on-focus">
+        <label for="finder-keyword-search" class="gem-c-search__label">
+            Search by postcode
+        </label>
+        <div class="gem-c-search__item-wrapper">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search"
+                   aria-controls="js-search-results-info"
+                   class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                <button type="submit" class="gem-c-search__submit">Search</button>
+            </div>
+        </div>
+        <p></p>
+        {{ govukSelect({
+            id: "distance",
+            name: "distance",
+            label: {
+                text: "Distance from postcode"
+            },
+            items: [
+                {
+                    value: "1",
+                    text: "1km"
+                },
+                {
+                    value: "2",
+                    text: "5km"
+                },
+                {
+                    value: "10",
+                    text: "10km"
+                },
+                {
+                    value: "30",
+                    text: "30km"
+                }
+            ]
+        }) }}
+    </div>
+{% endset %}
+
+<div id="keywords" role="search" aria-label="Official documents">
+    {# <h2 class="govuk-heading-s">Search document title</h2> #}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label"
+         data-module="gem-toggle-input-class-on-focus">
+        <label for="finder-keyword-search" class="gem-c-search__label">
+            Search document title
+        </label>
+        <div class="gem-c-search__item-wrapper">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search"
+                   aria-controls="js-search-results-info"
+                   class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                <button type="submit" class="gem-c-search__submit">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="govuk-grid-column-full">
+    <div class="defra-filter--content" style="display: none;">
+        <form method="get">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                Filter by permit type
+                            </legend>
+
+                            {{ permitTypeOptionsHtml | safe }}
+
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-one-third ">
+
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                Filter by document type
+                            </legend>
+
+                            {{ docTypeOptionsHtml | safe }}
+
+                        </fieldset>
+                    </div>
+
+                </div>
+
+                <div class="govuk-grid-column-one-third ">
+
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                Filter by date
+                            </legend>
+
+                            {{ dateOptionsHtml | safe }}
+
+                        </fieldset>
+                    </div>
+
+                </div>
+
+
+            <div class="govuk-grid-column-full">
+                <button type="submit" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button"
+                        name="has_filter"
+                        value="yes">
+                    Apply filter
+                </button>
+
+            </div>
+    </div>
+    </form>
+</div>
+</div>

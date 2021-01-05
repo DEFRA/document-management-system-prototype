@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+            {{ govukBackLink({
+                text: "Back",
+                href: "/"
+            }) }}
+            <h1 class="govuk-heading-xl">
+                <span class="govuk-caption-m">(9/12/20 - 22/12/20)</span>
+                User Centered Design recommendation for Private Beta
+            </h1>
+            <p>The following flows are based upon understanding of user needs identified and designed for over the alpha and beta phase.</p>
+
+            <ol class='govuk-list--number govuk-list'>
+                <li><a href='./search/search-all'>View stand alone service starting point</a></li>
+                <li><a href='./all-in-one/EAWML12345'>View stand record with no documents (Unhappy path)</a></li>
+                <li><a href='./all-in-one/EAWML104608'>View stand alone record with documents</a></li>
+                <li><a href='./entry-points/ea/'>Start from ePR (Electronic Public Register) - go to documents section if requested</a></li>
+            </ol>
+
+            <h2 class="govuk-heading-m">Searching across multiple permits</h2>
+
+            <p>Research has so far suggested that this is not a useful feature and there is evidence indicating that users' ability to complete key tasks are impaired by having this option available to them.</p>
+            <p>The recommendation is to leave this feature out of private Beta and actively monitor whether incoming requests could have likely been satisfied by the feature being available. Its inclusion in the service should be reevaluated at the conclusion of private Beta.</p>
+            {{ govukDetails({
+                summaryText: "More information about multiple permit searches",
+                html: "
+                        <p>Although the recommendation is to omit this feature for private Beta, there has been a fair amount of research conducted. The following example is to demonstrate what has tested best to date.</p>
+                        <p></p>
+                        <a href='./search/search-results'>Example that tested best</a>
+                    "
+            }) }}
+
+
+{#            {{ govukButton({#}
+{#                text: "View linear journey",#}
+{#                href: "./start.html"#}
+{#            }) }}#}
+
+{#            <p><a href="./user-flow/">View user flows</a></p>#}
+{#            <p><a href="./page-flow/">View all pages</a></p>#}
+
+        </div>
+    </div>
+
+{% endblock %}
