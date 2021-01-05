@@ -1,0 +1,156 @@
+{% from '../macros/searchFilter.njk' import searchFilter %}
+
+{% set permitTypeOptionsHtml %}
+    {{ govukCheckboxes({
+        idPrefix: 'permitType',
+        name: 'permitType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Waste',
+                checked: false
+            },
+            {
+                value: '2',
+                text: 'Installations',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Waste Exemptions'
+            },
+            {
+                value: '4',
+                text: 'Water Abstraction'
+            },
+            {
+                value: '5',
+                text: 'Water Quality'
+            },
+            {
+                value: '6',
+                text: 'Radioactive Substances'
+            },
+            {
+                value: '7',
+                text: 'Nuclear'
+            }
+        ]
+    }) }}
+
+{% endset  %}
+
+
+{% set docTypeOptionsHtml %}
+
+    {{ govukCheckboxes({
+        idPrefix: 'docType',
+        name: 'docType',
+        classes: "govuk-checkboxes--small",
+        items: [
+            {
+                value: '1',
+                text: 'Pre-application',
+                checked: false
+            },
+            {
+                value: '2',
+                text: 'Application & Associated docs',
+                checked: false
+            },
+            {
+                value: '3',
+                text: 'Pre-operational criteria'
+            },
+            {
+                value: '4',
+                text: 'Compliance'
+            },
+            {
+                value: '5',
+                text: 'Monitoring'
+            },
+            {
+                value: '6',
+                text: 'Permit'
+            },
+            {
+                value: '7',
+                text: 'Enforcement'
+            },
+            {
+                value: '8',
+                text: 'Returns'
+            },
+            {
+                value: '9',
+                text: 'Charging'
+            },
+            {
+                value: '10',
+                text: 'General correspondence'
+            }
+        ]
+    }) }}
+
+{% endset  %}
+
+{% set dateOptionsHtml %}
+    {{ govukInput({
+        label: {
+            text: "Updated after",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateFrom",
+        name: "dateFrom"
+    }) }}
+    {{ govukInput({
+        label: {
+            text: "Updated before",
+            isPageHeading: false
+        },
+        hint: {
+            text: "For example, 2005 or 21/11/2014"
+        },
+        id: "dateTo",
+        name: "dateTo"
+    }) }}
+{% endset %}
+
+
+<div id="keywords" role="search" aria-label="Official documents">
+{#    <h2 class="govuk-heading-s">Search document title</h2>#}
+    <div class="gem-c-search  gem-c-search--on-white gem-c-search--separate-label" data-module="gem-toggle-input-class-on-focus">
+        <label for="finder-keyword-search" class="gem-c-search__label">
+            Search document title
+        </label>
+        <div class="gem-c-search__item-wrapper">
+            <input type="search" value="" id="finder-keyword-search" name="keywords" title="Search" aria-controls="js-search-results-info" class="gem-c-search__item gem-c-search__input js-class-toggle focus">
+            <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                <button type="submit" class="gem-c-search__submit">Search</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{ searchFilter({
+    rows: [
+        {
+            title: 'Permit Type',
+            body: permitTypeOptionsHtml | safe
+        },
+        {
+            title: 'Document Type',
+            body: docTypeOptionsHtml | safe
+        },
+        {
+            title: 'Date',
+            body: dateOptionsHtml | safe
+        }
+    ]
+}) }}
