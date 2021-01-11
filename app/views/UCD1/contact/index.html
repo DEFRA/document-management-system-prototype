@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Request documents form the public register</h1>
+
+        <p>Send a request for a member of our team to conduct additional searches for documents related to this permit. Responses can take up to 20 working days.</p>
+
+    {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        label: {
+            text: "What documents do you require?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+        },
+        shint: {
+            text: "Provide information about which documents you would like "
+        }
+    }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--m"
+            },
+            hint: {
+                text: "We’ll only use this to send you responses to this request"
+            },
+            id: "email",
+            name: "email",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false
+        }) }}
+
+        {{  govukButton({
+            name: '',
+            href: './complete',
+            text: 'Continue'
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}
